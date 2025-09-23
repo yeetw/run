@@ -1,0 +1,55 @@
+{
+  "lastUpdated": "2025-09-23",
+  "months": [
+    {
+      "month": "2025-09",
+      "totalDistance": "31",
+      "totalRuns": "5",
+      "totalDuration": "05:48:41",
+      "fastestPace": "10:07",
+      "longestDistance": "12.27",
+      "maxAvgHR": "162",
+      "maxCadence": "155"
+    },
+    {
+      "month": "2025-08",
+      "totalDistance": "52.7",
+      "totalRuns": "11",
+      "totalDuration": "10:04:03",
+      "fastestPace": "08:19",
+      "longestDistance": "11",
+      "maxAvgHR": "146",
+      "maxCadence": "175"
+    },
+    {
+      "month": "2025-07",
+      "totalDistance": "60.5",
+      "totalRuns": "10",
+      "totalDuration": "11:02:12",
+      "fastestPace": "09:32",
+      "longestDistance": "10.01",
+      "maxAvgHR": "151",
+      "maxCadence": "167"
+    },
+    {
+      "month": "2025-06",
+      "totalDistance": "70.8",
+      "totalRuns": "17",
+      "totalDuration": "13:20:17",
+      "fastestPace": "09:51",
+      "longestDistance": "7.16",
+      "maxAvgHR": "154",
+      "maxCadence": "165"
+    },
+    {
+      "month": "2025-05",
+      "totalDistance": "16.3",
+      "totalRuns": "7",
+      "totalDuration": "03:32:12",
+      "fastestPace": "10:49",
+      "longestDistance": "3.36",
+      "maxAvgHR": "145",
+      "maxCadence": "-"
+    }
+  ]
+}

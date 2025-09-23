@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life is a Marathon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .main-title {
+            font-size: 5rem;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 2.5rem;
+            color: #4a5568;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .stat-value {
+            background-image: url('/assets/images/tag-bg.png');
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 1rem 3rem;
+            border-radius: 8px;
+            display: inline-block;
+            min-width: 200px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #1a1a1a;
+            line-height: 1;
+        }
+
+        .section {
+            margin-top: 4rem;
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .data-table {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .data-table th {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #f1f5f9;
+            color: #2d3748;
+            font-weight: 500;
+        }
+
+        .data-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .weekly-cell {
+            background-color: #e6f3ff !important;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        .weekly-summary {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .weekly-date-range {
+            font-weight: 600;
+            color: #2d3748;
+            white-space: nowrap;
+        }
+
+        .dots-separator {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 2rem 0;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: #cbd5e0;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3rem;
+            }
+
+            .subtitle {
+                font-size: 1.8rem;
+            }
+
+            .stats-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .data-table {
+                font-size: 0.8rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">Life is a Marathon</h1>
+        <p class="subtitle">I'm looking for a water station.</p>
+
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-label">Latest</div>
+                <div class="stat-value">
+                    <div class="stat-number" id="latest-stat">3.24K</div>
+                </div>
+            </div>
+
+            <div class="stat-item">
+                <div class="stat-label">Week</div>
+                <div class="stat-value">
+                    <div class="stat-number" id="week-stat">3.24K</div>
+                </div>
+            </div>
+
+            <div class="stat-item">
+                <div class="stat-label">Month</div>
+                <div class="stat-value">
+                    <div class="stat-number" id="month-stat">31K</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Runs Section -->
+        <div class="section">
+            <h2 class="section-title">Recent Runs</h2>
+            <table class="data-table" id="recent-runs-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Duration</th>
+                        <th>Distance</th>
+                        <th>Avg. Pace</th>
+                        <th>Avg. Heart Rate</th>
+                        <th>Avg. Cadence</th>
+                    </tr>
+                </thead>
+                <tbody id="recent-runs-tbody">
+                </tbody>
+            </table>
+            <div class="dots-separator">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <!-- Weekly Overview Section -->
+        <div class="section">
+            <h2 class="section-title">Weekly Overview</h2>
+            <table class="data-table" id="weekly-overview-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Summary</th>
+                        <th>Mon.</th>
+                        <th>Tue.</th>
+                        <th>Wed.</th>
+                        <th>Thu.</th>
+                        <th>Fri.</th>
+                        <th>Sat.</th>
+                        <th>Sun.</th>
+                    </tr>
+                </thead>
+                <tbody id="weekly-overview-tbody">
+                </tbody>
+            </table>
+            <div class="dots-separator">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <!-- Monthly Summary Section -->
+        <div class="section">
+            <h2 class="section-title">Monthly Summary</h2>
+            <table class="data-table" id="monthly-summary-table">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Total Distance</th>
+                        <th>Total Runs</th>
+                        <th>Total Duration</th>
+                        <th>Fastest Pace</th>
+                        <th>Longest Distance</th>
+                        <th>Max Avg. HR</th>
+                        <th>Max Cadence</th>
+                    </tr>
+                </thead>
+                <tbody id="monthly-summary-tbody">
+                </tbody>
+            </table>
+            <div class="dots-separator">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <!-- Running Achievements Section -->
+        <div class="section">
+            <h2 class="section-title">Running Achievements</h2>
+            <table class="data-table" id="achievements-table">
+                <thead>
+                    <tr>
+                        <th>Race</th>
+                        <th>Date</th>
+                        <th>Distance</th>
+                        <th>Duration</th>
+                        <th>Avg. Pace</th>
+                        <th>Avg. Heart Rate</th>
+                        <th>Avg. Cadence</th>
+                    </tr>
+                </thead>
+                <tbody id="achievements-tbody">
+                </tbody>
+            </table>
+            <div class="dots-separator">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Easy modification points for future updates
+        const stats = {
+            latest: '3.24K',
+            week: '3.24K',
+            month: '31K'
+        };
+
+        // Update stats function
+        function updateStats(newStats) {
+            if (newStats.latest) document.getElementById('latest-stat').textContent = newStats.latest;
+            if (newStats.week) document.getElementById('week-stat').textContent = newStats.week;
+            if (newStats.month) document.getElementById('month-stat').textContent = newStats.month;
+        }
+
+        // Initialize with current stats
+        updateStats(stats);
+
+        // Function to load recent runs data from JSON
+        async function loadRecentRuns() {
+            try {
+                const response = await fetch('/assets/data/recent-runs.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data.runs;
+            } catch (error) {
+                console.error('Error loading recent runs data:', error);
+            }
+        }
+
+        // Function to update recent runs table
+        function updateRecentRuns(runs) {
+            const tbody = document.getElementById('recent-runs-tbody');
+            tbody.innerHTML = '';
+
+            runs.forEach(run => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${run.date}</td>
+                    <td>${run.time}</td>
+                    <td>${run.duration}</td>
+                    <td>${run.distance}</td>
+                    <td>${run.pace}</td>
+                    <td>${run.heartRate}</td>
+                    <td>${run.cadence}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Initialize recent runs data
+        async function initializeRecentRuns() {
+            const recentRuns = await loadRecentRuns();
+            updateRecentRuns(recentRuns);
+        }
+
+        // Function to load weekly overview data from JSON
+        async function loadWeeklyOverview() {
+            try {
+                const response = await fetch('/assets/data/weekly-overview.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data.weeks;
+            } catch (error) {
+                console.error('Error loading weekly overview data:', error);
+            }
+        }
+
+        // Function to update weekly overview table
+        function updateWeeklyOverview(weeks) {
+            const tbody = document.getElementById('weekly-overview-tbody');
+            tbody.innerHTML = '';
+
+            weeks.forEach(week => {
+                const row = document.createElement('tr');
+                const daysCells = week.days.map(day =>
+                    `<td${day ? ' class="weekly-cell"' : ''}>${day ? day : ''}</td>`
+                ).join('');
+
+                row.innerHTML = `
+                    <td class="weekly-date-range">${week.dateRange}</td>
+                    <td class="weekly-summary">${week.summary}</td>
+                    ${daysCells}
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Initialize weekly overview data
+        async function initializeWeeklyOverview() {
+            const weeklyOverview = await loadWeeklyOverview();
+            updateWeeklyOverview(weeklyOverview);
+        }
+
+        // Function to load monthly summary data from JSON
+        async function loadMonthlySummary() {
+            try {
+                const response = await fetch('/assets/data/monthly-summary.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data.months;
+            } catch (error) {
+                console.error('Error loading monthly summary data:', error);
+            }
+        }
+
+        // Function to update monthly summary table
+        function updateMonthlySummary(months) {
+            const tbody = document.getElementById('monthly-summary-tbody');
+            tbody.innerHTML = '';
+
+            months.forEach(month => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${month.month}</td>
+                    <td>${month.totalDistance}</td>
+                    <td>${month.totalRuns}</td>
+                    <td>${month.totalDuration}</td>
+                    <td>${month.fastestPace}</td>
+                    <td>${month.longestDistance}</td>
+                    <td>${month.maxAvgHR}</td>
+                    <td>${month.maxCadence}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Initialize monthly summary data
+        async function initializeMonthlySummary() {
+            const monthlySummary = await loadMonthlySummary();
+            updateMonthlySummary(monthlySummary);
+        }
+
+        // Function to load running achievements data from JSON
+        async function loadRunningAchievements() {
+            try {
+                const response = await fetch('/assets/data/running-achievements.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data.achievements;
+            } catch (error) {
+                console.error('Error loading running achievements data:', error);
+            }
+        }
+
+        // Function to update achievements table
+        function updateAchievements(races) {
+            const tbody = document.getElementById('achievements-tbody');
+            tbody.innerHTML = '';
+
+            races.forEach(race => {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${race.race}</td>
+                    <td>${race.date}</td>
+                    <td>${race.distance}</td>
+                    <td>${race.duration}</td>
+                    <td>${race.avgPace}</td>
+                    <td>${race.avgHeartRate}</td>
+                    <td>${race.avgCadence}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Initialize running achievements data
+        async function initializeRunningAchievements() {
+            const achievements = await loadRunningAchievements();
+            updateAchievements(achievements);
+        }
+
+        // Main initialization function
+        async function initializePage() {
+            // Initialize data from JSON files
+            await initializeRecentRuns();
+            await initializeWeeklyOverview();
+            await initializeMonthlySummary();
+            await initializeRunningAchievements();
+        }
+
+        // Initialize page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+
+        // Example of how to update data:
+        // updateStats({ latest: '4.1K', week: '25K', month: '120K' });
+        // For recent runs: Edit /assets/data/recent-runs.json file, then refresh page
+        // For weekly overview: Edit /assets/data/weekly-overview.json file, then refresh page
+        // For monthly summary: Edit /assets/data/monthly-summary.json file, then refresh page
+        // For running achievements: Edit /assets/data/running-achievements.json file, then refresh page
+    </script>
+</body>
+</html>
