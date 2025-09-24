@@ -1,2 +1,5 @@
 url: https://run.yeekuo.tw
 permalink: /:title/
+
+exclude:
+  - scripts/
