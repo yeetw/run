@@ -1,6 +1,33 @@
 {
-  "lastUpdated": "2025-09-24",
+  "lastUpdated": "2025-10-05",
   "runs": [
+    {
+      "date": "2025-10-01",
+      "time": "06:45",
+      "duration": "00:56:42",
+      "distance": "5.18",
+      "pace": "10:57",
+      "heartRate": "129",
+      "cadence": "151"
+    },
+    {
+      "date": "2025-09-28",
+      "time": "06:00",
+      "duration": "01:38:31",
+      "distance": "10.46",
+      "pace": "09:25",
+      "heartRate": "158",
+      "cadence": "157"
+    },
+    {
+      "date": "2025-09-26",
+      "time": "07:10",
+      "duration": "01:00:23",
+      "distance": "5.61",
+      "pace": "10:46",
+      "heartRate": "134",
+      "cadence": "154"
+    },
     {
       "date": "2025-09-21",
       "time": "06:30",
