@@ -22,6 +22,7 @@ This is a simple landing page with a marathon theme featuring the quote "Life is
 - JSON-based data loading for all data tables (with fallback support)
 - Comprehensive running analytics across different time periods
 - Race achievement tracking
+- **Display Limits**: Recent Runs, Weekly Overview, and Monthly Summary tables show only the latest 5 entries (achievements show all entries)
 
 ## How to Modify
 
@@ -78,7 +79,7 @@ updateRecentRuns([
 ]);
 ```
 
-Note: The page automatically loads all data from JSON files on page load using a single fetch operation for optimal performance.
+**Note**: The page automatically loads all data from JSON files on page load using a single fetch operation for optimal performance. The table displays only the latest 5 entries from the data.
 
 ### Updating Weekly Overview Data
 Weekly overview data is now loaded from `/assets/data/weekly-overview.json`. To update the data:
@@ -126,7 +127,7 @@ updateWeeklyOverview([
 ]);
 ```
 
-Note: The page automatically loads all data from JSON files on page load using a single fetch operation for optimal performance.
+**Note**: The page automatically loads all data from JSON files on page load using a single fetch operation for optimal performance. The table displays only the latest 5 entries from the data.
 
 ### Updating Monthly Summary Data
 Monthly summary data is now loaded from `/assets/data/monthly-summary.json`. To update the data:
@@ -179,7 +180,7 @@ updateMonthlySummary([
 ]);
 ```
 
-Note: The page automatically loads all data from JSON files on page load using a single fetch operation for optimal performance.
+**Note**: The page automatically loads all data from JSON files on page load using a single fetch operation for optimal performance. The table displays only the latest 5 entries from the data.
 
 ### Updating Running Achievements Data
 Running achievements data is now loaded from `/assets/data/running-achievements.json`. To update the data:
@@ -260,10 +261,10 @@ The green tag backgrounds use `/assets/images/tag-bg.png`. To change:
 
 ## Current Sections
 1. **Hero Section**: Main title with motivational quote and statistics
-2. **Recent Runs**: Table showing latest running activities with detailed metrics
-3. **Weekly Overview**: Calendar-style table showing weekly summaries and daily run data
-4. **Monthly Summary**: Comprehensive monthly statistics including totals and performance metrics
-5. **Running Achievements**: Race participation records and competition results
+2. **Recent Runs**: Table showing latest 5 running activities with detailed metrics
+3. **Weekly Overview**: Calendar-style table showing latest 5 weekly summaries and daily run data
+4. **Monthly Summary**: Comprehensive monthly statistics for the latest 5 months including totals and performance metrics
+5. **Running Achievements**: Race participation records and competition results (shows all achievements)
 
 ## Development
 This is a static HTML page that can be opened directly in a browser or served through any web server.

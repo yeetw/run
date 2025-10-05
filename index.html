@@ -365,7 +365,8 @@
             const tbody = document.getElementById('recent-runs-tbody');
             tbody.innerHTML = '';
 
-            runs.forEach(run => {
+            // Show only the latest 5 entries
+            runs.slice(0, 5).forEach(run => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${run.date}</td>
@@ -385,7 +386,8 @@
             const tbody = document.getElementById('weekly-overview-tbody');
             tbody.innerHTML = '';
 
-            weeks.forEach(week => {
+            // Show only the latest 5 entries
+            weeks.slice(0, 5).forEach(week => {
                 const row = document.createElement('tr');
                 const daysCells = week.days.map(day =>
                     `<td${day ? ' class="weekly-cell"' : ''}>${day ? day : ''}</td>`
@@ -405,7 +407,8 @@
             const tbody = document.getElementById('monthly-summary-tbody');
             tbody.innerHTML = '';
 
-            months.forEach(month => {
+            // Show only the latest 5 entries
+            months.slice(0, 5).forEach(month => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${month.month}</td>
