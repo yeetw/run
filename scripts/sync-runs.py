@@ -6,7 +6,10 @@ from datetime import datetime
 
 import gspread
 
-DATA_DIR = "../assets/data"
+DATA_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "../assets/data"
+)
 TODAY = datetime.now().strftime("%Y-%m-%d")
 
 def update_recnet_runs(rows):
