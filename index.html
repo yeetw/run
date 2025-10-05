@@ -339,13 +339,6 @@
     </div>
 
     <script>
-        // Easy modification points for future updates
-        const stats = {
-            latest: '3.24K',
-            week: '3.24K',
-            month: '31K'
-        };
-
         // Update stats function
         function updateStats(newStats) {
             if (newStats.latest) document.getElementById('latest-stat').textContent = newStats.latest;
@@ -353,21 +346,18 @@
             if (newStats.month) document.getElementById('month-stat').textContent = newStats.month;
         }
 
-        // Initialize with current stats
-        updateStats(stats);
+        // Function to update stats from loaded data
+        function updateStatsFromData(recentRunsData, weeklyData, monthlyData) {
+            const latestDistance = recentRunsData.runs[0]?.distance || '0';
+            const weekSummary = weeklyData.weeks[0]?.summary || '';
+            const weekDistance = weekSummary.split('/')[0]?.trim().replace('km', '') || '0';
+            const monthDistance = monthlyData.months[0]?.totalDistance || '0';
 
-        // Function to load recent runs data from JSON
-        async function loadRecentRuns() {
-            try {
-                const response = await fetch('/assets/data/recent-runs.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                return data.runs;
-            } catch (error) {
-                console.error('Error loading recent runs data:', error);
-            }
+            updateStats({
+                latest: `${latestDistance}K`,
+                week: `${weekDistance}K`,
+                month: `${monthDistance}K`
+            });
         }
 
         // Function to update recent runs table
@@ -390,26 +380,6 @@
             });
         }
 
-        // Initialize recent runs data
-        async function initializeRecentRuns() {
-            const recentRuns = await loadRecentRuns();
-            updateRecentRuns(recentRuns);
-        }
-
-        // Function to load weekly overview data from JSON
-        async function loadWeeklyOverview() {
-            try {
-                const response = await fetch('/assets/data/weekly-overview.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                return data.weeks;
-            } catch (error) {
-                console.error('Error loading weekly overview data:', error);
-            }
-        }
-
         // Function to update weekly overview table
         function updateWeeklyOverview(weeks) {
             const tbody = document.getElementById('weekly-overview-tbody');
@@ -428,26 +398,6 @@
                 `;
                 tbody.appendChild(row);
             });
-        }
-
-        // Initialize weekly overview data
-        async function initializeWeeklyOverview() {
-            const weeklyOverview = await loadWeeklyOverview();
-            updateWeeklyOverview(weeklyOverview);
-        }
-
-        // Function to load monthly summary data from JSON
-        async function loadMonthlySummary() {
-            try {
-                const response = await fetch('/assets/data/monthly-summary.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                return data.months;
-            } catch (error) {
-                console.error('Error loading monthly summary data:', error);
-            }
         }
 
         // Function to update monthly summary table
@@ -471,26 +421,6 @@
             });
         }
 
-        // Initialize monthly summary data
-        async function initializeMonthlySummary() {
-            const monthlySummary = await loadMonthlySummary();
-            updateMonthlySummary(monthlySummary);
-        }
-
-        // Function to load running achievements data from JSON
-        async function loadRunningAchievements() {
-            try {
-                const response = await fetch('/assets/data/running-achievements.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                return data.achievements;
-            } catch (error) {
-                console.error('Error loading running achievements data:', error);
-            }
-        }
-
         // Function to update achievements table
         function updateAchievements(races) {
             const tbody = document.getElementById('achievements-tbody');
@@ -512,19 +442,26 @@
             });
         }
 
-        // Initialize running achievements data
-        async function initializeRunningAchievements() {
-            const achievements = await loadRunningAchievements();
-            updateAchievements(achievements);
-        }
-
-        // Main initialization function
+        // Main initialization function - load all data once
         async function initializePage() {
-            // Initialize data from JSON files
-            await initializeRecentRuns();
-            await initializeWeeklyOverview();
-            await initializeMonthlySummary();
-            await initializeRunningAchievements();
+            try {
+                // Fetch all JSON files once in parallel
+                const [recentRunsData, weeklyData, monthlyData, achievementsData] = await Promise.all([
+                    fetch('/assets/data/recent-runs.json').then(res => res.json()),
+                    fetch('/assets/data/weekly-overview.json').then(res => res.json()),
+                    fetch('/assets/data/monthly-summary.json').then(res => res.json()),
+                    fetch('/assets/data/running-achievements.json').then(res => res.json())
+                ]);
+
+                // Update all sections with the loaded data
+                updateStatsFromData(recentRunsData, weeklyData, monthlyData);
+                updateRecentRuns(recentRunsData.runs);
+                updateWeeklyOverview(weeklyData.weeks);
+                updateMonthlySummary(monthlyData.months);
+                updateAchievements(achievementsData.achievements);
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
         }
 
         // Initialize page when DOM is loaded

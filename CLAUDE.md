@@ -26,17 +26,14 @@ This is a simple landing page with a marathon theme featuring the quote "Life is
 ## How to Modify
 
 ### Updating Statistics
-The stats can be updated by modifying the JavaScript object in `index.html`:
+Statistics (Latest/Week/Month) are **automatically calculated** from the JSON data files:
+- **Latest**: Extracted from the first run in `recent-runs.json`
+- **Week**: Extracted from the first week's summary in `weekly-overview.json`
+- **Month**: Extracted from the first month in `monthly-summary.json`
 
-```javascript
-const stats = {
-    latest: '3.24K',
-    week: '3.24K',
-    month: '31K'
-};
-```
+To update the statistics, simply update the respective JSON files and refresh the page.
 
-Or dynamically using the `updateStats()` function:
+You can also manually update stats using the `updateStats()` function:
 ```javascript
 updateStats({ latest: '4.1K', week: '25K', month: '120K' });
 ```
@@ -81,7 +78,7 @@ updateRecentRuns([
 ]);
 ```
 
-Note: The page automatically loads data from the JSON file on page load. If the JSON file fails to load, it falls back to hardcoded data.
+Note: The page automatically loads all data from JSON files on page load using a single fetch operation for optimal performance.
 
 ### Updating Weekly Overview Data
 Weekly overview data is now loaded from `/assets/data/weekly-overview.json`. To update the data:
@@ -129,7 +126,7 @@ updateWeeklyOverview([
 ]);
 ```
 
-Note: The page automatically loads data from the JSON file on page load with fallback support.
+Note: The page automatically loads all data from JSON files on page load using a single fetch operation for optimal performance.
 
 ### Updating Monthly Summary Data
 Monthly summary data is now loaded from `/assets/data/monthly-summary.json`. To update the data:
@@ -182,7 +179,7 @@ updateMonthlySummary([
 ]);
 ```
 
-Note: The page automatically loads data from the JSON file on page load with fallback support.
+Note: The page automatically loads all data from JSON files on page load using a single fetch operation for optimal performance.
 
 ### Updating Running Achievements Data
 Running achievements data is now loaded from `/assets/data/running-achievements.json`. To update the data:
@@ -232,7 +229,7 @@ updateAchievements([
 ]);
 ```
 
-Note: The page automatically loads data from the JSON file on page load with fallback support.
+Note: The page automatically loads all data from JSON files on page load using a single fetch operation for optimal performance.
 
 ### Styling Modifications
 - Main title: `.main-title` class
@@ -279,4 +276,4 @@ Options for local development:
 - Use Node.js: `npx http-server`
 - Use any other local web server
 
-The page will automatically fall back to hardcoded data if JSON files cannot be loaded.
+All data is loaded from JSON files on page initialization. If JSON files cannot be loaded, an error will be logged to the console.
