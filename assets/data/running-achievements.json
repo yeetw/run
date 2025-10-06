@@ -1,6 +1,15 @@
 {
   "lastUpdated": "2025-10-06",
   "achievements": [
+     {
+      "race": "2025 長庚紀念醫院 永慶盃路跑",
+      "date": "2025/9/28",
+      "distance": "10.5",
+      "duration": "01:38:31",
+      "avgPace": "09:25",
+      "avgHeartRate": "158",
+      "avgCadence": "157"
+    },
     {
       "race": "2025 Panasonic 台北城市路跑賽",
       "date": "2025/9/14",
@@ -9,15 +18,6 @@
       "avgPace": "10:07",
       "avgHeartRate": "162",
       "avgCadence": "155"
-    },
-    {
-      "race": "2025 長庚紀念醫院 永慶盃路跑",
-      "date": "2025/9/28",
-      "distance": "10.5",
-      "duration": "01:38:31",
-      "avgPace": "09:25",
-      "avgHeartRate": "158",
-      "avgCadence": "157"
     }
   ]
 }
