@@ -134,6 +134,10 @@
             min-width: 130px;
         }
 
+        #achievements-table td:first-child {
+            min-width: 10px;
+        }
+
         .data-table tr:hover {
             background-color: #f8f9fa;
         }
@@ -318,6 +322,7 @@
             <table class="data-table" id="achievements-table">
                 <thead>
                     <tr>
+                        <th>No.</th>
                         <th>Race</th>
                         <th>Date</th>
                         <th>Distance</th>
@@ -433,6 +438,7 @@
                 const row = document.createElement('tr');
 
                 row.innerHTML = `
+                    <td>${race.no}</td>
                     <td>${race.race}</td>
                     <td>${race.date}</td>
                     <td>${race.distance}</td>
