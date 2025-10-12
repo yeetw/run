@@ -32,6 +32,8 @@ Statistics (Latest/Week/Month) are **automatically calculated** from the JSON da
 - **Week**: Extracted from the first week's summary in `weekly-overview.json`
 - **Month**: Extracted from the first month in `monthly-summary.json`
 
+All statistics are automatically formatted to display **one decimal place** (e.g., "3.2K", "31.0K") using rounding.
+
 To update the statistics, simply update the respective JSON files and refresh the page.
 
 You can also manually update stats using the `updateStats()` function:
@@ -191,6 +193,7 @@ Running achievements data is now loaded from `/assets/data/running-achievements.
   "lastUpdated": "2025-09-23",
   "achievements": [
     {
+      "no": "1",
       "race": "2025 Panasonic 台北城市路跑賽",
       "date": "2025/9/14",
       "distance": "12.5",
@@ -206,6 +209,7 @@ Running achievements data is now loaded from `/assets/data/running-achievements.
 2. **JSON File Structure:**
    - `lastUpdated`: ISO date string for tracking when data was last modified
    - `achievements`: Array of achievement objects with the following fields:
+     - `no`: Achievement number as string (e.g., "1", "2", "3")
      - `race`: Race name as plain text string
      - `date`: Race date in "YYYY/M/D" format
      - `distance`: Race distance as string
@@ -218,6 +222,7 @@ Running achievements data is now loaded from `/assets/data/running-achievements.
 ```javascript
 updateAchievements([
     {
+        no: '1',
         race: '2025 Taiwan Marathon 半程馬拉松',
         date: '2025/12/15',
         distance: '21.1',

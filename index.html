@@ -357,10 +357,10 @@
 
         // Function to update stats from loaded data
         function updateStatsFromData(recentRunsData, weeklyData, monthlyData) {
-            const latestDistance = recentRunsData.runs[0]?.distance || '0';
+            const latestDistance = parseFloat(recentRunsData.runs[0]?.distance || '0').toFixed(1);
             const weekSummary = weeklyData.weeks[0]?.summary || '';
-            const weekDistance = weekSummary.split('/')[0]?.trim().replace('km', '') || '0';
-            const monthDistance = monthlyData.months[0]?.totalDistance || '0';
+            const weekDistance = parseFloat(weekSummary.split('/')[0]?.trim().replace('km', '') || '0').toFixed(1);
+            const monthDistance = parseFloat(monthlyData.months[0]?.totalDistance || '0').toFixed(1);
 
             updateStats({
                 latest: `${latestDistance}K`,
