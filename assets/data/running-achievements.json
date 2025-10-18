@@ -1,7 +1,17 @@
 {
   "lastUpdated": "2025-10-07",
   "achievements": [
-     {
+       {
+      "no": "3",
+      "race": "2025 POCARI SWEAT RUN 寶礦力路跑",
+      "date": "2025/10/18",
+      "distance": "10",
+      "duration": "01:48:24",
+      "avgPace": "11:23",
+      "avgHeartRate": "131",
+      "avgCadence": "133"
+    },
+    {
       "no": "2",
       "race": "2025 長庚紀念醫院 永慶盃路跑",
       "date": "2025/9/28",
