@@ -1,6 +1,15 @@
 {
-  "lastUpdated": "2025-10-18",
+  "lastUpdated": "2025-10-19",
   "runs": [
+    {
+      "date": "2025-10-19",
+      "time": "16:31",
+      "duration": "00:30:59",
+      "distance": "3.05",
+      "pace": "10:09",
+      "heartRate": "134",
+      "cadence": "154"
+    },
     {
       "date": "2025-10-18",
       "time": "06:15",
