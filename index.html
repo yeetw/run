@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="{{ title }}">
+	<meta property="og:description" content="{{ site.description }}">
+	<meta property="og:image" content="{{ "/assets/cover.jpg" | prepend: site.baseurl | prepend: site.url }}">
+	<meta property="og:url" content="{{ site.url }}">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="og:site_name" content="{{ site.title }}">
+	<meta name="twitter:image:alt" content="{{ site.author_name }}">
     <link rel="apple-touch-icon" href="/assets/images/cover.jpg">
     <title>Life is a Marathon</title>
     <style>
