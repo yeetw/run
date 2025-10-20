@@ -9,7 +9,11 @@
       "duration": "01:48:24",
       "avgPace": "11:23",
       "avgHeartRate": "131",
-      "avgCadence": "133"
+      "avgCadence": "133",
+      "splits": [
+        { "km": "1", "pace": "08:30", "time": "00:08:30", "heartRate": "132", "cadence": "133" },
+        { "km": "2", "pace": "09:00", "time": "00:17:30", "heartRate": "151", "cadence": "133" }
+      ]
     },
     {
       "no": "2",
@@ -19,7 +23,11 @@
       "duration": "01:38:31",
       "avgPace": "09:25",
       "avgHeartRate": "158",
-      "avgCadence": "157"
+      "avgCadence": "157",
+      "splits": [
+        { "km": "1", "pace": "09:00", "time": "00:09:00", "heartRate": "145", "cadence": "150" },
+        { "km": "2", "pace": "09:15", "time": "00:18:15", "heartRate": "155", "cadence": "155" }
+      ]
     },
     {
       "no": "1",
@@ -29,7 +37,11 @@
       "duration": "02:04:06",
       "avgPace": "10:07",
       "avgHeartRate": "162",
-      "avgCadence": "155"
+      "avgCadence": "155",
+      "splits": [
+        { "km": "1", "pace": "09:30", "time": "00:09:30", "heartRate": "150", "cadence": "152" },
+        { "km": "2", "pace": "10:00", "time": "00:19:30", "heartRate": "160", "cadence": "155" }
+      ]
     }
   ]
 }

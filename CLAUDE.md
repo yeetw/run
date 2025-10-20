@@ -21,8 +21,9 @@ This is a simple landing page with a marathon theme featuring the quote "Life is
 - Dynamic data updating capabilities for all sections
 - JSON-based data loading for all data tables (with fallback support)
 - Comprehensive running analytics across different time periods
-- Race achievement tracking
+- Race achievement tracking with expandable per-kilometer split details
 - **Display Limits**: Recent Runs, Weekly Overview, and Monthly Summary tables show only the latest 5 entries (achievements show all entries)
+- **Interactive Features**: Click achievement rows to expand/collapse detailed kilometer-by-kilometer performance data
 
 ## How to Modify
 
@@ -200,7 +201,11 @@ Running achievements data is now loaded from `/assets/data/running-achievements.
       "duration": "02:04:06",
       "avgPace": "10:07",
       "avgHeartRate": "162",
-      "avgCadence": "155"
+      "avgCadence": "155",
+      "splits": [
+        { "km": "1", "pace": "09:30", "time": "00:09:30", "heartRate": "150", "cadence": "152" },
+        { "km": "2", "pace": "10:00", "time": "00:19:30", "heartRate": "160", "cadence": "155" }
+      ]
     }
   ]
 }
@@ -217,6 +222,12 @@ Running achievements data is now loaded from `/assets/data/running-achievements.
      - `avgPace`: Average pace in "MM:SS" format
      - `avgHeartRate`: Average heart rate as string
      - `avgCadence`: Average cadence as string
+     - `splits`: (Optional) Array of split objects for kilometer-by-kilometer data
+       - `km`: Kilometer number as string (e.g., "1", "2", "3")
+       - `pace`: Pace for this kilometer in "MM:SS" format
+       - `time`: Cumulative time at this kilometer in "HH:MM:SS" format
+       - `heartRate`: Average heart rate for this kilometer as string
+       - `cadence`: Average cadence for this kilometer as string
 
 3. **Or update programmatically using the function:**
 ```javascript
@@ -229,11 +240,21 @@ updateAchievements([
         duration: '01:45:30',
         avgPace: '05:00',
         avgHeartRate: '170',
-        avgCadence: '185'
+        avgCadence: '185',
+        splits: [
+            { km: '1', pace: '04:50', time: '00:04:50', heartRate: '165', cadence: '180' },
+            { km: '2', pace: '05:00', time: '00:09:50', heartRate: '170', cadence: '182' }
+        ]
     },
     // ... new achievements data
 ]);
 ```
+
+**Expandable Detail Feature:**
+- Click on any achievement row to expand/collapse detailed per-kilometer split data
+- Split data displays kilometer number, pace, cumulative time, heart rate, and cadence for each kilometer
+- If no split data is available, the message "No split data available" will be shown
+- The splits array is optional - achievements without splits will still display normally
 
 Note: The page automatically loads all data from JSON files on page load using a single fetch operation for optimal performance.
 
