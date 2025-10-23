@@ -276,6 +276,7 @@ All CSS is located in `/assets/css/styles.css`:
 - Stat labels: `.stat-label` class
 - Stat values: `.stat-value` and `.stat-number` classes
 - Section titles: `.section-title` class
+- Table wrapper: `.table-wrapper` class - enables horizontal scrolling on mobile devices
 - Data tables: `.data-table` class with `.data-table th` and `.data-table td`
 - Weekly overview cells: `.weekly-cell` class for highlighted run days
 - Weekly date ranges: `.weekly-date-range` class
@@ -293,7 +294,7 @@ The green tag backgrounds use `/assets/images/tag-bg.png`. To change:
 ## Design Notes
 - Font sizes are responsive (smaller on mobile)
 - Stats layout changes to vertical stack on mobile devices
-- Data tables are responsive with smaller text on mobile
+- Data tables support horizontal scrolling on mobile devices to preserve all columns
 - Color scheme uses neutral grays with green accent backgrounds
 - Clean table design with hover effects and rounded corners
 - Gray dots separators between sections for visual organization

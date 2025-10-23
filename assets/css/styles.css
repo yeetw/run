@@ -93,15 +93,22 @@ body {
     text-transform: uppercase;
 }
 
-.data-table {
+/* Table wrapper for horizontal scroll on mobile */
+.table-wrapper {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.data-table {
+    width: 100%;
+    min-width: 600px;
     border-collapse: collapse;
     background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .data-table th {
@@ -124,11 +131,26 @@ body {
     font-weight: 500;
 }
 
-.data-table td:first-child {
+/* Default first column min-width */
+.data-table td:first-child,
+.data-table th:first-child {
     min-width: 130px;
 }
 
-#achievements-table td:first-child {
+/* Specific tables with narrower first column */
+#recent-runs-table td:first-child,
+#recent-runs-table th:first-child,
+#weekly-overview-table td:first-child,
+#weekly-overview-table th:first-child,
+#monthly-summary-table td:first-child,
+#monthly-summary-table th:first-child {
+    min-width: auto;
+    width: 1%;
+    white-space: nowrap;
+}
+
+#achievements-table td:first-child,
+#achievements-table th:first-child {
     min-width: 10px;
 }
 
