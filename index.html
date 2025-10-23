@@ -11,282 +11,8 @@
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:image:alt" content="yee">
     <link rel="apple-touch-icon" href="/assets/images/cover.jpg">
+    <link rel="stylesheet" href="/assets/css/styles.css">
     <title>Life is a Marathon</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f8f9fa;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .container {
-            text-align: center;
-            max-width: 800px;
-            width: 100%;
-        }
-
-        .main-title {
-            font-family: "PingFang TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            font-size: 5rem;
-            font-weight: 900;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-        }
-
-        .subtitle {
-            font-family: "PingFang TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            font-size: 2.5rem;
-            color: #4a5568;
-            margin-bottom: 3rem;
-            font-weight: 400;
-        }
-
-        .stats-container {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-label {
-            font-size: 1.2rem;
-            color: #666;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .stat-value {
-            background-image: url('/assets/images/tag-bg.png');
-            background-size: 100% 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            padding: 1rem 3rem;
-            border-radius: 8px;
-            display: inline-block;
-            min-width: 200px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: #1a1a1a;
-            line-height: 1;
-        }
-
-        .section {
-            margin-top: 4rem;
-            width: 100%;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            color: #1a1a1a;
-            text-align: center;
-            margin-bottom: 2rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .data-table {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .data-table th {
-            background-color: #f8f9fa;
-            padding: 1rem;
-            text-align: center;
-            font-weight: 600;
-            color: #4a5568;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .data-table td {
-            padding: 1rem;
-            text-align: center;
-            border-bottom: 1px solid #f1f5f9;
-            color: #2d3748;
-            font-weight: 500;
-        }
-
-        .data-table td:first-child {
-            min-width: 130px;
-        }
-
-        #achievements-table td:first-child {
-            min-width: 10px;
-        }
-
-        .data-table tr:hover {
-            background-color: #f8f9fa;
-        }
-
-        .data-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .weekly-cell {
-            background-color: #f0f8ff !important;
-            font-size: 0.85rem;
-            line-height: 1.3;
-        }
-
-        .weekly-summary {
-            font-weight: 600;
-            color: #2d3748;
-        }
-
-        .weekly-date-range {
-            font-weight: 600;
-            color: #2d3748;
-            white-space: nowrap;
-        }
-
-        .dots-separator {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin: 2rem 0;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            background-color: #cbd5e0;
-            border-radius: 50%;
-        }
-
-        /* Achievement expandable row styles */
-        .achievement-row:hover {
-            background-color: #f0f4f8 !important;
-        }
-
-        .achievement-detail-row {
-            background-color: #f8f9fa;
-        }
-
-        .achievement-detail-row:hover {
-            background-color: #f8f9fa !important;
-        }
-
-        .detail-cell {
-            padding: 0 !important;
-        }
-
-        .splits-container {
-            padding: 1.5rem;
-            background-color: #f8f9fa;
-        }
-
-        .splits-table {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .splits-table th {
-            background-color: #e2e8f0;
-            padding: 0.75rem;
-            text-align: center;
-            font-weight: 600;
-            color: #4a5568;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .splits-table td {
-            padding: 0.75rem;
-            text-align: center;
-            border-bottom: 1px solid #f1f5f9;
-            color: #2d3748;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .splits-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .splits-table tr:hover {
-            background-color: #f8f9fa;
-        }
-
-        .no-splits {
-            text-align: center;
-            color: #718096;
-            font-style: italic;
-            padding: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 3rem;
-            }
-
-            .subtitle {
-                font-family: "PingFang TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-                font-size: 1.8rem;
-            }
-
-            .stats-container {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .stat-number {
-                font-size: 2.5rem;
-            }
-
-            .data-table {
-                font-size: 0.8rem;
-            }
-
-            .data-table th,
-            .data-table td {
-                padding: 0.5rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -318,8 +44,8 @@
         </div>
 
         <!-- Recent Runs Section -->
+        <h2 class="section-title">Recent Runs</h2>
         <div class="section">
-            <h2 class="section-title">Recent Runs</h2>
             <table class="data-table" id="recent-runs-table">
                 <thead>
                     <tr>
@@ -335,7 +61,7 @@
                 <tbody id="recent-runs-tbody">
                 </tbody>
             </table>
-            <div class="dots-separator">
+            <div class="dots-separator" onclick="window.location.href='/recent-runs.html'">
                 <div class="dot"></div>
                 <div class="dot"></div>
                 <div class="dot"></div>
@@ -343,8 +69,8 @@
         </div>
 
         <!-- Weekly Overview Section -->
+        <h2 class="section-title">Weekly Overview</h2>
         <div class="section">
-            <h2 class="section-title">Weekly Overview</h2>
             <table class="data-table" id="weekly-overview-table">
                 <thead>
                     <tr>
@@ -362,7 +88,7 @@
                 <tbody id="weekly-overview-tbody">
                 </tbody>
             </table>
-            <div class="dots-separator">
+            <div class="dots-separator" onclick="window.location.href='/weekly-overview.html'">
                 <div class="dot"></div>
                 <div class="dot"></div>
                 <div class="dot"></div>
@@ -370,8 +96,8 @@
         </div>
 
         <!-- Monthly Summary Section -->
+        <h2 class="section-title">Monthly Summary</h2>
         <div class="section">
-            <h2 class="section-title">Monthly Summary</h2>
             <table class="data-table" id="monthly-summary-table">
                 <thead>
                     <tr>
@@ -388,7 +114,7 @@
                 <tbody id="monthly-summary-tbody">
                 </tbody>
             </table>
-            <div class="dots-separator">
+            <div class="dots-separator" onclick="window.location.href='/monthly-summary.html'">
                 <div class="dot"></div>
                 <div class="dot"></div>
                 <div class="dot"></div>
@@ -396,8 +122,8 @@
         </div>
 
         <!-- Running Achievements Section -->
+        <h2 class="section-title">Running Achievements</h2>
         <div class="section">
-            <h2 class="section-title">Running Achievements</h2>
             <table class="data-table" id="achievements-table">
                 <thead>
                     <tr>
@@ -414,7 +140,7 @@
                 <tbody id="achievements-tbody">
                 </tbody>
             </table>
-            <div class="dots-separator">
+            <div class="dots-separator" onclick="window.location.href='/achievements.html'">
                 <div class="dot"></div>
                 <div class="dot"></div>
                 <div class="dot"></div>
@@ -422,217 +148,6 @@
         </div>
     </div>
 
-    <script>
-        // Update stats function
-        function updateStats(newStats) {
-            if (newStats.latest) document.getElementById('latest-stat').textContent = newStats.latest;
-            if (newStats.week) document.getElementById('week-stat').textContent = newStats.week;
-            if (newStats.month) document.getElementById('month-stat').textContent = newStats.month;
-        }
-
-        // Function to update stats from loaded data
-        function updateStatsFromData(recentRunsData, weeklyData, monthlyData) {
-            const latestDistance = parseFloat(recentRunsData.runs[0]?.distance || '0').toFixed(1);
-            const weekSummary = weeklyData.weeks[0]?.summary || '';
-            const weekDistance = parseFloat(weekSummary.split('/')[0]?.trim().replace('km', '') || '0').toFixed(1);
-            const monthDistance = parseFloat(monthlyData.months[0]?.totalDistance || '0').toFixed(1);
-
-            updateStats({
-                latest: `${latestDistance}K`,
-                week: `${weekDistance}K`,
-                month: `${monthDistance}K`
-            });
-        }
-
-        // Function to update recent runs table
-        function updateRecentRuns(runs) {
-            const tbody = document.getElementById('recent-runs-tbody');
-            tbody.innerHTML = '';
-
-            // Show only the latest 5 entries
-            runs.slice(0, 5).forEach(run => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${run.date}</td>
-                    <td>${run.time}</td>
-                    <td>${run.duration}</td>
-                    <td>${run.distance}</td>
-                    <td>${run.pace}</td>
-                    <td>${run.heartRate}</td>
-                    <td>${run.cadence}</td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Function to update weekly overview table
-        function updateWeeklyOverview(weeks) {
-            const tbody = document.getElementById('weekly-overview-tbody');
-            tbody.innerHTML = '';
-
-            // Show only the latest 5 entries
-            weeks.slice(0, 5).forEach(week => {
-                const row = document.createElement('tr');
-                const daysCells = week.days.map(day =>
-                    `<td${day ? ' class="weekly-cell"' : ''}>${day ? day : ''}</td>`
-                ).join('');
-
-                row.innerHTML = `
-                    <td class="weekly-date-range">${week.dateRange}</td>
-                    <td class="weekly-summary">${week.summary}</td>
-                    ${daysCells}
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Function to update monthly summary table
-        function updateMonthlySummary(months) {
-            const tbody = document.getElementById('monthly-summary-tbody');
-            tbody.innerHTML = '';
-
-            // Show only the latest 5 entries
-            months.slice(0, 5).forEach(month => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${month.month}</td>
-                    <td>${month.totalDistance}</td>
-                    <td>${month.totalRuns}</td>
-                    <td>${month.totalDuration}</td>
-                    <td>${month.fastestPace}</td>
-                    <td>${month.longestDistance}</td>
-                    <td>${month.maxAvgHR}</td>
-                    <td>${month.maxCadence}</td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Function to update achievements table
-        function updateAchievements(races) {
-            const tbody = document.getElementById('achievements-tbody');
-            tbody.innerHTML = '';
-
-            races.forEach((race, index) => {
-                // Main row
-                const row = document.createElement('tr');
-                row.className = 'achievement-row';
-                row.dataset.index = index;
-                row.style.cursor = 'pointer';
-
-                row.innerHTML = `
-                    <td>${race.no}</td>
-                    <td>${race.race}</td>
-                    <td>${race.date}</td>
-                    <td>${race.distance}</td>
-                    <td>${race.duration}</td>
-                    <td>${race.avgPace}</td>
-                    <td>${race.avgHeartRate}</td>
-                    <td>${race.avgCadence}</td>
-                `;
-
-                // Add click event to toggle splits
-                row.addEventListener('click', function() {
-                    toggleSplits(index, race.splits);
-                });
-
-                tbody.appendChild(row);
-
-                // Detail row (initially hidden)
-                const detailRow = document.createElement('tr');
-                detailRow.className = 'achievement-detail-row';
-                detailRow.id = `detail-row-${index}`;
-                detailRow.style.display = 'none';
-                detailRow.innerHTML = `
-                    <td colspan="8" class="detail-cell">
-                        <div class="splits-container" id="splits-${index}"></div>
-                    </td>
-                `;
-                tbody.appendChild(detailRow);
-            });
-        }
-
-        // Function to toggle splits display
-        function toggleSplits(index, splits) {
-            const detailRow = document.getElementById(`detail-row-${index}`);
-            const splitsContainer = document.getElementById(`splits-${index}`);
-
-            if (detailRow.style.display === 'none') {
-                // Show splits
-                if (splits && splits.length > 0) {
-                    let splitsHTML = `
-                        <table class="splits-table">
-                            <thead>
-                                <tr>
-                                    <th>KM</th>
-                                    <th>Pace</th>
-                                    <th>Time</th>
-                                    <th>Heart Rate</th>
-                                    <th>Cadence</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                    `;
-
-                    splits.forEach(split => {
-                        splitsHTML += `
-                            <tr>
-                                <td>${split.km}</td>
-                                <td>${split.pace}</td>
-                                <td>${split.time}</td>
-                                <td>${split.heartRate}</td>
-                                <td>${split.cadence}</td>
-                            </tr>
-                        `;
-                    });
-
-                    splitsHTML += `
-                            </tbody>
-                        </table>
-                    `;
-
-                    splitsContainer.innerHTML = splitsHTML;
-                } else {
-                    splitsContainer.innerHTML = '<p class="no-splits">No split data available</p>';
-                }
-                detailRow.style.display = 'table-row';
-            } else {
-                // Hide splits
-                detailRow.style.display = 'none';
-            }
-        }
-
-        // Main initialization function - load all data once
-        async function initializePage() {
-            try {
-                // Fetch all JSON files once in parallel
-                const [recentRunsData, weeklyData, monthlyData, achievementsData] = await Promise.all([
-                    fetch('/assets/data/recent-runs.json').then(res => res.json()),
-                    fetch('/assets/data/weekly-overview.json').then(res => res.json()),
-                    fetch('/assets/data/monthly-summary.json').then(res => res.json()),
-                    fetch('/assets/data/running-achievements.json').then(res => res.json())
-                ]);
-
-                // Update all sections with the loaded data
-                updateStatsFromData(recentRunsData, weeklyData, monthlyData);
-                updateRecentRuns(recentRunsData.runs);
-                updateWeeklyOverview(weeklyData.weeks);
-                updateMonthlySummary(monthlyData.months);
-                updateAchievements(achievementsData.achievements);
-            } catch (error) {
-                console.error('Error loading data:', error);
-            }
-        }
-
-        // Initialize page when DOM is loaded
-        document.addEventListener('DOMContentLoaded', initializePage);
-
-        // Example of how to update data:
-        // updateStats({ latest: '4.1K', week: '25K', month: '120K' });
-        // For recent runs: Edit /assets/data/recent-runs.json file, then refresh page
-        // For weekly overview: Edit /assets/data/weekly-overview.json file, then refresh page
-        // For monthly summary: Edit /assets/data/monthly-summary.json file, then refresh page
-        // For running achievements: Edit /assets/data/running-achievements.json file, then refresh page
-    </script>
+    <script src="/assets/js/app.js"></script>
 </body>
 </html>

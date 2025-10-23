@@ -5,7 +5,14 @@ This is a simple landing page with a marathon theme featuring the quote "Life is
 
 ## File Structure
 - `index.html` - Main landing page
+- `recent-runs.html` - Complete recent runs data page
+- `weekly-overview.html` - Complete weekly overview data page
+- `monthly-summary.html` - Complete monthly summary data page
+- `achievements.html` - Complete achievements data page
+- `assets/css/styles.css` - Shared stylesheet for all pages
+- `assets/js/app.js` - Shared JavaScript functions for all pages
 - `assets/images/tag-bg.png` - Green background image for statistic tags
+- `assets/images/cover.jpg` - Cover image for social sharing
 - `assets/data/recent-runs.json` - Recent running activities data
 - `assets/data/weekly-overview.json` - Weekly overview and calendar data
 - `assets/data/monthly-summary.json` - Monthly statistics and performance metrics
@@ -22,8 +29,10 @@ This is a simple landing page with a marathon theme featuring the quote "Life is
 - JSON-based data loading for all data tables (with fallback support)
 - Comprehensive running analytics across different time periods
 - Race achievement tracking with expandable per-kilometer split details
-- **Display Limits**: Recent Runs, Weekly Overview, and Monthly Summary tables show only the latest 5 entries (achievements show all entries)
+- **Display Limits**: Index page shows only the latest 5 entries for Recent Runs, Weekly Overview, and Monthly Summary (achievements show all entries)
+- **Detail Pages**: Click the dots separator below each table to navigate to dedicated pages showing all data
 - **Interactive Features**: Click achievement rows to expand/collapse detailed kilometer-by-kilometer performance data
+- **Shared Resources**: All pages use the same CSS and JavaScript files for consistency and easy maintenance
 
 ## How to Modify
 
@@ -259,6 +268,9 @@ updateAchievements([
 Note: The page automatically loads all data from JSON files on page load using a single fetch operation for optimal performance.
 
 ### Styling Modifications
+
+All CSS is located in `/assets/css/styles.css`:
+
 - Main title: `.main-title` class
 - Subtitle: `.subtitle` class
 - Stat labels: `.stat-label` class
@@ -268,8 +280,10 @@ Note: The page automatically loads all data from JSON files on page load using a
 - Weekly overview cells: `.weekly-cell` class for highlighted run days
 - Weekly date ranges: `.weekly-date-range` class
 - Weekly summaries: `.weekly-summary` class
-- Dots separator: `.dots-separator` class with `.dot` elements for section dividers
-- Background colors and spacing can be adjusted in the CSS section
+- Dots separator: `.dots-separator` class with `.dot` elements for section dividers (clickable with hover effect)
+- Page header: `.page-header` class for detail page header layout (contains back button and title)
+- Back button: `.back-button` class - small arrow (←) positioned to the left of page title
+- Background colors and spacing can be adjusted in the CSS file
 
 ### Background Image
 The green tag backgrounds use `/assets/images/tag-bg.png`. To change:
@@ -285,15 +299,31 @@ The green tag backgrounds use `/assets/images/tag-bg.png`. To change:
 - Gray dots separators between sections for visual organization
 - Typography emphasizes the motivational marathon theme
 
-## Current Sections
+## Page Structure
+
+### Index Page (`index.html`)
 1. **Hero Section**: Main title with motivational quote and statistics
 2. **Recent Runs**: Table showing latest 5 running activities with detailed metrics
 3. **Weekly Overview**: Calendar-style table showing latest 5 weekly summaries and daily run data
 4. **Monthly Summary**: Comprehensive monthly statistics for the latest 5 months including totals and performance metrics
 5. **Running Achievements**: Race participation records and competition results (shows all achievements)
 
+Each section has a clickable dots separator that navigates to the dedicated detail page.
+
+### Detail Pages
+- **`/recent-runs.html`**: Shows all recent running activities without any limit
+- **`/weekly-overview.html`**: Shows all weekly overview data without any limit
+- **`/monthly-summary.html`**: Shows all monthly summary data without any limit
+- **`/achievements.html`**: Shows all running achievements (same as index page)
+
+All detail pages include:
+- Page header with small back arrow (←) on the left and page title in the center
+- Complete data table with all entries from the respective JSON file
+- Click the back arrow to return to index page
+
 ## Development
-This is a static HTML page that can be opened directly in a browser or served through any web server.
+
+This project consists of multiple static HTML pages that share common CSS and JavaScript files.
 
 **Important:** Due to the JSON data loading feature, when developing locally you should serve the page through a web server rather than opening the HTML file directly (file://) to avoid CORS issues.
 
@@ -303,4 +333,17 @@ Options for local development:
 - Use Node.js: `npx http-server`
 - Use any other local web server
 
+### Code Organization
+
+- **CSS**: All styles are in `/assets/css/styles.css` and shared across all pages
+- **JavaScript**: All functions are in `/assets/js/app.js` with automatic page detection
+  - Functions support an optional `limit` parameter to control display count
+  - `limit = 0` means show all data (used in detail pages)
+  - `limit = 5` means show only 5 entries (used in index page)
+
 All data is loaded from JSON files on page initialization. If JSON files cannot be loaded, an error will be logged to the console.
+
+### Navigation
+
+- **To Detail Pages**: Click on dots separator (three gray dots) below any table on the index page
+- **Back to Index**: Click the back arrow (←) at the top left of any detail page to return to the index page
