@@ -52,13 +52,36 @@ function updateWeeklyOverview(weeks, limit = 5) {
 
     displayWeeks.forEach(week => {
         const row = document.createElement('tr');
-        const daysCells = week.days.map(day =>
-            `<td${day ? ' class="weekly-cell"' : ''}>${day ? day : ''}</td>`
-        ).join('');
+
+        // Format date range: "mm/dd–mm/dd" to "mm/dd<br>~<br>mm/dd"
+        const dateRangeFormatted = week.dateRange.replace(/–/, '<br>~<br>');
+
+        // Parse summary data: "distance / duration / pace"
+        const summaryParts = week.summary.split('/').map(p => p.trim());
+        const summaryHTML = `
+            <div class="weekly-data">
+                ${summaryParts.map(part => `<span class="data-badge">${part}</span>`).join('')}
+            </div>
+        `;
+
+        const daysCells = week.days.map(day => {
+            if (!day) {
+                return '<td></td>';
+            }
+
+            // Parse the day data: "distance / pace / heartRate"
+            const parts = day.split('/').map(p => p.trim());
+
+            return `<td class="weekly-cell">
+                <div class="weekly-data">
+                    ${parts.map(part => `<span class="data-badge">${part}</span>`).join('')}
+                </div>
+            </td>`;
+        }).join('');
 
         row.innerHTML = `
-            <td class="weekly-date-range">${week.dateRange}</td>
-            <td class="weekly-summary">${week.summary}</td>
+            <td class="weekly-date-range">${dateRangeFormatted}</td>
+            <td class="weekly-summary">${summaryHTML}</td>
             ${daysCells}
         `;
         tbody.appendChild(row);

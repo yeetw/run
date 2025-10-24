@@ -124,10 +124,13 @@ Weekly overview data is now loaded from `/assets/data/weekly-overview.json`. To 
    - `lastUpdated`: ISO date string for tracking when data was last modified
    - `weeks`: Array of week objects with the following fields:
      - `dateRange`: Date range in "MM/DD–MM/DD" format (plain text)
+       - **Visual Display**: Automatically formatted to multi-line display: "MM/DD<br>~<br>MM/DD"
      - `summary`: Weekly summary string with format "distance / duration / pace"
+       - **Visual Display**: Each part is displayed as a separate gray badge pill
      - `days`: Array of 7 strings representing Monday to Sunday
        - Empty string `""` for days with no activity
        - Format for active days: "distance / pace / heartRate"
+       - **Visual Display**: Each day's data is automatically parsed and displayed as separate gray badge pills for better readability
 
 3. **Or update programmatically using the function:**
 ```javascript
@@ -283,9 +286,16 @@ All CSS is located in `/assets/css/styles.css`:
   - First column auto-width for `#recent-runs-table`, `#weekly-overview-table`, and `#monthly-summary-table`
   - Desktop: tables fit container width without scrolling
   - Mobile: tables have `min-width: 600px` and allow horizontal scrolling
-- Weekly overview cells: `.weekly-cell` class for highlighted run days
-- Weekly date ranges: `.weekly-date-range` class
-- Weekly summaries: `.weekly-summary` class
+  - `#weekly-overview-table` uses `table-layout: fixed` with percentage-based widths for date (8%) and summary (20%) columns to prevent overlap while maintaining consistent table width
+- Weekly overview cells: `.weekly-cell` class (font-size: 0.85rem, line-height: 1.3)
+  - Weekly data badges: `.weekly-data` container with flex column layout
+  - `.data-badge` class for individual data pills:
+    - Background color: #7e848a (gray)
+    - Desktop: min-width 60px, padding 0.3rem 0.8rem
+    - Mobile: min-width 30px, padding 0.25rem 0.6rem, smaller font
+  - Both summary column and day cells use the same badge styling
+- Weekly date ranges: `.weekly-date-range` class (centered, font-weight: 600, line-height: 1.4)
+- Weekly summaries: `.weekly-summary` class (contains badges, blue background #e6f3ff, font-weight: 600)
 - Dots separator: `.dots-separator` class with `.dot` elements for section dividers (clickable with hover effect)
 - Page header: `.page-header` class for detail page header layout (contains back button and title)
 - Back button: `.back-button` class - small arrow (←) positioned to the left of page title
@@ -313,6 +323,9 @@ The green tag backgrounds use `/assets/images/tag-bg.png`. To change:
 1. **Hero Section**: Main title with motivational quote and statistics
 2. **Recent Runs**: Table showing latest 5 running activities with detailed metrics
 3. **Weekly Overview**: Calendar-style table showing latest 5 weekly summaries and daily run data
+   - Table columns: Date, Sum (summary), Mon., Tue., Wed., Thu., Fri., Sat., Sun.
+   - Date column displays multi-line format: "MM/DD" "~" "MM/DD"
+   - Sum column and day columns display data as colored badge pills
 4. **Monthly Summary**: Comprehensive monthly statistics for the latest 5 months including totals and performance metrics
 5. **Running Achievements**: Race participation records and competition results (shows all achievements)
 
@@ -321,6 +334,7 @@ Each section has a clickable dots separator that navigates to the dedicated deta
 ### Detail Pages
 - **`/recent-runs.html`**: Shows all recent running activities without any limit
 - **`/weekly-overview.html`**: Shows all weekly overview data without any limit
+  - Same table structure as index page with Date, Sum, and weekday columns
 - **`/monthly-summary.html`**: Shows all monthly summary data without any limit
 - **`/achievements.html`**: Shows all running achievements (same as index page)
 
