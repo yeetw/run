@@ -98,17 +98,26 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .data-table {
     width: 100%;
-    min-width: 600px;
     border-collapse: collapse;
     background: white;
+}
+
+/* Enable horizontal scroll only on mobile */
+@media (max-width: 768px) {
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .data-table {
+        min-width: 600px;
+    }
 }
 
 .data-table th {

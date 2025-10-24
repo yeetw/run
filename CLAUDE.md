@@ -3,6 +3,8 @@
 ## Project Overview
 This is a simple landing page with a marathon theme featuring the quote "Life is a Marathon - I'm looking for a water station." The page displays statistics in three categories: Latest, Week, and Month.
 
+> **⚠️ Important**: When making changes to `index.html`, `*.html` pages, `assets/css/styles.css`, or `assets/js/app.js`, **ALWAYS update this CLAUDE.md file** to reflect the changes. This ensures the documentation stays in sync with the codebase.
+
 ## File Structure
 - `index.html` - Main landing page
 - `recent-runs.html` - Complete recent runs data page
@@ -276,8 +278,11 @@ All CSS is located in `/assets/css/styles.css`:
 - Stat labels: `.stat-label` class
 - Stat values: `.stat-value` and `.stat-number` classes
 - Section titles: `.section-title` class
-- Table wrapper: `.table-wrapper` class - enables horizontal scrolling on mobile devices
+- Table wrapper: `.table-wrapper` class - enables horizontal scrolling on mobile devices only (≤768px)
 - Data tables: `.data-table` class with `.data-table th` and `.data-table td`
+  - First column auto-width for `#recent-runs-table`, `#weekly-overview-table`, and `#monthly-summary-table`
+  - Desktop: tables fit container width without scrolling
+  - Mobile: tables have `min-width: 600px` and allow horizontal scrolling
 - Weekly overview cells: `.weekly-cell` class for highlighted run days
 - Weekly date ranges: `.weekly-date-range` class
 - Weekly summaries: `.weekly-summary` class
@@ -294,7 +299,9 @@ The green tag backgrounds use `/assets/images/tag-bg.png`. To change:
 ## Design Notes
 - Font sizes are responsive (smaller on mobile)
 - Stats layout changes to vertical stack on mobile devices
-- Data tables support horizontal scrolling on mobile devices to preserve all columns
+- Data tables support horizontal scrolling **only on mobile devices** (≤768px) to preserve all columns
+- Desktop view displays full tables without horizontal scrolling
+- First column (Date/Month) in Recent Runs, Weekly Overview, and Monthly Summary tables auto-adjusts to content width
 - Color scheme uses neutral grays with green accent backgrounds
 - Clean table design with hover effects and rounded corners
 - Gray dots separators between sections for visual organization
