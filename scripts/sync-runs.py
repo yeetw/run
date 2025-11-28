@@ -24,6 +24,7 @@ def update_recnet_runs(rows):
         pace = row[5].strip()
         heart_rate = row[6].strip()
         cadence = row[7].strip()
+        vdot = row[10].strip()
         recent_runs.append({
             "date": date_str,
             "time": time,
@@ -31,7 +32,8 @@ def update_recnet_runs(rows):
             "distance": distance,
             "pace": pace,
             "heartRate": heart_rate,
-            "cadence": cadence
+            "cadence": cadence,
+            "vdot": vdot,
         })
     # reverse it, latest first
     recent_runs = recent_runs[::-1]

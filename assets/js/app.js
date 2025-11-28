@@ -37,6 +37,7 @@ function updateRecentRuns(runs, limit = 5) {
             <td>${run.pace}</td>
             <td>${run.heartRate}</td>
             <td>${run.cadence}</td>
+            <td>${run.vdot}</td>
         `;
         tbody.appendChild(row);
     });

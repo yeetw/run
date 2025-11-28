@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-11-25",
+  "lastUpdated": "2025-11-28",
   "runs": [
     {
       "date": "2025-11-25",
@@ -8,7 +8,8 @@
       "distance": "5.09",
       "pace": "09:50",
       "heartRate": "138",
-      "cadence": "160"
+      "cadence": "160",
+      "vdot": "16.7"
     },
     {
       "date": "2025-11-23",
@@ -17,7 +18,8 @@
       "distance": "5",
       "pace": "11:49",
       "heartRate": "123",
-      "cadence": "149"
+      "cadence": "149",
+      "vdot": "13.5"
     },
     {
       "date": "2025-11-22",
@@ -26,7 +28,8 @@
       "distance": "9.01",
       "pace": "10:41",
       "heartRate": "138",
-      "cadence": "155"
+      "cadence": "155",
+      "vdot": "15.6"
     },
     {
       "date": "2025-11-21",
@@ -35,7 +38,8 @@
       "distance": "2.87",
       "pace": "12:24",
       "heartRate": "127",
-      "cadence": "136"
+      "cadence": "136",
+      "vdot": "10.6"
     },
     {
       "date": "2025-11-19",
@@ -44,7 +48,8 @@
       "distance": "5.01",
       "pace": "08:51",
       "heartRate": "163",
-      "cadence": "163"
+      "cadence": "163",
+      "vdot": "19.1"
     },
     {
       "date": "2025-11-16",
@@ -53,7 +58,8 @@
       "distance": "10.05",
       "pace": "11:22",
       "heartRate": "126",
-      "cadence": "146"
+      "cadence": "146",
+      "vdot": "14.5"
     },
     {
       "date": "2025-11-08",
@@ -62,7 +68,8 @@
       "distance": "7.01",
       "pace": "10:37",
       "heartRate": "139",
-      "cadence": "152"
+      "cadence": "152",
+      "vdot": "15.4"
     },
     {
       "date": "2025-11-06",
@@ -71,7 +78,8 @@
       "distance": "8.03",
       "pace": "11:14",
       "heartRate": "130",
-      "cadence": "148"
+      "cadence": "148",
+      "vdot": "14.5"
     },
     {
       "date": "2025-11-04",
@@ -80,7 +88,8 @@
       "distance": "3.13",
       "pace": "12:10",
       "heartRate": "121",
-      "cadence": "-"
+      "cadence": "-",
+      "vdot": "12"
     },
     {
       "date": "2025-11-03",
@@ -89,7 +98,8 @@
       "distance": "2.01",
       "pace": "09:55",
       "heartRate": "139",
-      "cadence": "148"
+      "cadence": "148",
+      "vdot": "15.6"
     },
     {
       "date": "2025-10-31",
@@ -98,7 +108,8 @@
       "distance": "6.53",
       "pace": "10:35",
       "heartRate": "135",
-      "cadence": "152"
+      "cadence": "152",
+      "vdot": "15.4"
     },
     {
       "date": "2025-10-29",
@@ -107,7 +118,8 @@
       "distance": "5.25",
       "pace": "10:43",
       "heartRate": "132",
-      "cadence": "154"
+      "cadence": "154",
+      "vdot": "14.9"
     },
     {
       "date": "2025-10-28",
@@ -116,7 +128,8 @@
       "distance": "5.33",
       "pace": "10:56",
       "heartRate": "134",
-      "cadence": "150"
+      "cadence": "150",
+      "vdot": "14.5"
     },
     {
       "date": "2025-10-26",
@@ -125,7 +138,8 @@
       "distance": "3.3",
       "pace": "10:42",
       "heartRate": "138",
-      "cadence": "154"
+      "cadence": "154",
+      "vdot": "14.5"
     },
     {
       "date": "2025-10-19",
@@ -134,7 +148,8 @@
       "distance": "3.05",
       "pace": "10:09",
       "heartRate": "134",
-      "cadence": "154"
+      "cadence": "154",
+      "vdot": "15.5"
     },
     {
       "date": "2025-10-18",
@@ -143,7 +158,8 @@
       "distance": "9.52",
       "pace": "11:23",
       "heartRate": "131",
-      "cadence": "133"
+      "cadence": "133",
+      "vdot": "14.4"
     },
     {
       "date": "2025-10-16",
@@ -152,7 +168,8 @@
       "distance": "3.24",
       "pace": "10:48",
       "heartRate": "128",
-      "cadence": "150"
+      "cadence": "150",
+      "vdot": "14.3"
     },
     {
       "date": "2025-10-12",
@@ -161,7 +178,8 @@
       "distance": "8.01",
       "pace": "11:10",
       "heartRate": "129",
-      "cadence": "151"
+      "cadence": "151",
+      "vdot": "14.6"
     },
     {
       "date": "2025-10-08",
@@ -170,7 +188,8 @@
       "distance": "5.03",
       "pace": "10:40",
       "heartRate": "126",
-      "cadence": "150"
+      "cadence": "150",
+      "vdot": "14.9"
     },
     {
       "date": "2025-10-06",
@@ -179,7 +198,8 @@
       "distance": "5.17",
       "pace": "11:25",
       "heartRate": "121",
-      "cadence": "146"
+      "cadence": "146",
+      "vdot": "13.7"
     },
     {
       "date": "2025-10-01",
@@ -188,7 +208,8 @@
       "distance": "5.18",
       "pace": "10:57",
       "heartRate": "129",
-      "cadence": "151"
+      "cadence": "151",
+      "vdot": "14.5"
     },
     {
       "date": "2025-09-28",
@@ -197,7 +218,8 @@
       "distance": "10.46",
       "pace": "09:25",
       "heartRate": "158",
-      "cadence": "157"
+      "cadence": "157",
+      "vdot": "18.7"
     },
     {
       "date": "2025-09-26",
@@ -206,7 +228,8 @@
       "distance": "5.61",
       "pace": "10:46",
       "heartRate": "134",
-      "cadence": "154"
+      "cadence": "154",
+      "vdot": "14.9"
     },
     {
       "date": "2025-09-21",
@@ -215,7 +238,8 @@
       "distance": "5.04",
       "pace": "11:23",
       "heartRate": "128",
-      "cadence": "145"
+      "cadence": "145",
+      "vdot": "13.7"
     },
     {
       "date": "2025-09-16",
@@ -224,7 +248,8 @@
       "distance": "3.24",
       "pace": "13:48",
       "heartRate": "104",
-      "cadence": "131"
+      "cadence": "131",
+      "vdot": "10.1"
     },
     {
       "date": "2025-09-14",
@@ -233,7 +258,8 @@
       "distance": "12.27",
       "pace": "10:07",
       "heartRate": "162",
-      "cadence": "155"
+      "cadence": "155",
+      "vdot": "17.2"
     },
     {
       "date": "2025-09-08",
@@ -242,7 +268,8 @@
       "distance": "5.12",
       "pace": "11:49",
       "heartRate": "119",
-      "cadence": "152"
+      "cadence": "152",
+      "vdot": "13"
     },
     {
       "date": "2025-09-06",
@@ -251,7 +278,8 @@
       "distance": "5.29",
       "pace": "11:08",
       "heartRate": "122",
-      "cadence": "137"
+      "cadence": "137",
+      "vdot": "14.2"
     },
     {
       "date": "2025-09-03",
@@ -260,7 +288,8 @@
       "distance": "5.1",
       "pace": "11:49",
       "heartRate": "116",
-      "cadence": "153"
+      "cadence": "153",
+      "vdot": "13"
     },
     {
       "date": "2025-08-31",
@@ -269,7 +298,8 @@
       "distance": "5.1",
       "pace": "10:41",
       "heartRate": "124",
-      "cadence": "156"
+      "cadence": "156",
+      "vdot": "14.9"
     },
     {
       "date": "2025-08-27",
@@ -278,7 +308,8 @@
       "distance": "5.2",
       "pace": "09:25",
       "heartRate": "145",
-      "cadence": "165"
+      "cadence": "165",
+      "vdot": "17.7"
     },
     {
       "date": "2025-08-24",
@@ -287,7 +318,8 @@
       "distance": "5.02",
       "pace": "11:46",
       "heartRate": "130",
-      "cadence": "148"
+      "cadence": "148",
+      "vdot": "13.1"
     },
     {
       "date": "2025-08-23",
@@ -296,7 +328,8 @@
       "distance": "7.1",
       "pace": "10:53",
       "heartRate": "125",
-      "cadence": "159"
+      "cadence": "159",
+      "vdot": "14.9"
     },
     {
       "date": "2025-08-21",
@@ -305,7 +338,8 @@
       "distance": "11",
       "pace": "12:18",
       "heartRate": "121",
-      "cadence": "152"
+      "cadence": "152",
+      "vdot": "13.1"
     },
     {
       "date": "2025-08-17",
@@ -314,7 +348,8 @@
       "distance": "5.1",
       "pace": "11:19",
       "heartRate": "134",
-      "cadence": "150"
+      "cadence": "150",
+      "vdot": "13.8"
     },
     {
       "date": "2025-08-16",
@@ -323,7 +358,8 @@
       "distance": "1",
       "pace": "08:19",
       "heartRate": "146",
-      "cadence": "175"
+      "cadence": "175",
+      "vdot": "18.3"
     },
     {
       "date": "2025-08-09",
@@ -332,7 +368,8 @@
       "distance": "5.05",
       "pace": "12:37",
       "heartRate": "111",
-      "cadence": "153"
+      "cadence": "153",
+      "vdot": "11.9"
     },
     {
       "date": "2025-08-06",
@@ -341,7 +378,8 @@
       "distance": "4.08",
       "pace": "12:00",
       "heartRate": "118",
-      "cadence": "156"
+      "cadence": "156",
+      "vdot": "12.5"
     },
     {
       "date": "2025-08-05",
@@ -350,7 +388,8 @@
       "distance": "1.01",
       "pace": "09:22",
       "heartRate": "136",
-      "cadence": "168"
+      "cadence": "168",
+      "vdot": "15.8"
     },
     {
       "date": "2025-08-03",
@@ -359,7 +398,8 @@
       "distance": "3.03",
       "pace": "13:19",
       "heartRate": "106",
-      "cadence": "148"
+      "cadence": "148",
+      "vdot": "10.6"
     },
     {
       "date": "2025-07-31",
@@ -368,7 +408,8 @@
       "distance": "5.07",
       "pace": "11:24",
       "heartRate": "128",
-      "cadence": "155"
+      "cadence": "155",
+      "vdot": "13.7"
     },
     {
       "date": "2025-07-27",
@@ -377,7 +418,8 @@
       "distance": "5.09",
       "pace": "12:23",
       "heartRate": "112",
-      "cadence": "149"
+      "cadence": "149",
+      "vdot": "12.2"
     },
     {
       "date": "2025-07-21",
@@ -386,7 +428,8 @@
       "distance": "3.01",
       "pace": "11:03",
       "heartRate": "125",
-      "cadence": "159"
+      "cadence": "159",
+      "vdot": "13.8"
     },
     {
       "date": "2025-07-13",
@@ -395,7 +438,8 @@
       "distance": "7.09",
       "pace": "09:32",
       "heartRate": "151",
-      "cadence": "167"
+      "cadence": "167",
+      "vdot": "17.8"
     },
     {
       "date": "2025-07-12",
@@ -404,7 +448,8 @@
       "distance": "10.01",
       "pace": "10:51",
       "heartRate": "134",
-      "cadence": "159"
+      "cadence": "159",
+      "vdot": "15.4"
     },
     {
       "date": "2025-07-08",
@@ -413,7 +458,8 @@
       "distance": "8.04",
       "pace": "10:14",
       "heartRate": "136",
-      "cadence": "163"
+      "cadence": "163",
+      "vdot": "16.4"
     },
     {
       "date": "2025-07-06",
@@ -422,7 +468,8 @@
       "distance": "6.05",
       "pace": "10:47",
       "heartRate": "130",
-      "cadence": "162"
+      "cadence": "162",
+      "vdot": "14.9"
     },
     {
       "date": "2025-07-05",
@@ -431,7 +478,8 @@
       "distance": "8.01",
       "pace": "10:47",
       "heartRate": "135",
-      "cadence": "161"
+      "cadence": "161",
+      "vdot": "15.3"
     },
     {
       "date": "2025-07-03",
@@ -440,7 +488,8 @@
       "distance": "3.01",
       "pace": "12:24",
       "heartRate": "119",
-      "cadence": "152"
+      "cadence": "152",
+      "vdot": "11.8"
     },
     {
       "date": "2025-07-02",
@@ -449,7 +498,8 @@
       "distance": "5.12",
       "pace": "11:49",
       "heartRate": "128",
-      "cadence": "157"
+      "cadence": "157",
+      "vdot": "13"
     },
     {
       "date": "2025-06-30",
@@ -458,7 +508,8 @@
       "distance": "2",
       "pace": "12:35",
       "heartRate": "123",
-      "cadence": "151"
+      "cadence": "151",
+      "vdot": "11.2"
     },
     {
       "date": "2025-06-29",
@@ -467,7 +518,8 @@
       "distance": "5",
       "pace": "10:32",
       "heartRate": "139",
-      "cadence": "161"
+      "cadence": "161",
+      "vdot": "15.2"
     },
     {
       "date": "2025-06-28",
@@ -476,7 +528,8 @@
       "distance": "3.21",
       "pace": "11:35",
       "heartRate": "125",
-      "cadence": "157"
+      "cadence": "157",
+      "vdot": "13"
     },
     {
       "date": "2025-06-25",
@@ -485,7 +538,8 @@
       "distance": "6",
       "pace": "09:51",
       "heartRate": "154",
-      "cadence": "165"
+      "cadence": "165",
+      "vdot": "16.8"
     },
     {
       "date": "2025-06-24",
@@ -494,7 +548,8 @@
       "distance": "7.16",
       "pace": "10:25",
       "heartRate": "144",
-      "cadence": "161"
+      "cadence": "161",
+      "vdot": "15.9"
     },
     {
       "date": "2025-06-22",
@@ -503,7 +558,8 @@
       "distance": "7.01",
       "pace": "11:10",
       "heartRate": "139",
-      "cadence": "160"
+      "cadence": "160",
+      "vdot": "14.4"
     },
     {
       "date": "2025-06-20",
@@ -512,7 +568,8 @@
       "distance": "6",
       "pace": "11:20",
       "heartRate": "132",
-      "cadence": "158"
+      "cadence": "158",
+      "vdot": "14"
     },
     {
       "date": "2025-06-19",
@@ -521,7 +578,8 @@
       "distance": "3.02",
       "pace": "11:47",
       "heartRate": "122",
-      "cadence": "155"
+      "cadence": "155",
+      "vdot": "12.6"
     },
     {
       "date": "2025-06-17",
@@ -530,7 +588,8 @@
       "distance": "5.53",
       "pace": "10:50",
       "heartRate": "136",
-      "cadence": "160"
+      "cadence": "160",
+      "vdot": "14.7"
     },
     {
       "date": "2025-06-16",
@@ -539,7 +598,8 @@
       "distance": "5.25",
       "pace": "11:26",
       "heartRate": "141",
-      "cadence": "157"
+      "cadence": "157",
+      "vdot": "13.7"
     },
     {
       "date": "2025-06-14",
@@ -548,7 +608,8 @@
       "distance": "4.54",
       "pace": "09:55",
       "heartRate": "154",
-      "cadence": "165"
+      "cadence": "165",
+      "vdot": "16.3"
     },
     {
       "date": "2025-06-12",
@@ -557,7 +618,8 @@
       "distance": "3.11",
       "pace": "13:50",
       "heartRate": "112",
-      "cadence": "138"
+      "cadence": "138",
+      "vdot": "10"
     },
     {
       "date": "2025-06-10",
@@ -566,7 +628,8 @@
       "distance": "3.91",
       "pace": "11:30",
       "heartRate": "130",
-      "cadence": "150"
+      "cadence": "150",
+      "vdot": "13.2"
     },
     {
       "date": "2025-06-08",
@@ -575,7 +638,8 @@
       "distance": "3.17",
       "pace": "13:36",
       "heartRate": "119",
-      "cadence": "148"
+      "cadence": "148",
+      "vdot": "10.3"
     },
     {
       "date": "2025-06-06",
@@ -584,7 +648,8 @@
       "distance": "1.09",
       "pace": "12:33",
       "heartRate": "131",
-      "cadence": "159"
+      "cadence": "159",
+      "vdot": "10.8"
     },
     {
       "date": "2025-06-03",
@@ -593,7 +658,8 @@
       "distance": "1.5",
       "pace": "12:45",
       "heartRate": "126",
-      "cadence": "157"
+      "cadence": "157",
+      "vdot": "10.8"
     },
     {
       "date": "2025-06-01",
@@ -602,7 +668,8 @@
       "distance": "3.26",
       "pace": "12:16",
       "heartRate": "133",
-      "cadence": "-"
+      "cadence": "-",
+      "vdot": "11.9"
     },
     {
       "date": "2025-05-30",
@@ -611,7 +678,8 @@
       "distance": "2.37",
       "pace": "12:41",
       "heartRate": "134",
-      "cadence": "-"
+      "cadence": "-",
+      "vdot": "11.2"
     },
     {
       "date": "2025-05-26",
@@ -620,7 +688,8 @@
       "distance": "2.78",
       "pace": "13:38",
       "heartRate": "121",
-      "cadence": "-"
+      "cadence": "-",
+      "vdot": "10.4"
     },
     {
       "date": "2025-05-22",
@@ -629,7 +698,8 @@
       "distance": "3.36",
       "pace": "14:36",
       "heartRate": "139",
-      "cadence": "-"
+      "cadence": "-",
+      "vdot": "9.3"
     },
     {
       "date": "2025-05-21",
@@ -638,7 +708,8 @@
       "distance": "1.83",
       "pace": "12:55",
       "heartRate": "129",
-      "cadence": "-"
+      "cadence": "-",
+      "vdot": "10.7"
     },
     {
       "date": "2025-05-19",
@@ -647,7 +718,8 @@
       "distance": "2.22",
       "pace": "13:47",
       "heartRate": "134",
-      "cadence": "-"
+      "cadence": "-",
+      "vdot": "9.9"
     },
     {
       "date": "2025-05-17",
@@ -656,7 +728,8 @@
       "distance": "0.91",
       "pace": "11:23",
       "heartRate": "144",
-      "cadence": "-"
+      "cadence": "-",
+      "vdot": "12.1"
     },
     {
       "date": "2025-05-16",
@@ -665,7 +738,8 @@
       "distance": "2.85",
       "pace": "10:49",
       "heartRate": "145",
-      "cadence": "-"
+      "cadence": "-",
+      "vdot": "14.1"
     }
   ]
 }
