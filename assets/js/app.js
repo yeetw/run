@@ -27,8 +27,25 @@ function updateRecentRuns(runs, limit = 5) {
     // Show entries based on limit (0 means show all)
     const displayRuns = limit > 0 ? runs.slice(0, limit) : runs;
 
+    // Find the maximum Vdot among the displayed runs
+    const maxVdot = displayRuns.reduce((maxValue, run) => {
+        const vdotValue = parseFloat(run.vdot);
+        if (Number.isNaN(vdotValue)) {
+            return maxValue;
+        }
+        return vdotValue > maxValue ? vdotValue : maxValue;
+    }, Number.NEGATIVE_INFINITY);
+
     displayRuns.forEach(run => {
         const row = document.createElement('tr');
+        const vdotValue = parseFloat(run.vdot);
+
+        if (maxVdot !== Number.NEGATIVE_INFINITY && !Number.isNaN(vdotValue)) {
+            if (Math.abs(vdotValue - maxVdot) < 0.0001) {
+                row.classList.add('highlight-max-vdot');
+            }
+        }
+
         row.innerHTML = `
             <td>${run.date}</td>
             <td>${run.time}</td>
