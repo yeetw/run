@@ -2,6 +2,16 @@
   "lastUpdated": "2025-11-28",
   "runs": [
     {
+      "date": "2025-11-28",
+      "time": "15:23",
+      "duration": "01:44:26",
+      "distance": "10.02",
+      "pace": "10:25",
+      "heartRate": "136",
+      "cadence": "156",
+      "vdot": "16.3"
+    },
+    {
       "date": "2025-11-25",
       "time": "08:36",
       "duration": "00:50:05",
