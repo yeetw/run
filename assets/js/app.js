@@ -1,8 +1,96 @@
+const SORT_ICONS = { none: '↕', asc: '↑', desc: '↓' };
+
 // Update stats function
 function updateStats(newStats) {
     if (newStats.latest) document.getElementById('latest-stat').textContent = newStats.latest;
     if (newStats.week) document.getElementById('week-stat').textContent = newStats.week;
     if (newStats.month) document.getElementById('month-stat').textContent = newStats.month;
+}
+
+function parseDate(value) {
+    const timestamp = Date.parse(value);
+    return Number.isNaN(timestamp) ? NaN : timestamp;
+}
+
+function parseTime(value) {
+    if (!value) return NaN;
+    const parts = value.split(':').map(part => parseInt(part, 10));
+    if (parts.length < 2) return NaN;
+    const [hours, minutes] = parts;
+    if (Number.isNaN(hours) || Number.isNaN(minutes)) return NaN;
+    return (hours * 60 + minutes) * 60;
+}
+
+function parseDuration(value) {
+    if (!value) return NaN;
+    const parts = value.split(':').map(part => parseInt(part, 10));
+    if (parts.length === 3) {
+        const [hours, minutes, seconds] = parts;
+        if ([hours, minutes, seconds].some(Number.isNaN)) return NaN;
+        return hours * 3600 + minutes * 60 + seconds;
+    }
+    if (parts.length === 2) {
+        const [minutes, seconds] = parts;
+        if (Number.isNaN(minutes) || Number.isNaN(seconds)) return NaN;
+        return minutes * 60 + seconds;
+    }
+    return NaN;
+}
+
+function parsePace(value) {
+    if (!value) return NaN;
+    const parts = value.split(':').map(part => parseInt(part, 10));
+    if (parts.length < 2) return NaN;
+    const [minutes, seconds] = parts;
+    if (Number.isNaN(minutes) || Number.isNaN(seconds)) return NaN;
+    return minutes * 60 + seconds;
+}
+
+function parseNumber(value) {
+    if (typeof value !== 'string') return NaN;
+    const normalized = value.trim().replace(/[^0-9.-]/g, '');
+    const number = parseFloat(normalized);
+    return Number.isNaN(number) ? NaN : number;
+}
+
+const recentRunsColumnParsers = [
+    parseDate,
+    parseTime,
+    parseDuration,
+    parseNumber,
+    parsePace,
+    parseNumber,
+    parseNumber,
+    parseNumber
+];
+
+function sortTableByColumn(table, columnIndex, direction) {
+    const tbody = table?.tBodies?.[0];
+    if (!tbody) return;
+
+    const rows = Array.from(tbody.rows);
+    const parser = recentRunsColumnParsers[columnIndex] || (value => value);
+    const multiplier = direction === 'asc' ? 1 : -1;
+
+    const sortedRows = rows.sort((rowA, rowB) => {
+        const aText = rowA.cells[columnIndex]?.textContent.trim() || '';
+        const bText = rowB.cells[columnIndex]?.textContent.trim() || '';
+
+        const aValue = parser(aText);
+        const bValue = parser(bText);
+
+        const aInvalid = Number.isNaN(aValue);
+        const bInvalid = Number.isNaN(bValue);
+
+        if (aInvalid && bInvalid) return 0;
+        if (aInvalid) return 1;
+        if (bInvalid) return -1;
+
+        if (aValue === bValue) return 0;
+        return aValue > bValue ? multiplier : -multiplier;
+    });
+
+    sortedRows.forEach(row => tbody.appendChild(row));
 }
 
 // Function to update stats from loaded data
@@ -224,6 +312,39 @@ function toggleSplits(index, splits) {
     }
 }
 
+function initializeRecentRunsSorting() {
+    const table = document.querySelector('#recent-runs-table');
+    if (!table) return;
+
+    const headers = Array.from(table.querySelectorAll('thead th'));
+    if (!headers.length) return;
+
+    headers.forEach((header, index) => {
+        const baseLabel = header.dataset.baseLabel || header.textContent.trim();
+        header.dataset.baseLabel = baseLabel;
+        header.dataset.sortDirection = 'none';
+        header.style.cursor = 'pointer';
+        header.textContent = `${baseLabel} ${SORT_ICONS.none}`;
+
+        header.addEventListener('click', () => {
+            const currentDirection = header.dataset.sortDirection || 'none';
+            const nextDirection = currentDirection === 'none'
+                ? 'desc'
+                : currentDirection === 'desc'
+                    ? 'asc'
+                    : 'desc';
+
+            headers.forEach((th, headerIndex) => {
+                const direction = headerIndex === index ? nextDirection : 'none';
+                th.dataset.sortDirection = direction;
+                th.textContent = `${th.dataset.baseLabel} ${SORT_ICONS[direction]}`;
+            });
+
+            sortTableByColumn(table, index, nextDirection);
+        });
+    });
+}
+
 // Main initialization function - load all data once
 async function initializePage() {
     try {
@@ -285,6 +406,8 @@ async function initializeDetailPage(pageType) {
 document.addEventListener('DOMContentLoaded', function() {
     // Check which page we're on
     const path = window.location.pathname;
+
+    initializeRecentRunsSorting();
 
     if (path === '/' || path === '/index.html') {
         initializeIndexPage();
