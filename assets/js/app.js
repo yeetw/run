@@ -12,6 +12,16 @@ function parseDate(value) {
     return Number.isNaN(timestamp) ? NaN : timestamp;
 }
 
+function parseYearMonth(value) {
+    if (!value) return NaN;
+    const [yearStr, monthStr] = value.split('-');
+    const year = parseInt(yearStr, 10);
+    const month = parseInt(monthStr, 10);
+    if (Number.isNaN(year) || Number.isNaN(month)) return NaN;
+    const date = new Date(year, month - 1, 1);
+    return date.getTime();
+}
+
 function parseTime(value) {
     if (!value) return NaN;
     const parts = value.split(':').map(part => parseInt(part, 10));
@@ -53,23 +63,36 @@ function parseNumber(value) {
     return Number.isNaN(number) ? NaN : number;
 }
 
-const recentRunsColumnParsers = [
-    parseDate,
-    parseTime,
-    parseDuration,
-    parseNumber,
-    parsePace,
-    parseNumber,
-    parseNumber,
-    parseNumber
-];
+const TABLE_COLUMN_PARSERS = {
+    'recent-runs-table': [
+        parseDate,
+        parseTime,
+        parseDuration,
+        parseNumber,
+        parsePace,
+        parseNumber,
+        parseNumber,
+        parseNumber
+    ],
+    'monthly-summary-table': [
+        parseYearMonth,
+        parseNumber,
+        parseNumber,
+        parseDuration,
+        parsePace,
+        parseNumber,
+        parseNumber,
+        parseNumber
+    ]
+};
 
 function sortTableByColumn(table, columnIndex, direction) {
     const tbody = table?.tBodies?.[0];
     if (!tbody) return;
 
     const rows = Array.from(tbody.rows);
-    const parser = recentRunsColumnParsers[columnIndex] || (value => value);
+    const parserList = TABLE_COLUMN_PARSERS[table.id];
+    const parser = parserList?.[columnIndex] || (value => value);
     const multiplier = direction === 'asc' ? 1 : -1;
 
     const sortedRows = rows.sort((rowA, rowB) => {
@@ -312,8 +335,8 @@ function toggleSplits(index, splits) {
     }
 }
 
-function initializeRecentRunsSorting() {
-    const table = document.querySelector('#recent-runs-table');
+function initializeSortableTable(tableSelector) {
+    const table = document.querySelector(tableSelector);
     if (!table) return;
 
     const headers = Array.from(table.querySelectorAll('thead th'));
@@ -407,7 +430,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check which page we're on
     const path = window.location.pathname;
 
-    initializeRecentRunsSorting();
+    initializeSortableTable('#recent-runs-table');
+    initializeSortableTable('#monthly-summary-table');
 
     if (path === '/' || path === '/index.html') {
         initializeIndexPage();
