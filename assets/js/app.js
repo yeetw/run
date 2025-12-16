@@ -1,4 +1,5 @@
 const SORT_ICONS = { none: '↕', asc: '↑', desc: '↓' };
+const VDOT_TREND_RUN_COUNT = 20;
 
 // Update stats function
 function updateStats(newStats) {
@@ -216,6 +217,94 @@ function updateRecentRuns(runs = [], limit = 5) {
     });
 
     reapplyTableSort('recent-runs-table');
+}
+
+function renderVdotTrendChart(runs = [], limit = VDOT_TREND_RUN_COUNT) {
+    const container = document.getElementById('vdot-trend-chart');
+    if (!container) return;
+    if (typeof echarts === 'undefined') {
+        console.warn('ECharts is not available; skipping vdot trend chart.');
+        return;
+    }
+
+    const runsArray = Array.isArray(runs) ? runs : [];
+    const sortedRuns = [...runsArray].sort((runA = {}, runB = {}) => {
+        const aValue = parseDate(runA.date || '');
+        const bValue = parseDate(runB.date || '');
+
+        const aInvalid = Number.isNaN(aValue);
+        const bInvalid = Number.isNaN(bValue);
+
+        if (aInvalid && bInvalid) return 0;
+        if (aInvalid) return 1;
+        if (bInvalid) return -1;
+
+        return bValue - aValue;
+    });
+
+    const limitedRuns = limit > 0 ? sortedRuns.slice(0, limit) : sortedRuns;
+    const chartRuns = limitedRuns
+        .map(run => {
+            const timestamp = parseDate(run.date || '');
+            const vdotValue = parseNumber(String(run.vdot ?? ''));
+            return { ...run, timestamp, vdotValue };
+        })
+        .filter(run => !Number.isNaN(run.timestamp) && !Number.isNaN(run.vdotValue))
+        .sort((a, b) => a.timestamp - b.timestamp);
+
+    if (!chartRuns.length) {
+        container.textContent = 'No VDOT data available.';
+        return;
+    }
+
+    const xData = chartRuns.map(run => run.date);
+    const yData = chartRuns.map(run => run.vdotValue);
+
+    const chart = echarts.getInstanceByDom(container) || echarts.init(container);
+
+    chart.setOption({
+        grid: { left: 10, right: 10, top: 44, bottom: 20, containLabel: true },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: { type: 'line' },
+            formatter: params => {
+                const point = Array.isArray(params) ? params[0] : params;
+                const run = chartRuns[point?.dataIndex ?? 0];
+                if (!run) return '';
+                const distance = run.distance ? `${run.distance} km` : '-';
+                const pace = run.pace ? `${run.pace} /km` : '-';
+                const vdot = Number.isFinite(run.vdotValue) ? run.vdotValue.toFixed(1) : '-';
+                return `${run.date}<br/>Distance: ${distance}<br/>Pace: ${pace}<br/>VDOT: ${vdot}`;
+            }
+        },
+        xAxis: {
+            type: 'category',
+            data: xData,
+            axisLabel: { rotate: 45 }
+        },
+        yAxis: {
+            type: 'value',
+            name: 'VDOT',
+            nameLocation: 'end',
+            nameGap: 14,
+            nameTextStyle: { padding: [0, 0, 6, 0] }
+        },
+        series: [
+            {
+                name: 'VDOT',
+                type: 'line',
+                data: yData,
+                symbol: 'circle',
+                symbolSize: 7,
+                smooth: false,
+                lineStyle: { width: 3 },
+                emphasis: { focus: 'series' },
+                smooth: true,
+            }
+        ]
+    });
+
+    window.addEventListener('resize', () => chart.resize());
 }
 
 // Function to update weekly overview table (limit parameter for controlling display count)
@@ -473,6 +562,7 @@ async function initializePage() {
         // Update all sections with the loaded data
         updateStatsFromData(recentRunsData, weeklyData, monthlyData);
         updateRecentRuns(recentRunsData.runs);
+        renderVdotTrendChart(recentRunsData.runs);
         updateWeeklyOverview(weeklyData.weeks);
         updateMonthlySummary(monthlyData.months);
         updateAchievements(achievementsData.achievements);
