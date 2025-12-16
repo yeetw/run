@@ -131,12 +131,27 @@ function updateStatsFromData(recentRunsData, weeklyData, monthlyData) {
 }
 
 // Function to update recent runs table (limit parameter for controlling display count)
-function updateRecentRuns(runs, limit = 5) {
+function updateRecentRuns(runs = [], limit = 5) {
     const tbody = document.getElementById('recent-runs-tbody');
     tbody.innerHTML = '';
 
+    const runsArray = Array.isArray(runs) ? runs : [];
+    const sortedRuns = [...runsArray].sort((runA = {}, runB = {}) => {
+        const aValue = parseDate(runA.date || '');
+        const bValue = parseDate(runB.date || '');
+
+        const aInvalid = Number.isNaN(aValue);
+        const bInvalid = Number.isNaN(bValue);
+
+        if (aInvalid && bInvalid) return 0;
+        if (aInvalid) return 1;
+        if (bInvalid) return -1;
+
+        return bValue - aValue;
+    });
+
     // Show entries based on limit (0 means show all)
-    const displayRuns = limit > 0 ? runs.slice(0, limit) : runs;
+    const displayRuns = limit > 0 ? sortedRuns.slice(0, limit) : sortedRuns;
 
     // Find the maximum Vdot among the displayed runs
     const maxVdot = displayRuns.reduce((maxValue, run) => {
@@ -342,25 +357,50 @@ function initializeSortableTable(tableSelector) {
     const headers = Array.from(table.querySelectorAll('thead th'));
     if (!headers.length) return;
 
+    let activeColumnIndex = null;
+
     headers.forEach((header, index) => {
         const baseLabel = header.dataset.baseLabel || header.textContent.trim();
         header.dataset.baseLabel = baseLabel;
         header.dataset.sortDirection = 'none';
         header.style.cursor = 'pointer';
-        header.textContent = `${baseLabel} ${SORT_ICONS.none}`;
+
+        if (!header.querySelector('.sort-icon')) {
+            const labelSpan = document.createElement('span');
+            labelSpan.className = 'sort-label';
+            labelSpan.textContent = baseLabel;
+
+            const iconSpan = document.createElement('span');
+            iconSpan.className = 'sort-icon';
+            iconSpan.setAttribute('aria-hidden', 'true');
+
+            header.textContent = '';
+            header.appendChild(labelSpan);
+            header.appendChild(iconSpan);
+        }
 
         header.addEventListener('click', () => {
+            const isNewColumn = activeColumnIndex !== index;
             const currentDirection = header.dataset.sortDirection || 'none';
-            const nextDirection = currentDirection === 'none'
+            const nextDirection = isNewColumn
                 ? 'desc'
                 : currentDirection === 'desc'
                     ? 'asc'
                     : 'desc';
 
+            activeColumnIndex = index;
+
             headers.forEach((th, headerIndex) => {
-                const direction = headerIndex === index ? nextDirection : 'none';
-                th.dataset.sortDirection = direction;
-                th.textContent = `${th.dataset.baseLabel} ${SORT_ICONS[direction]}`;
+                const icon = th.querySelector('.sort-icon');
+                if (headerIndex === index) {
+                    th.dataset.sortDirection = nextDirection;
+                    th.classList.add('is-sorted');
+                    if (icon) icon.textContent = SORT_ICONS[nextDirection];
+                } else {
+                    th.dataset.sortDirection = 'none';
+                    th.classList.remove('is-sorted');
+                    if (icon) icon.textContent = '';
+                }
             });
 
             sortTableByColumn(table, index, nextDirection);

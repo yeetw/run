@@ -146,6 +146,20 @@ body {
     border-bottom: 1px solid #e2e8f0;
 }
 
+.data-table th .sort-label {
+    pointer-events: none;
+}
+
+.data-table th .sort-icon {
+    margin-left: 6px;
+    font-size: 0.85rem;
+    visibility: hidden;
+}
+
+.data-table th.is-sorted .sort-icon {
+    visibility: visible;
+}
+
 .data-table td {
     padding: 1rem;
     text-align: center;
