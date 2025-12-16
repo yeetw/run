@@ -47,13 +47,26 @@ function parseDuration(value) {
     return NaN;
 }
 
-function parsePace(value) {
-    if (!value) return NaN;
-    const parts = value.split(':').map(part => parseInt(part, 10));
-    if (parts.length < 2) return NaN;
-    const [minutes, seconds] = parts;
-    if (Number.isNaN(minutes) || Number.isNaN(seconds)) return NaN;
-    return minutes * 60 + seconds;
+function parsePaceToSeconds(value) {
+    if (typeof value !== 'string') return NaN;
+    const trimmed = value.trim();
+    if (!trimmed) return NaN;
+
+    const parts = trimmed.split(':').map(part => {
+        const numericPart = part.replace(/[^0-9]/g, '');
+        return numericPart === '' ? NaN : parseInt(numericPart, 10);
+    });
+
+    if (parts.length < 2 || parts.length > 3) return NaN;
+    if (parts.some(Number.isNaN)) return NaN;
+
+    if (parts.length === 2) {
+        const [minutes, seconds] = parts;
+        return minutes * 60 + seconds;
+    }
+
+    const [hours, minutes, seconds] = parts;
+    return hours * 3600 + minutes * 60 + seconds;
 }
 
 function parseNumber(value) {
@@ -69,7 +82,7 @@ const TABLE_COLUMN_PARSERS = {
         parseTime,
         parseDuration,
         parseNumber,
-        parsePace,
+        parsePaceToSeconds,
         parseNumber,
         parseNumber,
         parseNumber
@@ -79,7 +92,7 @@ const TABLE_COLUMN_PARSERS = {
         parseNumber,
         parseNumber,
         parseDuration,
-        parsePace,
+        parsePaceToSeconds,
         parseNumber,
         parseNumber,
         parseNumber
@@ -93,7 +106,11 @@ function sortTableByColumn(table, columnIndex, direction) {
     const rows = Array.from(tbody.rows);
     const parserList = TABLE_COLUMN_PARSERS[table.id];
     const parser = parserList?.[columnIndex] || (value => value);
-    const multiplier = direction === 'asc' ? 1 : -1;
+    const isPaceColumn = parser === parsePaceToSeconds;
+    const effectiveDirection = isPaceColumn
+        ? (direction === 'asc' ? 'desc' : 'asc')
+        : direction;
+    const multiplier = effectiveDirection === 'asc' ? 1 : -1;
 
     const sortedRows = rows.sort((rowA, rowB) => {
         const aText = rowA.cells[columnIndex]?.textContent.trim() || '';
@@ -114,6 +131,19 @@ function sortTableByColumn(table, columnIndex, direction) {
     });
 
     sortedRows.forEach(row => tbody.appendChild(row));
+}
+
+function reapplyTableSort(tableId) {
+    const table = document.getElementById(tableId);
+    if (!table) return;
+
+    const columnIndex = parseInt(table.dataset.activeSortColumn || '', 10);
+    const direction = table.dataset.activeSortDirection;
+
+    if (!Number.isInteger(columnIndex)) return;
+    if (direction !== 'asc' && direction !== 'desc') return;
+
+    sortTableByColumn(table, columnIndex, direction);
 }
 
 // Function to update stats from loaded data
@@ -184,6 +214,8 @@ function updateRecentRuns(runs = [], limit = 5) {
         `;
         tbody.appendChild(row);
     });
+
+    reapplyTableSort('recent-runs-table');
 }
 
 // Function to update weekly overview table (limit parameter for controlling display count)
@@ -254,6 +286,8 @@ function updateMonthlySummary(months, limit = 5) {
         `;
         tbody.appendChild(row);
     });
+
+    reapplyTableSort('monthly-summary-table');
 }
 
 // Function to update achievements table (no limit, always shows all)
@@ -350,14 +384,41 @@ function toggleSplits(index, splits) {
     }
 }
 
-function initializeSortableTable(tableSelector) {
+function initializeSortableTable(tableSelector, options = {}) {
     const table = document.querySelector(tableSelector);
     if (!table) return;
 
     const headers = Array.from(table.querySelectorAll('thead th'));
     if (!headers.length) return;
 
-    let activeColumnIndex = null;
+    const { defaultColumnIndex = null, defaultDirection = 'desc' } = options;
+    let activeColumnIndex = Number.isInteger(defaultColumnIndex) ? defaultColumnIndex : null;
+
+    const applySortState = (columnIndex, direction, shouldSort = true) => {
+        if (!Number.isInteger(columnIndex)) return;
+
+        const normalizedDirection = direction === 'asc' ? 'asc' : 'desc';
+
+        table.dataset.activeSortColumn = columnIndex;
+        table.dataset.activeSortDirection = normalizedDirection;
+
+        headers.forEach((th, headerIndex) => {
+            const icon = th.querySelector('.sort-icon');
+            if (headerIndex === columnIndex) {
+                th.dataset.sortDirection = normalizedDirection;
+                th.classList.add('is-sorted');
+                if (icon) icon.textContent = SORT_ICONS[normalizedDirection] || '';
+            } else {
+                th.dataset.sortDirection = 'none';
+                th.classList.remove('is-sorted');
+                if (icon) icon.textContent = '';
+            }
+        });
+
+        if (shouldSort) {
+            sortTableByColumn(table, columnIndex, normalizedDirection);
+        }
+    };
 
     headers.forEach((header, index) => {
         const baseLabel = header.dataset.baseLabel || header.textContent.trim();
@@ -389,23 +450,13 @@ function initializeSortableTable(tableSelector) {
                     : 'desc';
 
             activeColumnIndex = index;
-
-            headers.forEach((th, headerIndex) => {
-                const icon = th.querySelector('.sort-icon');
-                if (headerIndex === index) {
-                    th.dataset.sortDirection = nextDirection;
-                    th.classList.add('is-sorted');
-                    if (icon) icon.textContent = SORT_ICONS[nextDirection];
-                } else {
-                    th.dataset.sortDirection = 'none';
-                    th.classList.remove('is-sorted');
-                    if (icon) icon.textContent = '';
-                }
-            });
-
-            sortTableByColumn(table, index, nextDirection);
+            applySortState(index, nextDirection);
         });
     });
+
+    if (Number.isInteger(defaultColumnIndex)) {
+        applySortState(defaultColumnIndex, defaultDirection);
+    }
 }
 
 // Main initialization function - load all data once
@@ -470,8 +521,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check which page we're on
     const path = window.location.pathname;
 
-    initializeSortableTable('#recent-runs-table');
-    initializeSortableTable('#monthly-summary-table');
+    initializeSortableTable('#recent-runs-table', { defaultColumnIndex: 0, defaultDirection: 'desc' });
+    initializeSortableTable('#monthly-summary-table', { defaultColumnIndex: 0, defaultDirection: 'desc' });
 
     if (path === '/' || path === '/index.html') {
         initializeIndexPage();
