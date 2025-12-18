@@ -84,6 +84,10 @@ body {
     width: 100%;
 }
 
+.vdot-section {
+    margin-bottom: 2rem;
+}
+
 .section-title {
     font-size: 2rem;
     color: #1a1a1a;
