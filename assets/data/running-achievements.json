@@ -1,6 +1,27 @@
 {
   "lastUpdated": "2025-10-07",
   "achievements": [
+           {
+      "no": "3",
+      "race": "2025 台北馬拉松 - 耶誕歡樂早餐跑",
+      "date": "2025/12/20",
+      "distance": "9",
+      "duration": "01:20:20",
+      "avgPace": "08:51",
+      "avgHeartRate": "160",
+      "avgCadence": "164",
+      "splits": [
+        { "km": "1", "pace": "08:28", "time": "00:08:28", "heartRate": "152", "cadence": "170" },
+        { "km": "2", "pace": "09:15", "time": "00:17:43", "heartRate": "156", "cadence": "166" },
+        { "km": "3", "pace": "09:07", "time": "00:26:50", "heartRate": "154", "cadence": "167" },
+        { "km": "4", "pace": "09:28", "time": "00:36:18", "heartRate": "157", "cadence": "157" },
+        { "km": "5", "pace": "08:57", "time": "00:45:15", "heartRate": "163", "cadence": "166" },
+        { "km": "6", "pace": "08:59", "time": "00:54:14", "heartRate": "160", "cadence": "161" },
+        { "km": "7", "pace": "09:05", "time": "01:03:19", "heartRate": "159", "cadence": "164" },
+        { "km": "8", "pace": "08:52", "time": "01:12:11", "heartRate": "163", "cadence": "161" },
+        { "km": "9", "pace": "07:41", "time": "01:19:52", "heartRate": "174", "cadence": "166" }
+      ]
+    },
        {
       "no": "3",
       "race": "2025 POCARI SWEAT RUN 寶礦力路跑",
