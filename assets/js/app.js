@@ -97,6 +97,16 @@ const TABLE_COLUMN_PARSERS = {
         parseNumber,
         parseNumber,
         parseNumber
+    ],
+    'achievements-table': [
+        parseNumber,
+        value => value,
+        parseDate,
+        parseNumber,
+        parseDuration,
+        parsePaceToSeconds,
+        parseNumber,
+        parseNumber
     ]
 };
 
@@ -104,7 +114,31 @@ function sortTableByColumn(table, columnIndex, direction) {
     const tbody = table?.tBodies?.[0];
     if (!tbody) return;
 
-    const rows = Array.from(tbody.rows);
+    const buildRowGroups = () => {
+        if (table.id !== 'achievements-table') {
+            return Array.from(tbody.rows).map(row => ({ main: row }));
+        }
+
+        const groups = [];
+        let row = tbody.firstElementChild;
+        while (row) {
+            if (row.classList.contains('achievement-detail-row')) {
+                row = row.nextElementSibling;
+                continue;
+            }
+
+            const detailRow = row.nextElementSibling?.classList.contains('achievement-detail-row')
+                ? row.nextElementSibling
+                : null;
+
+            groups.push({ main: row, detail: detailRow });
+            row = detailRow ? detailRow.nextElementSibling : row.nextElementSibling;
+        }
+
+        return groups;
+    };
+
+    const rowGroups = buildRowGroups();
     const parserList = TABLE_COLUMN_PARSERS[table.id];
     const parser = parserList?.[columnIndex] || (value => value);
     const isPaceColumn = parser === parsePaceToSeconds;
@@ -113,7 +147,9 @@ function sortTableByColumn(table, columnIndex, direction) {
         : direction;
     const multiplier = effectiveDirection === 'asc' ? 1 : -1;
 
-    const sortedRows = rows.sort((rowA, rowB) => {
+    const sortedRows = rowGroups.sort((groupA, groupB) => {
+        const rowA = groupA.main;
+        const rowB = groupB.main;
         const aText = rowA.cells[columnIndex]?.textContent.trim() || '';
         const bText = rowB.cells[columnIndex]?.textContent.trim() || '';
 
@@ -131,7 +167,12 @@ function sortTableByColumn(table, columnIndex, direction) {
         return aValue > bValue ? multiplier : -multiplier;
     });
 
-    sortedRows.forEach(row => tbody.appendChild(row));
+    sortedRows.forEach(({ main, detail }) => {
+        tbody.appendChild(main);
+        if (detail) {
+            tbody.appendChild(detail);
+        }
+    });
 }
 
 function reapplyTableSort(tableId) {
@@ -421,6 +462,8 @@ function updateAchievements(races) {
         `;
         tbody.appendChild(detailRow);
     });
+
+    reapplyTableSort('achievements-table');
 }
 
 // Function to toggle splits display
@@ -613,6 +656,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initializeSortableTable('#recent-runs-table', { defaultColumnIndex: 0, defaultDirection: 'desc' });
     initializeSortableTable('#monthly-summary-table', { defaultColumnIndex: 0, defaultDirection: 'desc' });
+    initializeSortableTable('#achievements-table', { defaultColumnIndex: 0, defaultDirection: 'desc' });
 
     if (path === '/' || path === '/index.html') {
         initializeIndexPage();
