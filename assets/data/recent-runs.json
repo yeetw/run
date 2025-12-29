@@ -1,12 +1,22 @@
 {
-  "lastUpdated": "2025-12-27",
+  "lastUpdated": "2025-12-29",
   "runs": [
+    {
+      "date": "2025-12-29",
+      "time": "15:19",
+      "duration": "01:53:03",
+      "distance": "11.07",
+      "pace": "10:13",
+      "heartRate": "143",
+      "cadence": "154",
+      "vdot": "16.9"
+    },
     {
       "date": "2025-12-27",
       "time": "15:02",
       "duration": "01:08:00",
       "distance": "6.14",
-      "pace": "00:11:04",
+      "pace": "11:04",
       "heartRate": "128",
       "cadence": "147",
       "vdot": "14.4"
