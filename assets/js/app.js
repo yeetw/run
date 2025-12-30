@@ -338,7 +338,8 @@ function renderVdotTrendChart(runs = [], limit = VDOT_TREND_RUN_COUNT) {
                 symbol: 'circle',
                 symbolSize: 7,
                 smooth: false,
-                lineStyle: { width: 3 },
+                lineStyle: { width: 3, color: '#a3c1e0' },
+                itemStyle: { color: '#a3c1e0', borderColor: '#a3c1e0' },
                 emphasis: { focus: 'series' },
                 smooth: true,
             }
