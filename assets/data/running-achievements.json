@@ -1,6 +1,29 @@
 {
-  "lastUpdated": "2025-10-07",
+  "lastUpdated": "2026-01-11",
   "achievements": [
+                   {
+      "no": "5",
+      "race": "2026 渣打臺北公益馬拉松",
+      "date": "2026/01/11",
+      "distance": "11",
+      "duration": "01:54:28",
+      "avgPace": "10:18",
+      "avgHeartRate": "136",
+      "avgCadence": "148",
+      "splits": [
+        { "km": "1", "pace": "09:08", "time": "00:09:08", "heartRate": "148", "cadence": "169" },
+        { "km": "2", "pace": "09:00", "time": "00:18:08", "heartRate": "153", "cadence": "166" },
+        { "km": "3", "pace": "10:14", "time": "00:28:22", "heartRate": "145", "cadence": "152" },
+        { "km": "4", "pace": "09:50", "time": "00:38:12", "heartRate": "142", "cadence": "161" },
+        { "km": "5", "pace": "11:21", "time": "00:49:33", "heartRate": "135", "cadence": "142" },
+        { "km": "6", "pace": "10:39", "time": "01:00:12", "heartRate": "132", "cadence": "147" },
+        { "km": "7", "pace": "10:27", "time": "01:10:39", "heartRate": "137", "cadence": "153" },
+        { "km": "8", "pace": "10:57", "time": "01:21:36", "heartRate": "128", "cadence": "140" },
+        { "km": "9", "pace": "11:05", "time": "01:32:41", "heartRate": "127", "cadence": "133" },
+        { "km": "10", "pace": "10:52", "time": "01:43:33", "heartRate": "123", "cadence": "131" },
+        { "km": "11", "pace": "10:04", "time": "01:53:37", "heartRate": "131", "cadence": "142" }
+      ]
+    },
            {
       "no": "4",
       "race": "2025 台北馬拉松 - 耶誕歡樂早餐跑",
