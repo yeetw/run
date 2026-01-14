@@ -1,15 +1,15 @@
 {
-  "lastUpdated": "2026-01-11",
+  "lastUpdated": "2026-01-14",
   "months": [
     {
       "month": "2026-01",
-      "totalDistance": "26.7",
-      "totalRuns": "3",
-      "totalDuration": "04:32:44",
-      "fastestPace": "10:07",
+      "totalDistance": "35.3",
+      "totalRuns": "4",
+      "totalDuration": "05:56:28",
+      "fastestPace": "09:46",
       "longestDistance": "11.1",
-      "maxAvgHR": "140",
-      "maxCadence": "155"
+      "maxAvgHR": "146",
+      "maxCadence": "158"
     },
     {
       "month": "2025-12",
