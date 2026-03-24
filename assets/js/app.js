@@ -1,3 +1,5 @@
+import { prepareAchievementsForDisplay } from '/assets/js/achievements.js';
+
 const SORT_ICONS = { none: '↕', asc: '↑', desc: '↓' };
 const VDOT_TREND_RUN_COUNT = 20;
 
@@ -421,12 +423,14 @@ function updateMonthlySummary(months, limit = 5) {
     reapplyTableSort('monthly-summary-table');
 }
 
-// Function to update achievements table (no limit, always shows all)
-function updateAchievements(races) {
+// Function to update achievements table
+function updateAchievements(races = [], limit = 0) {
     const tbody = document.getElementById('achievements-tbody');
     tbody.innerHTML = '';
 
-    races.forEach((race, index) => {
+    const displayRaces = prepareAchievementsForDisplay(races, limit);
+
+    displayRaces.forEach((race, index) => {
         // Main row
         const row = document.createElement('tr');
         row.className = 'achievement-row';
@@ -609,7 +613,7 @@ async function initializePage() {
         renderVdotTrendChart(recentRunsData.runs);
         updateWeeklyOverview(weeklyData.weeks);
         updateMonthlySummary(monthlyData.months);
-        updateAchievements(achievementsData.achievements);
+        updateAchievements(achievementsData.achievements, 5);
     } catch (error) {
         console.error('Error loading data:', error);
     }

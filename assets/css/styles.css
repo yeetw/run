@@ -128,6 +128,10 @@ body {
     width: 100%;
 }
 
+#monthly-summary-table {
+    width: 100%;
+}
+
 #weekly-overview-table .weekly-date-range {
     width: 8%;
 }
@@ -204,9 +208,62 @@ body {
     white-space: nowrap;
 }
 
+#achievements-table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#achievements-table th,
+#achievements-table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#achievements-table col.col-no {
+    width: 5%;
+}
+
+#achievements-table col.col-race {
+    width: 22%;
+}
+
+#achievements-table col.col-date {
+    width: 14%;
+}
+
+#achievements-table col.col-distance,
+#achievements-table col.col-duration,
+#achievements-table col.col-heart-rate,
+#achievements-table col.col-cadence {
+    width: 12%;
+}
+
+#achievements-table col.col-pace {
+    width: 11%;
+}
+
+#achievements-table th {
+    white-space: normal;
+}
+
 #achievements-table td:first-child,
-#achievements-table th:first-child {
-    min-width: 10px;
+#achievements-table td:nth-child(3),
+#achievements-table td:nth-child(4),
+#achievements-table td:nth-child(5),
+#achievements-table td:nth-child(6),
+#achievements-table td:nth-child(7),
+#achievements-table td:nth-child(8) {
+    white-space: nowrap;
+}
+
+#achievements-table th:nth-child(2) {
+    white-space: nowrap;
+}
+
+#achievements-table td:nth-child(2) {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .data-table tr:hover {
