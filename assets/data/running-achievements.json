@@ -1,6 +1,28 @@
 {
   "lastUpdated": "2026-01-11",
   "achievements": [
+               {
+      "no": "７",
+      "race": "2026 淡江大橋通車路跑活動",
+      "date": "2026/04/18",
+      "distance": "10",
+      "duration": "01:42:35",
+      "avgPace": "09:43",
+      "avgHeartRate": "159",
+      "avgCadence": "156",
+      "splits": [
+        { "km": "1", "pace": "09:50", "time": "00:09:50", "heartRate": "146", "cadence": "163" },
+        { "km": "2", "pace": "09:48", "time": "00:19:38", "heartRate": "155", "cadence": "163" },
+        { "km": "3", "pace": "10:24", "time": "00:30:02", "heartRate": "156", "cadence": "140" },
+        { "km": "4", "pace": "10:32", "time": "00:40:34", "heartRate": "161", "cadence": "157" },
+        { "km": "5", "pace": "10:24", "time": "00:50:58", "heartRate": "156", "cadence": "138" },
+        { "km": "6", "pace": "09:02", "time": "01:00:00", "heartRate": "161", "cadence": "165" },
+        { "km": "7", "pace": "09:21", "time": "01:09:21", "heartRate": "163", "cadence": "163" },
+        { "km": "8", "pace": "09:43", "time": "01:19:04", "heartRate": "162", "cadence": "156" },
+        { "km": "9", "pace": "10:19", "time": "01:29:23", "heartRate": "164", "cadence": "155" },
+        { "km": "10", "pace": "08:26", "time": "01:37:49", "heartRate": "166", "cadence": "167" }
+      ]
+    },
            {
       "no": "6",
       "race": "2026 臺南古都國際半程馬拉松",
