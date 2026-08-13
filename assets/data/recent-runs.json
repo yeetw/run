@@ -1,6 +1,26 @@
 {
-  "lastUpdated": "2026-08-04",
+  "lastUpdated": "2026-08-13",
   "runs": [
+    {
+      "date": "2026-08-13",
+      "time": "20:37",
+      "duration": "00:05:17",
+      "distance": "0.467",
+      "pace": "11:18",
+      "heartRate": "152",
+      "cadence": "147",
+      "vdot": "11.4"
+    },
+    {
+      "date": "2026-08-13",
+      "time": "19:07",
+      "duration": "01:28:46",
+      "distance": "7.75",
+      "pace": "11:27",
+      "heartRate": "153",
+      "cadence": "140",
+      "vdot": "14.1"
+    },
     {
       "date": "2026-08-04",
       "time": "17:43",
