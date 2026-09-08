@@ -1,6 +1,25 @@
 {
   "lastUpdated": "2026-01-11",
   "achievements": [
+                   {
+      "no": "10",
+      "race": "2026 Panasonic Taipei City Run 台北城市路跑賽 12.5K",
+      "date": "2026/09/06",
+      "distance": "7.38",
+      "duration": "01:16:55",
+      "avgPace": "10:26",
+      "avgHeartRate": "149",
+      "avgCadence": "152",
+      "splits": [
+        { "km": "1", "pace": "09:40", "time": "00:09:40", "heartRate": "147", "cadence": "164" },
+        { "km": "2", "pace": "11:23", "time": "00:21:03", "heartRate": "142", "cadence": "149" },
+        { "km": "3", "pace": "11:44", "time": "00:32:47", "heartRate": "141", "cadence": "139" },
+        { "km": "4", "pace": "10:49", "time": "00:43:36", "heartRate": "145", "cadence": "153" },
+        { "km": "5", "pace": "10:01", "time": "00:53:37", "heartRate": "151", "cadence": "157" },
+        { "km": "6", "pace": "10:06", "time": "01:03:43", "heartRate": "154", "cadence": "153" },
+        { "km": "7", "pace": "09:46", "time": "01:13:29", "heartRate": "157", "cadence": "146" }
+      ]
+    },
                        {
       "no": "9",
       "race": "2026 舒跑杯 9K",
