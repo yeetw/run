@@ -18,7 +18,7 @@
         { "km": "5", "pace": "10:28", "time": "00:54:18", "heartRate": "-", "cadence": "138" },
         { "km": "6", "pace": "10:39", "time": "01:04:57", "heartRate": "-", "cadence": "132" },
         { "km": "7", "pace": "10:37", "time": "01:15:34", "heartRate": "-", "cadence": "130" },
-        { "km": "8", "pace": "08:40", "time": "01:24:14", "heartRate": "-", "cadence": "145" }.
+        { "km": "8", "pace": "08:40", "time": "01:24:14", "heartRate": "-", "cadence": "145" },
         { "km": "9", "pace": "11:17", "time": "01:35:31", "heartRate": "-", "cadence": "125" }
       ]
     },
