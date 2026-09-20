@@ -6,7 +6,7 @@
       "time": "06:00",
       "duration": "01:55:00",
       "distance": "9.98",
-      "pace": "11:31",
+      "pace": "10:37",
       "heartRate": "-",
       "cadence": "135",
       "vdot": "14.2"
@@ -16,7 +16,7 @@
       "time": "19:06",
       "duration": "01:08:32",
       "distance": "5",
-      "pace": "13:41",
+      "pace": "-",
       "heartRate": "144",
       "cadence": "106",
       "vdot": "10.5"
@@ -36,7 +36,7 @@
       "time": "19:07",
       "duration": "01:44:54",
       "distance": "8.67",
-      "pace": "12:06",
+      "pace": "-",
       "heartRate": "147",
       "cadence": "134",
       "vdot": "13.2"
@@ -56,7 +56,7 @@
       "time": "19:06",
       "duration": "01:36:00",
       "distance": "7.73",
-      "pace": "12:25",
+      "pace": "-",
       "heartRate": "149",
       "cadence": "132",
       "vdot": "12.6"
@@ -66,7 +66,7 @@
       "time": "19:07",
       "duration": "01:28:46",
       "distance": "7.75",
-      "pace": "11:27",
+      "pace": "-",
       "heartRate": "153",
       "cadence": "140",
       "vdot": "14.1"
