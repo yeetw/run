@@ -1,6 +1,27 @@
 {
-  "lastUpdated": "2026-01-11",
+  "lastUpdated": "2026-09-20",
   "achievements": [
+                      {
+      "no": "11",
+      "race": "2026 長庚紀念醫院 永慶盃路跑 10.5K",
+      "date": "2026/09/20",
+      "distance": "9.98",
+      "duration": "01:55:00",
+      "avgPace": "10:37",
+      "avgHeartRate": "-",
+      "avgCadence": "135",
+      "splits": [
+        { "km": "1", "pace": "11:11", "time": "00:11:11", "heartRate": "-", "cadence": "149" },
+        { "km": "2", "pace": "10:33", "time": "00:21:44", "heartRate": "-", "cadence": "137" },
+        { "km": "3", "pace": "10:54", "time": "00:32:38", "heartRate": "-", "cadence": "129" },
+        { "km": "4", "pace": "11:12", "time": "00:43:50", "heartRate": "-", "cadence": "130" },
+        { "km": "5", "pace": "10:28", "time": "00:54:18", "heartRate": "-", "cadence": "138" },
+        { "km": "6", "pace": "10:39", "time": "01:04:57", "heartRate": "-", "cadence": "132" },
+        { "km": "7", "pace": "10:37", "time": "01:15:34", "heartRate": "-", "cadence": "130" },
+        { "km": "8", "pace": "08:40", "time": "01:24:14", "heartRate": "-", "cadence": "145" }.
+        { "km": "9", "pace": "11:17", "time": "01:35:31", "heartRate": "-", "cadence": "125" }
+      ]
+    },
                    {
       "no": "10",
       "race": "2026 Panasonic Taipei City Run 台北城市路跑賽 12.5K",
