@@ -1,6 +1,26 @@
 {
-  "lastUpdated": "2026-10-02",
+  "lastUpdated": "2026-10-07",
   "runs": [
+    {
+      "date": "2026-10-07",
+      "time": "17:03",
+      "duration": "00:59:56",
+      "distance": "5.33",
+      "pace": "-",
+      "heartRate": "141",
+      "cadence": "150",
+      "vdot": "14"
+    },
+    {
+      "date": "2026-10-04",
+      "time": "17:12",
+      "duration": "00:56:59",
+      "distance": "5.03",
+      "pace": "-",
+      "heartRate": "140",
+      "cadence": "145",
+      "vdot": "13.8"
+    },
     {
       "date": "2026-10-01",
       "time": "19:06",
