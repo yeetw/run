@@ -1,3 +1,23 @@
+@font-face {
+    font-family: 'Outfit';
+    src: url('/assets/fonts/Outfit-Variable.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'jf open huninn';
+    src: url('/assets/fonts/jf-openhuninn-2.1.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+button, input, select, textarea {
+    font: inherit;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +25,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Outfit', 'jf open huninn', sans-serif;
     background-color: #f8f9fa;
     min-height: 100vh;
     display: flex;
@@ -21,7 +41,7 @@ body {
 }
 
 .main-title {
-    font-family: "PingFang TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: 'Outfit', 'jf open huninn', sans-serif;
     font-size: 5rem;
     font-weight: 900;
     color: #1a1a1a;
@@ -30,62 +50,61 @@ body {
 }
 
 .subtitle {
-    font-family: "PingFang TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: 'Outfit', 'jf open huninn', sans-serif;
     font-size: 2.5rem;
     color: #4a5568;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     font-weight: 400;
 }
 
 .stats-container {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 1.25rem 0 1.75rem;
 }
 
 .stat-item {
-    text-align: center;
+    text-align: left;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #dfe7e2;
+    border-radius: 16px;
 }
 
 .stat-label {
-    font-size: 1.2rem;
-    color: #666;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    color: #687a70;
+    font-weight: 600;
+    margin-bottom: 16px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.8px;
 }
 
 .stat-value {
-    background-image: url('/assets/images/tag-bg.png');
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 1rem 3rem;
-    border-radius: 8px;
-    display: inline-block;
-    min-width: 200px;
-    height: 80px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.stat-value::after {
+    content: 'km';
+    font-size: 0.85rem;
+    color: #78877e;
 }
 
 .stat-number {
-    font-size: 3rem;
-    font-weight: 900;
-    color: #1a1a1a;
-    line-height: 1;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -1.5px;
+    color: #284b3b;
+    line-height: 1.1;
 }
 
 .section {
     margin-top: 2rem;
     width: 100%;
-}
-
-.vdot-section {
-    margin-bottom: 2rem;
 }
 
 .section-title {
@@ -104,22 +123,6 @@ body {
     margin: 0 auto;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Chart wrapper */
-.chart-wrapper {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    background: white;
-    padding: 1rem;
-}
-
-.vdot-trend-chart {
-    width: 100%;
-    height: 280px;
 }
 
 /* Weekly overview table should match other tables' width */
@@ -435,17 +438,36 @@ body {
     }
 
     .subtitle {
-        font-family: "PingFang TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-family: 'Outfit', 'jf open huninn', sans-serif;
         font-size: 1.8rem;
     }
 
     .stats-container {
-        flex-direction: column;
-        gap: 2rem;
+        gap: 8px;
+    }
+
+    .stat-item {
+        padding: 16px 12px;
+        border-radius: 12px;
+    }
+
+    .stat-label {
+        font-size: 0.65rem;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
     }
 
     .stat-number {
-        font-size: 2.5rem;
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        letter-spacing: -1px;
+    }
+
+    .stat-value {
+        gap: 3px;
+    }
+
+    .stat-value::after {
+        font-size: 0.7rem;
     }
 
     .data-table {
@@ -472,7 +494,63 @@ body {
         gap: 0.3rem;
     }
 
-    .vdot-trend-chart {
-        height: 260px;
-    }
+}
+
+/* Compact mobile records; desktop keeps sortable tables. */
+.mobile-records { display: none; }
+.data-badge { background: #f2f2f2; color: #52616b; }
+.stat-number { color: #52616b; }
+.stat-item { border-color: #e4e7eb; }
+.stat-item:nth-child(1) { border-top: 3px solid #d0dae8; }
+.stat-item:nth-child(2) { border-top: 3px solid #eed3c8; }
+.stat-item:nth-child(3) { border-top: 3px solid #d8d2e4; }
+@media (max-width: 768px) {
+    body { padding: 24px 16px; background: #fff; color: #52616b; }
+    .main-title { font-size: clamp(2rem, 9vw, 3rem); color: #37434d; }
+    .subtitle { font-size: 1.15rem; margin-bottom: 1rem; }
+    .section-title { font-size: clamp(1.15rem, 5vw, 1.6rem); letter-spacing: 1.4px; color: #37434d; }
+    .section { margin-top: 18px; }
+    .desktop-records { display: none; }
+    .mobile-records { display: grid; gap: 12px; text-align: left; }
+    .record-card { position: relative; min-width: 0; border: 1px solid #e5e8eb; border-radius: 14px; padding: 18px; background: #fff; }
+    .record-card > summary { display: block; cursor: pointer; list-style: none; }
+    .record-card summary::-webkit-details-marker { display: none; }
+    .record-card summary:focus-visible { outline: 2px solid #52616b; outline-offset: 4px; }
+    .record-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; }
+    .record-heading strong { font-size: 24px; font-weight: 600; white-space: nowrap; color: #37434d; font-variant-numeric: tabular-nums; }
+    .record-meta { margin: 8px 0 0; font-size: 13px; line-height: 1.6; color: #68737b; }
+    .record-meta > span { margin: 0 7px; color: #9ba3a9; }
+    .period-note { display: block; margin-top: 3px; font-size: 10px; color: #77828b; }
+    .distance-track { margin-top: 16px; height: 7px; background: #f2f2f2; border-radius: 4px; overflow: hidden; }
+    .distance-track > div { height: 100%; background: #d0dae8; border-radius: inherit; }
+    .month-card:nth-child(4n+2) .distance-track > div { background: #eed3c8; }
+    .month-card:nth-child(4n+3) .distance-track > div { background: #eee3c5; }
+    .month-card:nth-child(4n+4) .distance-track > div { background: #d8d2e4; }
+    .expand-hint { display: flex; justify-content: space-between; margin-top: 14px; font-size: 11px; color: #77828b; }
+    .record-metrics { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin: 16px 0 0; padding-top: 16px; border-top: 1px solid #eceef0; }
+    .record-metrics dt, .day-details dt { color: #77828b; font-size: 11px; }
+    .record-metrics dd, .day-details dd { margin: 4px 0 0; font-size: 16px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+    .week-days { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap: 4px; margin-top: 20px; padding-bottom: 6px; }
+    .week-days > div, .active-day summary { display: flex; flex-direction: column; align-items: center; gap: 9px; font-size: 10px; }
+    .active-day summary { list-style: none; cursor: pointer; }
+    .day-marker { display: block; width: 18px; height: 18px; border-radius: 50%; background: #f2f2f2; }
+    .active-day .day-marker { background: #d0dae8; border: 3px solid #fff; outline: 1px solid #bcc9d9; }
+    .active-day:nth-child(3n+2) .day-marker { background: #eed3c8; outline-color: #ddbeb2; }
+    .active-day:nth-child(3n) .day-marker { background: #d8d2e4; outline-color: #c4bbd5; }
+    .active-day[open] .day-marker { outline: 2px solid #52616b; }
+    .day-distance { font-size: 10px; font-variant-numeric: tabular-nums; }
+    .week-days:has(.active-day[open]) { padding-bottom: 90px; }
+    .day-details { position: absolute; left: 18px; right: 18px; bottom: 18px; background: #f2f2f2; border-radius: 8px; padding: 12px; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; margin: 0; }
+    .day-details dd { font-size: 13px; }
+    .race-card h3 { font-size: 17px; font-weight: 500; line-height: 1.6; margin: 8px 0 12px; color: #37434d; overflow-wrap: anywhere; }
+    .mobile-splits { margin-top: 16px; }
+    .mobile-splits > div { padding: 12px; margin-top: 8px; background: #f2f2f2; border-radius: 8px; }
+    .mobile-splits .record-metrics { border: 0; padding-top: 0; margin-top: 10px; }
+}
+
+@media (max-width: 768px) {
+    .goal-caption { display: flex; justify-content: space-between; gap: 12px; margin-top: 16px; font-size: 12px; color: #68737b; }
+    .goal-caption strong { font-weight: 500; color: #52616b; }
+    .month-card .distance-track { margin-top: 8px; }
+    .goal-remaining { margin-top: 7px; font-size: 11px; color: #77828b; }
 }

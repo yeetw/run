@@ -18,7 +18,7 @@
 <body>
     <div class="support" style="position: fixed; bottom: 0px; right: 0px; z-index: 1000;">
   <a href="https://buymeacoffee.com/yeetw" target="_blank" style="color: #fff; text-decoration: none;">
-    <div style="background-color: #d3d3d3; color: #fff; padding: 6px 12px; border-radius: 5px; display: inline-block; text-align: center; cursor: pointer; font-family: 'Kosugi Maru', serif; font-size: 16px;">
+    <div style="background-color: #d3d3d3; color: #fff; padding: 6px 12px; border-radius: 5px; display: inline-block; text-align: center; cursor: pointer; font-family: 'Outfit', 'jf open huninn', sans-serif; font-size: 16px;">
       <b><span style="color: white;">🏃🏻</span></b>
     </div>
   </a>
@@ -31,58 +31,50 @@
             <div class="stat-item">
                 <div class="stat-label">Latest</div>
                 <div class="stat-value">
-                    <div class="stat-number" id="latest-stat">3.24K</div>
+                    <div class="stat-number" id="latest-stat">3.24</div>
                 </div>
             </div>
 
             <div class="stat-item">
                 <div class="stat-label">Week</div>
                 <div class="stat-value">
-                    <div class="stat-number" id="week-stat">3.24K</div>
+                    <div class="stat-number" id="week-stat">3.24</div>
                 </div>
             </div>
 
             <div class="stat-item">
                 <div class="stat-label">Month</div>
                 <div class="stat-value">
-                    <div class="stat-number" id="month-stat">31K</div>
+                    <div class="stat-number" id="month-stat">31</div>
                 </div>
             </div>
         </div>
 
-        <!-- Recent Runs Section -->
-        <h2 class="section-title" id="recent-runs">Recent Runs</h2>
+        <!-- Monthly Summary Section -->
+        <h2 class="section-title" id="monthly-summary">Monthly Summary</h2>
         <div class="section">
             <div class="table-wrapper">
-                <table class="data-table" id="recent-runs-table">
+                <table class="data-table" id="monthly-summary-table">
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Duration</th>
-                            <th>Distance</th>
-                            <th>Avg. Pace</th>
-                            <th>Avg. Heart Rate</th>
-                            <th>Avg. Cadence</th>
-                            <th>Vdot</th>
+                            <th>Month</th>
+                            <th>Total Distance</th>
+                            <th>Total Runs</th>
+                            <th>Total Duration</th>
+                            <th>Fastest Pace</th>
+                            <th>Longest Distance</th>
+                            <th>Max Avg. HR</th>
+                            <th>Max Cadence</th>
                         </tr>
                     </thead>
-                    <tbody id="recent-runs-tbody">
+                    <tbody id="monthly-summary-tbody">
                     </tbody>
                 </table>
             </div>
-            <div class="dots-separator" onclick="window.location.href='/recent-runs.html'">
+            <div class="dots-separator" onclick="window.location.href='/monthly-summary.html'">
                 <div class="dot"></div>
                 <div class="dot"></div>
                 <div class="dot"></div>
-            </div>
-        </div>
-
-        <!-- Vdot Trend Section -->
-        <h2 class="section-title" id="vdot-trend">Vdot Trend</h2>
-        <div class="section vdot-section">
-            <div class="chart-wrapper">
-                <div id="vdot-trend-chart" class="vdot-trend-chart"></div>
             </div>
         </div>
 
@@ -109,34 +101,6 @@
                 </table>
             </div>
             <div class="dots-separator" onclick="window.location.href='/weekly-overview.html'">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-            </div>
-        </div>
-
-        <!-- Monthly Summary Section -->
-        <h2 class="section-title" id="monthly-summary">Monthly Summary</h2>
-        <div class="section">
-            <div class="table-wrapper">
-                <table class="data-table" id="monthly-summary-table">
-                    <thead>
-                        <tr>
-                            <th>Month</th>
-                            <th>Total Distance</th>
-                            <th>Total Runs</th>
-                            <th>Total Duration</th>
-                            <th>Fastest Pace</th>
-                            <th>Longest Distance</th>
-                            <th>Max Avg. HR</th>
-                            <th>Max Cadence</th>
-                        </tr>
-                    </thead>
-                    <tbody id="monthly-summary-tbody">
-                    </tbody>
-                </table>
-            </div>
-            <div class="dots-separator" onclick="window.location.href='/monthly-summary.html'">
                 <div class="dot"></div>
                 <div class="dot"></div>
                 <div class="dot"></div>
@@ -180,9 +144,36 @@
                 <div class="dot"></div>
             </div>
         </div>
+
+        <!-- Recent Runs Section -->
+        <h2 class="section-title" id="recent-runs">Recent Runs</h2>
+        <div class="section">
+            <div class="table-wrapper">
+                <table class="data-table" id="recent-runs-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Duration</th>
+                            <th>Distance</th>
+                            <th>Avg. Pace</th>
+                            <th>Avg. Heart Rate</th>
+                            <th>Avg. Cadence</th>
+                            <th>Vdot</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-runs-tbody">
+                    </tbody>
+                </table>
+            </div>
+            <div class="dots-separator" onclick="window.location.href='/recent-runs.html'">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
     <script type="module" src="/assets/js/app.js"></script>
 </body>
 </html>
