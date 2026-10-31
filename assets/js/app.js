@@ -1,3 +1,4 @@
+import { matchingMonthlyRuns, monthlyRunDescription } from '/assets/js/monthly-records.js';
 import { monthlyCards, weeklyCards, runCards, raceCards } from '/assets/js/mobile-cards.js';
 import { prepareAchievementsForDisplay } from '/assets/js/achievements.js';
 
@@ -152,8 +153,8 @@ function sortTableByColumn(table, columnIndex, direction) {
     const sortedRows = rowGroups.sort((groupA, groupB) => {
         const rowA = groupA.main;
         const rowB = groupB.main;
-        const aText = rowA.cells[columnIndex]?.textContent.trim() || '';
-        const bText = rowB.cells[columnIndex]?.textContent.trim() || '';
+        const aText = (rowA.cells[columnIndex]?.dataset.sortValue ?? rowA.cells[columnIndex]?.textContent)?.trim() || '';
+        const bText = (rowB.cells[columnIndex]?.dataset.sortValue ?? rowB.cells[columnIndex]?.textContent)?.trim() || '';
 
         const aValue = parser(aText);
         const bValue = parser(bText);
@@ -311,7 +312,7 @@ function updateWeeklyOverview(weeks, limit = 5) {
 }
 
 // Function to update monthly summary table (limit parameter for controlling display count)
-function updateMonthlySummary(months, limit = 5) {
+function updateMonthlySummary(months, limit = 5, runs = []) {
     const tbody = document.getElementById('monthly-summary-tbody');
     tbody.innerHTML = '';
 
@@ -331,6 +332,24 @@ function updateMonthlySummary(months, limit = 5) {
             <td>${month.maxAvgHR}</td>
             <td>${month.maxCadence}</td>
         `;
+        ['fastestPace', 'longestDistance', 'maxAvgHR', 'maxCadence'].forEach((metric, index) => {
+            const records = matchingMonthlyRuns(month, metric, runs);
+            if (!records.length) return;
+            const cell = row.cells[index + 4];
+            cell.dataset.sortValue = cell.textContent.trim();
+            const trigger = document.createElement('span');
+            trigger.className = 'monthly-record-value';
+            trigger.tabIndex = 0;
+            trigger.textContent = cell.textContent;
+            const tooltip = document.createElement('span');
+            tooltip.className = 'monthly-record-tooltip';
+            tooltip.id = `monthly-record-${month.month}-${metric}`;
+            tooltip.setAttribute('role', 'tooltip');
+            tooltip.textContent = records.map(monthlyRunDescription).join('\n\n');
+            trigger.setAttribute('aria-describedby', tooltip.id);
+            trigger.appendChild(tooltip);
+            cell.replaceChildren(trigger);
+        });
         tbody.appendChild(row);
     });
 
@@ -526,7 +545,7 @@ async function initializePage() {
         updateStatsFromData(recentRunsData, weeklyData, monthlyData);
         updateRecentRuns(recentRunsData.runs);
         updateWeeklyOverview(weeklyData.weeks);
-        updateMonthlySummary(monthlyData.months);
+        updateMonthlySummary(monthlyData.months, 5, recentRunsData.runs);
         updateAchievements(achievementsData.achievements, 5);
     } catch (error) {
         console.error('Error loading data:', error);
@@ -555,8 +574,11 @@ async function initializeDetailPage(pageType) {
                 updateWeeklyOverview(data.weeks, limit);
                 break;
             case 'monthly-summary':
-                data = await fetch('/assets/data/monthly-summary.json').then(res => res.json());
-                updateMonthlySummary(data.months, limit);
+                const [monthlyData, runsData] = await Promise.all([
+                    fetch('/assets/data/monthly-summary.json').then(res => res.json()),
+                    fetch('/assets/data/recent-runs.json').then(res => res.json())
+                ]);
+                updateMonthlySummary(monthlyData.months, limit, runsData.runs);
                 break;
             case 'achievements':
                 data = await fetch('/assets/data/running-achievements.json').then(res => res.json());
