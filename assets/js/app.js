@@ -320,22 +320,25 @@ function updateMonthlySummary(months, limit = 5, runs = []) {
     const displayMonths = limit > 0 ? months.slice(0, limit) : months;
 
     monthlyCards(displayMonths);
+    const monthlyGoal = 80;
     displayMonths.forEach(month => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${month.month}</td>
-            <td>${month.totalDistance}</td>
-            <td>${month.totalRuns}</td>
-            <td>${month.totalDuration}</td>
-            <td>${month.fastestPace}</td>
-            <td>${month.longestDistance}</td>
-            <td>${month.maxAvgHR}</td>
-            <td>${month.maxCadence}</td>
+            <td data-sort-value="${month.month}"><span class="month-label">${month.month.replace('-', ' / ')}</span></td>
+            <td data-sort-value="${month.totalDistance}" class="month-distance"><strong>${Number(month.totalDistance).toFixed(1)}</strong><span class="month-distance-track" role="progressbar" aria-label="${month.month} 月跑量目標 80 km" aria-valuemin="0" aria-valuemax="${monthlyGoal}" aria-valuenow="${Math.min(monthlyGoal, Math.max(0, Number(month.totalDistance) || 0))}" aria-valuetext="${month.totalDistance} / ${monthlyGoal} km，達成 ${Math.round(Number(month.totalDistance) / monthlyGoal * 100)}%"><span style="width:${Math.min(100, Math.max(0, Number(month.totalDistance) / monthlyGoal * 100))}%"></span></span><span class="month-goal-caption"><span>目標 ${monthlyGoal} km</span><span>${Math.round(Number(month.totalDistance) / monthlyGoal * 100)}%</span></span></td>
+            <td data-sort-value="${month.totalRuns}">${month.totalRuns}<small class="month-unit"> 次</small></td>
+            <td data-sort-value="${month.totalDuration}" title="${month.totalDuration}">${Number(month.totalDuration.split(':')[0])}<small class="month-unit"> 小時 </small>${Number(month.totalDuration.split(':')[1])}<small class="month-unit"> 分</small></td>
+            <td class="month-more"><details class="month-details"><summary aria-label="${month.month} 詳細數據">詳細數據 <span aria-hidden="true">＋</span></summary><dl>
+                <div><dt>最快配速</dt><dd data-metric="fastestPace">${month.fastestPace}</dd></div>
+                <div><dt>最長距離 · km</dt><dd data-metric="longestDistance">${month.longestDistance}</dd></div>
+                <div><dt>最高平均心率</dt><dd data-metric="maxAvgHR">${month.maxAvgHR}</dd></div>
+                <div><dt>最高步頻</dt><dd data-metric="maxCadence">${month.maxCadence}</dd></div>
+            </dl></details></td>
         `;
         ['fastestPace', 'longestDistance', 'maxAvgHR', 'maxCadence'].forEach((metric, index) => {
             const records = matchingMonthlyRuns(month, metric, runs);
             if (!records.length) return;
-            const cell = row.cells[index + 4];
+            const cell = row.querySelector(`[data-metric="${metric}"]`);
             cell.dataset.sortValue = cell.textContent.trim();
             const trigger = document.createElement('span');
             trigger.className = 'monthly-record-value';
@@ -492,6 +495,7 @@ function initializeSortableTable(tableSelector, options = {}) {
     };
 
     headers.forEach((header, index) => {
+        if (header.dataset.sortable === 'false') return;
         const baseLabel = header.dataset.baseLabel || header.textContent.trim();
         header.dataset.baseLabel = baseLabel;
         header.dataset.sortDirection = 'none';

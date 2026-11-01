@@ -28,7 +28,7 @@ export function weeklyCards(weeks) {
     const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
     mount('weekly-overview-table', weeks.map(w => {
         const [total,time,pace] = w.summary.split('/').map(s=>s.trim());
-        return `<article class="record-card week-card"><div class="record-heading"><span>${escape(w.dateRange)}</span><strong>${escape(distance(total))}</strong></div><div class="record-meta">${escape(time)} <span>·</span> ${escape(pace)} /km</div><div class="week-days">${days.map((day,i) => {
+        return `<article class="record-card week-card"><div class="record-heading"><span>${escape(w.dateRange)}</span><strong>${escape(distance(total))}</strong></div><div class="record-meta">${escape(time)} <span>·</span> ${escape(pace)} /km</div><div class="week-desktop-summary"><div><span>週跑量</span><strong>${escape(total.replace(/km/i,''))}<small> km</small></strong></div><div><span>跑步次數</span><strong>${w.days.filter(Boolean).length}<small> 次</small></strong></div><div><span>總時長</span><strong>${Number(time.split(':')[0])}<small> 小時 </small>${Number(time.split(':')[1])}<small> 分</small></strong></div></div><div class="week-days">${days.map((day,i) => {
             const value = w.days[i];
             if (!value) return `<div class="rest-day"><span>${day}</span><span class="day-marker" aria-label="休息日"></span></div>`;
             const [dist,p,h] = value.split('/').map(s=>s.trim());
@@ -39,6 +39,42 @@ export function weeklyCards(weeks) {
 export function runCards(runs) {
     mount('recent-runs-table',runs.map(r=>`<details class="record-card"><summary><div class="record-heading"><span>${escape(r.date)}</span><strong>${escape(distance(r.distance))}</strong></div><div class="record-meta">${escape(r.pace)} /km <span>·</span> ${escape(r.duration)}</div><span class="expand-hint">詳細數據</span></summary><dl class="record-metrics">${metric('起跑時間',r.time)}${metric('平均心率',r.heartRate)}${metric('平均步頻',r.cadence)}${metric('VDOT',r.vdot)}</dl></details>`).join(''));
 }
+function splitList(splits = []) {
+    if (!splits.length) return '<p class="record-meta">尚無分段資料</p>';
+    const paceSeconds = value => {
+        const parts = String(value ?? '').split(':').map(Number);
+        return parts.length === 2 && parts.every(Number.isFinite) && parts[0] >= 0 && parts[1] >= 0 && parts[1] < 60
+            ? parts[0] * 60 + parts[1] : NaN;
+    };
+    const valid = splits.map(s => paceSeconds(s.pace)).filter(n => Number.isFinite(n) && n > 0);
+    const fastest = Math.min(...valid);
+    const slowest = Math.max(...valid);
+    return `<section class="split-analysis" aria-label="每公里分段">
+        <div class="split-heading"><h4>每公里分段</h4><span>配速 min/km · 橫條越長越快</span></div>
+        <label class="split-toggle"><input type="checkbox"> 顯示心率與步頻</label>
+        <div class="split-scroll"><table class="split-list"><thead><tr><th scope="col">公里</th><th scope="col">配速比較</th><th scope="col">配速</th><th scope="col">累計時間</th><th scope="col" class="split-extra">心率 <small>bpm</small></th><th scope="col" class="split-extra">步頻 <small>spm</small></th></tr></thead><tbody>
+        ${splits.map(s => {
+            const pace = paceSeconds(s.pace);
+            const validPace = Number.isFinite(pace) && pace > 0;
+            const best = validPace && pace === fastest;
+            const width = validPace ? (fastest === slowest ? 100 : 35 + (slowest - pace) / (slowest - fastest) * 65) : 0;
+            return `<tr${best ? ' class="split-fastest"' : ''}><th scope="row">${escape(s.km)}</th><td><span class="split-bar" aria-hidden="true"><span style="width:${width}%"></span></span></td><td class="split-pace">${escape(s.pace)}${best ? '<span class="split-best">最快</span>' : ''}</td><td>${escape(String(s.time ?? '—').replace(/^00:/, ''))}</td><td class="split-extra">${escape(s.heartRate)}</td><td class="split-extra">${escape(s.cadence)}</td></tr>`;
+        }).join('')}
+        </tbody></table></div>
+    </section>`;
+}
 export function raceCards(races) {
-    mount('achievements-table',races.map(r=>`<details class="record-card race-card"><summary><div class="record-meta">${escape(r.date)} <span>·</span> #${escape(r.no)}</div><h3>${escape(r.race)}</h3><div class="record-heading"><strong>${escape(distance(r.distance))}</strong><span>${escape(r.duration)}</span></div><span class="expand-hint">成績與分段</span></summary><dl class="record-metrics">${metric('平均配速',r.avgPace)}${metric('平均心率',r.avgHeartRate)}${metric('平均步頻',r.avgCadence)}</dl>${r.splits?.length ? `<div class="mobile-splits">${r.splits.map(s=>`<div><strong>${escape(s.km)} km</strong><dl class="record-metrics">${metric('配速',s.pace)}${metric('時間',s.time)}${metric('心率',s.heartRate)}${metric('步頻',s.cadence)}</dl></div>`).join('')}</div>` : '<p class="record-meta">尚無分段資料</p>'}</details>`).join(''));
+    mount('achievements-table', races.map(r => `<details class="record-card race-card"><summary>
+        <div class="record-meta">${escape(r.date)} <span>·</span> 第 ${escape(r.no)} 場</div>
+        <h3>${escape(r.race)}</h3>
+        <div class="race-primary">
+            <div><span>距離</span><strong>${escape(r.distance)}<small> km</small></strong></div>
+            <div><span>總時長</span><strong>${escape(r.duration)}</strong></div>
+            <div><span>平均配速</span><strong>${escape(r.avgPace)}<small> /km</small></strong></div>
+        </div>
+        <span class="expand-hint">詳細數據與分段 <span class="race-expand-icon" aria-hidden="true"></span></span>
+        </summary>
+        <dl class="record-metrics">${metric('平均心率',r.avgHeartRate)}${metric('平均步頻',r.avgCadence)}</dl>
+        ${splitList(r.splits)}
+    </details>`).join(''));
 }
