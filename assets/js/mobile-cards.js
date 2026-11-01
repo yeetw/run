@@ -20,7 +20,7 @@ function mount(tableId, html) {
     }));
 }
 export function monthlyCards(months) {
-    const goal = 100;
+    const goal = 80;
     const current = new Date().toLocaleDateString('sv-SE', {timeZone:'Asia/Taipei'}).slice(0,7);
     mount('monthly-summary-table', months.map(m => `<details class="record-card month-card"><summary><div class="record-heading"><span>${escape(m.month.replace('-', ' / '))}${m.month === current ? '<small class="period-note">截至今日</small>' : ''}</span><strong>${escape(distance(m.totalDistance))}</strong></div><div class="record-meta">${escape(m.totalRuns)} 次跑步 <span>·</span> ${escape(m.totalDuration)}</div><div class="goal-caption"><span>月目標 ${goal} km</span><strong>${Math.round((parseFloat(m.totalDistance)||0)/goal*1000)/10}%</strong></div><div class="distance-track" role="progressbar" aria-label="月跑量目標 ${goal} km" aria-valuemin="0" aria-valuemax="${goal}" aria-valuenow="${Math.min(goal,Math.max(0,parseFloat(m.totalDistance)||0))}" aria-valuetext="${escape(distance(m.totalDistance))}，目標 ${goal} km"><div style="width:${Math.min(100,Math.max(0,(parseFloat(m.totalDistance)||0)/goal*100))}%"></div></div><div class="goal-remaining">${(parseFloat(m.totalDistance)||0) >= goal ? '目標達成'+((parseFloat(m.totalDistance)||0)>goal ? ' · 超過 '+Number(((parseFloat(m.totalDistance)||0)-goal).toFixed(1))+' km' : '') : (m.month === current ? '還差 ' : '距目標差 ')+Number((goal-(parseFloat(m.totalDistance)||0)).toFixed(1))+' km'}</div><span class="expand-hint">詳細數據</span></summary><dl class="record-metrics">${metric('最快配速',m.fastestPace)}${metric('最長距離',distance(m.longestDistance))}${metric('最高平均心率',m.maxAvgHR)}${metric('最高步頻',m.maxCadence)}</dl></details>`).join(''));
 }
