@@ -760,3 +760,59 @@ body {
 
 .race-card .expand-hint { font-size: 16px; line-height: 1.5; }
 .race-card .race-expand-icon { font-size: 20px; }
+
+/* Expanded monthly metrics use the entire row rather than the action column. */
+@media (min-width: 769px) {
+    #monthly-summary-table thead,
+    #monthly-summary-table tbody { display: block; }
+    #monthly-summary-table tr {
+        position: relative;
+        display: grid;
+        grid-template-columns: 18% 25% 15% 25% 17%;
+        border-bottom: 1px solid #edf1ee;
+    }
+    #monthly-summary-table th,
+    #monthly-summary-table td { min-width: 0; border-bottom: 0; }
+    #monthly-summary-table tr > :is(th, td):nth-child(n) { width: auto; }
+    #monthly-summary-table .month-more {
+        grid-column: 1 / -1;
+        padding: 0;
+        text-align: left;
+    }
+    .month-details summary {
+        position: absolute;
+        top: 20px;
+        right: clamp(12px, 2vw, 28px);
+        padding: 8px 12px;
+        border: 1px solid #dfe7e1;
+        border-radius: 8px;
+        font-size: 12px;
+        line-height: 1.5;
+        background: #fff;
+    }
+    .month-details summary:hover { background: #edf3ee; }
+    .month-details summary span { display: inline-block; margin-left: 6px; transition: transform .15s; }
+    .month-details[open] summary span { transform: rotate(45deg); }
+    .month-details[open] dl {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0;
+        margin: 0 clamp(12px, 2vw, 28px) 24px;
+        padding: 24px 0;
+        border: 1px solid #e3ebe5;
+        border-radius: 12px;
+        background: #f5f8f5;
+        text-align: left;
+    }
+    .month-details dl > div { min-width: 0; padding: 0 24px; }
+    .month-details dl > div + div { border-left: 1px solid #dfe7e1; }
+    .month-details dt { font-size: 13px; line-height: 1.5; margin-bottom: 10px; }
+    .month-details dd { margin: 0; color: #284b3b; font-size: 28px; line-height: 1.2; font-weight: 600; }
+    .month-details dl > div:first-child .monthly-record-tooltip { right: auto; left: 0; }
+}
+@media (min-width: 769px) and (max-width: 1000px) {
+    .month-details dl > div { padding: 0 16px; }
+    .month-details dt { font-size: 12px; }
+    .month-details dd { font-size: 24px; }
+    .month-details summary { padding: 8px; }
+}
