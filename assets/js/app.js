@@ -83,7 +83,6 @@ function parseNumber(value) {
 const TABLE_COLUMN_PARSERS = {
     'recent-runs-table': [
         parseDate,
-        parseTime,
         parseDuration,
         parseNumber,
         parsePaceToSeconds,
@@ -249,7 +248,6 @@ function updateRecentRuns(runs = [], limit = 5) {
 
         row.innerHTML = `
             <td>${run.date}</td>
-            <td>${run.time}</td>
             <td>${run.duration}</td>
             <td>${run.distance}</td>
             <td>${run.pace}</td>
