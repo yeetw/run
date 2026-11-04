@@ -26,7 +26,7 @@ function renderIntervals() {
       <summary>
         <div class="ir-date"><span class="ir-label">日期</span><time datetime="2026-11-03">2026/11/03</time><span class="ir-session-tag">300m × 12 組</span></div>
         <div><span class="ir-label">平均配速</span><strong>${clock(Math.round(totalTime / totalDistance))}</strong><span class="ir-unit"> /km</span></div>
-        <div><span class="ir-label">組間休息</span><strong>1:00</strong><span class="ir-unit"> 課表</span></div>
+        <div><span class="ir-label">組間休息</span><strong>1</strong><span class="ir-unit"> min</span></div>
         <div><span class="ir-label">平均心率</span><strong>${weighted(2)}</strong><span class="ir-unit"> bpm</span></div>
         <div><span class="ir-label">步頻</span><strong>${weighted(3)}</strong><span class="ir-unit"> spm</span></div>
         <span class="ir-expand"><span class="ir-open-text" aria-hidden="true">＋</span><span class="ir-close-text" aria-hidden="true">－</span><span class="ir-sr-only">逐組數據</span></span>
