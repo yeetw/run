@@ -835,3 +835,7 @@ body {
     .week-card .day-details { background: #f7f8fa; }
     .week-card .day-details dt { color: #77828b; }
 }
+
+/* Thursday runs use a fixed accent on both mobile and desktop. */
+.week-card .active-day:nth-child(4) .day-marker { background: #f2c1b6; outline-color: #f2c1b6; }
+.week-card .active-day:nth-child(4)[open] .day-marker { outline-color: #52616b; }
