@@ -26,3 +26,11 @@
  .ir-table th:first-child{width:10%;text-align:center}
  .ir-table thead th{font-size:11px}
 }
+
+.ir-comparison{display:none}
+@media(min-width:769px){
+ .ir-table .ir-comparison{display:table-cell;width:26%;text-align:left}
+ .ir-pace-track{display:block;height:9px;background:#e9eaec;border-radius:5px;overflow:hidden}
+ .ir-pace-track>span{display:block;height:100%;background:#9fa2ad;border-radius:inherit}
+ .ir-pace-track.ir-fastest>span{background:#464953}
+}
