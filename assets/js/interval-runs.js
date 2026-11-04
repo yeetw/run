@@ -33,7 +33,7 @@ function renderIntervals() {
       </summary>
       <div class="ir-detail">
         <div class="ir-detail-heading"><h3>300m × 12 組</h3><span>快跑合計 ${clock(totalTime)} · 不含暖身與休息</span></div>
-        <div class="ir-table-scroll"><table class="ir-table"><caption class="ir-sr-only">2026年11月3日，12組300公尺間歇逐組數據</caption><thead><tr><th scope="col">組數</th><th scope="col">配速 /km</th><th scope="col">完成時間</th><th scope="col">平均心率 <small>bpm</small></th><th scope="col">步頻 <small>spm</small></th><th scope="col">組後休息</th></tr></thead><tbody>
+        <div class="ir-table-scroll"><table class="ir-table"><caption class="ir-sr-only">2026年11月3日，12組300公尺間歇逐組數據</caption><thead><tr><th scope="col">組數</th><th scope="col"><span class="ir-desktop-label">配速 /km</span><span class="ir-mobile-label">配速</span></th><th scope="col"><span class="ir-desktop-label">完成時間</span><span class="ir-mobile-label">時間</span></th><th scope="col"><span class="ir-desktop-label">平均心率 <small>bpm</small></span><span class="ir-mobile-label">心率</span></th><th scope="col"><span class="ir-desktop-label">步頻 <small>spm</small></span><span class="ir-mobile-label">步頻</span></th><th scope="col"><span class="ir-desktop-label">組後休息</span><span class="ir-mobile-label">休息</span></th></tr></thead><tbody>
         ${reps.map((r,i) => `<tr><th scope="row">${String(i+1).padStart(2,'0')}<span class="ir-rep-distance">300m</span></th><td class="ir-pace">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td class="ir-rest">${r[4] || '—'}</td></tr>`).join('')}
         </tbody></table></div>
       </div>

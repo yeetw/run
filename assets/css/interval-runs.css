@@ -16,3 +16,13 @@
 .ir-expand{color:#464953}
 
 .ir-session[open] summary .ir-session-tag{display:none}
+
+.ir-mobile-label{display:none}
+@media(max-width:520px){
+ .ir-desktop-label{display:none}.ir-mobile-label{display:inline}
+ .ir-detail{padding:16px 8px}.ir-detail-heading{margin-bottom:14px}
+ .ir-table{table-layout:fixed;font-size:12px;line-height:1.5}
+ .ir-table th,.ir-table td{padding:8px 3px;text-align:center}
+ .ir-table th:first-child{width:10%;text-align:center}
+ .ir-table thead th{font-size:11px}
+}
