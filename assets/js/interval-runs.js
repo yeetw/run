@@ -32,7 +32,7 @@ function renderIntervals() {
         <span class="ir-expand"><span class="ir-open-text" aria-hidden="true">＋</span><span class="ir-close-text" aria-hidden="true">－</span><span class="ir-sr-only">逐組數據</span></span>
       </summary>
       <div class="ir-detail">
-        <div class="ir-detail-heading"><h3>300m · 每一組的表現</h3><span>快跑合計 ${clock(totalTime)} · 不含暖身與休息</span></div>
+        <div class="ir-detail-heading"><h3>300m × 12 組</h3><span>快跑合計 ${clock(totalTime)} · 不含暖身與休息</span></div>
         <div class="ir-table-scroll"><table class="ir-table"><caption class="ir-sr-only">2026年11月3日，12組300公尺間歇逐組數據</caption><thead><tr><th scope="col">組數</th><th scope="col">配速 /km</th><th scope="col">完成時間</th><th scope="col">平均心率 <small>bpm</small></th><th scope="col">步頻 <small>spm</small></th><th scope="col">組後休息</th></tr></thead><tbody>
         ${reps.map((r,i) => `<tr><th scope="row">${String(i+1).padStart(2,'0')}<span class="ir-rep-distance">300m</span></th><td class="ir-pace">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td class="ir-rest">${r[4] || '—'}</td></tr>`).join('')}
         </tbody></table></div>

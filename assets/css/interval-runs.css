@@ -14,3 +14,5 @@
 .ir-session-tag{background:#e9eaec;color:#464953}
 
 .ir-expand{color:#464953}
+
+.ir-session[open] summary .ir-session-tag{display:none}
