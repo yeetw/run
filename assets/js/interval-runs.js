@@ -36,7 +36,6 @@ function renderIntervals() {
         <div class="ir-table-scroll"><table class="ir-table"><caption class="ir-sr-only">2026年11月3日，12組300公尺間歇逐組數據</caption><thead><tr><th scope="col">組數</th><th scope="col">配速 /km</th><th scope="col">完成時間</th><th scope="col">平均心率 <small>bpm</small></th><th scope="col">步頻 <small>spm</small></th><th scope="col">組後休息</th></tr></thead><tbody>
         ${reps.map((r,i) => `<tr><th scope="row">${String(i+1).padStart(2,'0')}<span class="ir-rep-distance">300m</span></th><td class="ir-pace">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td class="ir-rest">${r[4] || '—'}</td></tr>`).join('')}
         </tbody></table></div>
-        <p class="ir-note">摘要為快跑段估算：配速依逐組配速與時間加權，心率與步頻依時間加權。單組配速保留原紀錄（實測距離約 300–310m）。組後休息為實際紀錄；最後一組後為收操，不計入休息。</p>
       </div>
     </details>`;
 }
