@@ -619,8 +619,8 @@ body {
     #monthly-summary-table tbody tr:hover { background: #e9eaec; }
     #monthly-summary-table .month-distance { color: #284b3b; }
     .month-distance strong { font-size: 25px; font-weight: 650; }
-    .month-distance-track { display: block; height: 4px; background: #edf2ee; border-radius: 4px; margin-top: 9px; overflow: hidden; }
-    .month-distance-track > span { display: block; height: 100%; background: #8bad96; border-radius: inherit; }
+    .month-distance-track { display: block; height: 4px; background: #e9eaec; border-radius: 4px; margin-top: 9px; overflow: hidden; }
+    .month-distance-track > span { display: block; height: 100%; background: #868a98; border-radius: inherit; }
     .month-unit { font-size: 12px; color: #7b8680; font-weight: 400; }
     #monthly-summary-table .month-more { padding-left: 0; font-size: 12px; }
     .month-details summary { cursor: pointer; list-style: none; white-space: nowrap; padding: 7px 0; color: #687a70; }
@@ -644,7 +644,7 @@ body {
 }
 
 @media (min-width: 769px) {
-    .month-goal-caption { display: flex; justify-content: space-between; margin-top: 7px; color: #78877e; font-size: 12px; font-weight: 400; }
+    .month-goal-caption { display: flex; justify-content: space-between; margin-top: 7px; color: #717584; font-size: 12px; font-weight: 400; }
 }
 
 .week-desktop-summary { display: none; }
