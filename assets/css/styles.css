@@ -816,3 +816,5 @@ body {
     .month-details dd { font-size: 24px; }
     .month-details summary { padding: 8px; }
 }
+
+.week-days .rest-day .day-marker { background: #e9eaec; }
