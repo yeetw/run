@@ -29,7 +29,7 @@ function renderIntervals() {
         <div><span class="ir-label">組間休息</span><strong>1:00</strong><span class="ir-unit"> 課表</span></div>
         <div><span class="ir-label">平均心率</span><strong>${weighted(2)}</strong><span class="ir-unit"> bpm</span></div>
         <div><span class="ir-label">步頻</span><strong>${weighted(3)}</strong><span class="ir-unit"> spm</span></div>
-        <span class="ir-expand"><span class="ir-open-text">逐組數據</span><span class="ir-close-text">收合數據</span> <span class="ir-chevron">⌄</span></span>
+        <span class="ir-expand"><span class="ir-open-text" aria-hidden="true">＋</span><span class="ir-close-text" aria-hidden="true">－</span><span class="ir-sr-only">逐組數據</span></span>
       </summary>
       <div class="ir-detail">
         <div class="ir-detail-heading"><h3>300m · 每一組的表現</h3><span>快跑合計 ${clock(totalTime)} · 不含暖身與休息</span></div>
