@@ -18,9 +18,18 @@ const octoberLaps = [
  ['2:38',.30,158,159,'1:09'], ['2:32',.31,159,159,null]
 ];
 const octoberPaces = ['8:51','8:45','8:59','9:05','9:12','8:56','8:43','9:15','8:43','8:16'];
+// October 15 screenshots: complete 300m work laps 9,11,...,25 only.
+const october15Reps = [
+ ['7:31','2:18',153,169,'0:52'], ['7:55','2:24',158,165,'1:17'],
+ ['8:13','2:26',156,164,'1:21'], ['8:16','2:32',152,168,'1:08'],
+ ['8:02','2:27',155,173,'0:57'], ['7:57','2:23',156,167,'0:58'],
+ ['8:18','2:33',157,166,'1:02'], ['8:21','2:36',154,167,'0:56'],
+ ['7:58','2:30',156,169,null]
+];
 const sessions = [
  {date:'2026-11-03', reps:novemberReps, estimated:false, rest:'1', restUnit:'min'},
- {date:'2026-10-31', reps:octoberLaps.map(([time,km,hr,cadence,rest], i) => [octoberPaces[i],time,hr,cadence,rest]), estimated:false, rest:clock(Math.round(octoberLaps.filter(r=>r[4]).reduce((sum,r)=>sum+seconds(r[4]),0)/9)), restUnit:'平均'}
+ {date:'2026-10-31', reps:octoberLaps.map(([time,km,hr,cadence,rest], i) => [octoberPaces[i],time,hr,cadence,rest]), estimated:false, rest:clock(Math.round(octoberLaps.filter(r=>r[4]).reduce((sum,r)=>sum+seconds(r[4]),0)/9)), restUnit:'平均'},
+ {date:'2026-10-15', reps:october15Reps, estimated:false, rest:clock(Math.round(october15Reps.filter(r=>r[4]).reduce((sum,r)=>sum+seconds(r[4]),0)/8)), restUnit:'平均'}
 ];
 function sessionCard(session) {
  const {reps} = session;
