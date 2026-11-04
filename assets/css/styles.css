@@ -818,3 +818,20 @@ body {
 }
 
 .week-days .rest-day .day-marker { background: #e9eaec; }
+
+/* Keep desktop weekly colors consistent with the mobile cards. */
+@media (min-width: 769px) {
+    .week-card { border-color: #e4e7eb; }
+    .week-card .record-heading { color: #52616b; }
+    .week-desktop-summary > div > span, .week-desktop-summary small { color: #77828b; }
+    .week-desktop-summary strong, .week-desktop-summary > div:first-child strong { color: #35424c; }
+    .week-card .week-days { border-color: #eceef0; }
+    .week-card .week-days > div, .week-card .active-day summary, .week-card .day-distance { color: #52616b; }
+    .week-card .active-day .day-marker { background: #d0dae8; outline-color: #bcc9d9; }
+    .week-card .active-day:nth-child(3n+2) .day-marker { background: #eed3c8; outline-color: #ddbeb2; }
+    .week-card .active-day:nth-child(3n) .day-marker { background: #d8d2e4; outline-color: #c4bbd5; }
+    .week-card .active-day[open] .day-marker { outline: 2px solid #52616b; }
+    .week-card summary:focus-visible { outline-color: #52616b; }
+    .week-card .day-details { background: #f7f8fa; }
+    .week-card .day-details dt { color: #77828b; }
+}
