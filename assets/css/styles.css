@@ -729,9 +729,9 @@ body {
 .race-card .split-list td { font-size: 18px; color: #52616b; }
 .race-card .split-list th:nth-child(2) { width: 45%; text-align: left; }
 .race-card .split-list .split-pace { font-size: 22px; color: #2d3748; }
-.split-bar { display: block; height: 9px; border-radius: 5px; background: #f0f4f1; overflow: hidden; }
-.split-bar > span { display: block; height: 100%; border-radius: inherit; background: #a9c2b0; }
-.split-fastest .split-bar > span { background: #37664b; }
+.split-bar { display: block; height: 9px; border-radius: 5px; background: #e9eaec; overflow: hidden; }
+.split-bar > span { display: block; height: 100%; border-radius: inherit; background: #9fa2ad; }
+.split-fastest .split-bar > span { background: #464953; }
 .split-best { display: block; font-size: 10px; color: #37664b; margin-top: 3px; }
 .split-extra { display: none; }
 .split-analysis:has(.split-toggle input:checked) .split-extra { display: table-cell; }
