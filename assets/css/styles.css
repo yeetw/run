@@ -616,7 +616,7 @@ body {
     #monthly-summary-table th:nth-child(3) { width: 16%; }
     #monthly-summary-table th:nth-child(4) { width: 24%; }
     #monthly-summary-table th:last-child { width: 13%; }
-    #monthly-summary-table tbody tr:hover { background: #f6f9f7; }
+    #monthly-summary-table tbody tr:hover { background: #e9eaec; }
     #monthly-summary-table .month-distance { color: #284b3b; }
     .month-distance strong { font-size: 25px; font-weight: 650; }
     .month-distance-track { display: block; height: 4px; background: #edf2ee; border-radius: 4px; margin-top: 9px; overflow: hidden; }
