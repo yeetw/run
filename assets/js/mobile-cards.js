@@ -32,7 +32,9 @@ export function weeklyCards(weeks) {
             const value = w.days[i];
             if (!value) return `<div class="rest-day"><span>${day}</span><span class="day-marker" aria-label="休息日"></span></div>`;
             const [dist,p,h] = value.split('/').map(s=>s.trim());
-            return `<details class="active-day"><summary aria-label="${day} ${escape(value)}"><span>${day}</span><span class="day-marker"></span><span class="day-distance">${escape(dist.replace(/km/i,''))}</span></summary><dl class="day-details">${metric('距離',distance(dist))}${metric('配速',p+' /km')}${metric('心率',h+' bpm')}</dl></details>`;
+            const type = ['race','interval','group','easy'].includes(w.dayTypes?.[i]) ? w.dayTypes[i] : 'easy';
+            const typeName = {race:'比賽',interval:'間歇跑',group:'團練／教練課',easy:'一般跑'}[type];
+            return `<details class="active-day" data-run-type="${type}"><summary aria-label="${day} ${escape(value)}，${typeName}"><span>${day}</span><span class="day-marker"></span><span class="day-distance">${escape(dist.replace(/km/i,''))}</span></summary><dl class="day-details">${metric('距離',distance(dist))}${metric('配速',p+' /km')}${metric('心率',h+' bpm')}</dl></details>`;
         }).join('')}</div></article>`;
     }).join(''));
 }

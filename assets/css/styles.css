@@ -847,3 +847,11 @@ body {
 /* Tuesday runs use a fixed accent on both mobile and desktop. */
 .week-card .active-day:nth-child(2) .day-marker { background: #9bb78b; outline-color: #9bb78b; }
 .week-card .active-day:nth-child(2)[open] .day-marker { outline-color: #52616b; }
+
+/* Run categories supersede weekday accents on every screen size. */
+.week-card .active-day[data-run-type] .day-marker{background:var(--run-color);outline-color:var(--run-color)}
+.week-card .active-day[data-run-type="easy"]{--run-color:#bbdefb}
+.week-card .active-day[data-run-type="group"]{--run-color:#f2c1b6}
+.week-card .active-day[data-run-type="interval"]{--run-color:#9bb78b}
+.week-card .active-day[data-run-type="race"]{--run-color:#f7e3a0}
+.week-card .active-day[data-run-type][open] .day-marker{outline-color:#52616b}

@@ -12,6 +12,15 @@
         "",
         "",
         ""
+      ],
+      "dayTypes": [
+        "easy",
+        "interval",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -25,6 +34,15 @@
         "",
         "4.83km / 11:54 / 142",
         ""
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "rest",
+        "group",
+        "rest",
+        "interval",
+        "rest"
       ]
     },
     {
@@ -38,6 +56,15 @@
         "",
         "",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "interval",
+        "rest",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -51,6 +78,15 @@
         "",
         "",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -64,6 +100,15 @@
         "",
         "",
         "5.03km / 11:20 / 140"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "group",
+        "rest",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -77,6 +122,15 @@
         "",
         "",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "group",
+        "rest",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -90,6 +144,15 @@
         "",
         "",
         "9.98km / 11:31"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "group",
+        "group",
+        "rest",
+        "rest",
+        "race"
       ]
     },
     {
@@ -103,6 +166,15 @@
         "",
         "",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "group",
+        "rest",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -116,6 +188,15 @@
         "",
         "",
         "7.37km / 10:26 / 148"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "race"
       ]
     },
     {
@@ -129,6 +210,15 @@
         "",
         "",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "group",
+        "rest",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -142,6 +232,15 @@
         "",
         "",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "group",
+        "rest",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -155,6 +254,15 @@
         "",
         "",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -168,6 +276,15 @@
         "5.01km / 10:33 / 138",
         "",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -181,6 +298,15 @@
         "",
         "",
         "8.21km / 09:52 / 157"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "race"
       ]
     },
     {
@@ -194,6 +320,15 @@
         "6.32km / 09:19 / 150",
         "",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -207,6 +342,15 @@
         "",
         "",
         "10.20km / 09:42 / 153"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "race"
       ]
     },
     {
@@ -220,6 +364,15 @@
         "",
         "10.56km / 09:43 / 159",
         ""
+      ],
+      "dayTypes": [
+        "easy",
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "race",
+        "rest"
       ]
     },
     {
@@ -233,6 +386,15 @@
         "",
         "",
         ""
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -246,6 +408,15 @@
         "",
         "6.06km / 09:40 / 142",
         ""
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "easy",
+        "rest"
       ]
     },
     {
@@ -259,6 +430,15 @@
         "5.70km / 09:43 / 145",
         "",
         ""
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -272,6 +452,15 @@
         "6.12km / 10:47 / 137",
         "",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "easy",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -285,6 +474,15 @@
         "",
         "1.06km / 10:07 / 137",
         "21.30km / 09:57 / 156"
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "race"
       ]
     },
     {
@@ -298,6 +496,15 @@
         "",
         "",
         "3.04km / 09:15 / 135"
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -311,6 +518,15 @@
         "10.16km / 09:25 / 153",
         "",
         ""
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -324,6 +540,15 @@
         "",
         "7.57km / 10:09 / 135",
         ""
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "rest"
       ]
     },
     {
@@ -337,6 +562,15 @@
         "",
         "",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "easy",
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -350,6 +584,15 @@
         "0.79km / 08:30 / 155",
         "8.99km / 09:21 / 148",
         "6.36km / 10:39 / 139"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "easy",
+        "easy"
       ]
     },
     {
@@ -363,6 +606,15 @@
         "",
         "4.26km / 10:28 / 137",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "easy",
+        "easy",
+        "rest",
+        "easy",
+        "rest"
       ]
     },
     {
@@ -376,6 +628,15 @@
         "",
         "",
         "11.10km / 10:19 / 136"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "race"
       ]
     },
     {
@@ -389,6 +650,15 @@
         "",
         "",
         "4.50km / 10:13 / 133"
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -402,6 +672,15 @@
         "",
         "6.14km / 11:04 / 128",
         ""
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "easy",
+        "rest"
       ]
     },
     {
@@ -415,6 +694,15 @@
         "",
         "9.07km / 08:51 / 160",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "easy",
+        "rest"
       ]
     },
     {
@@ -428,6 +716,15 @@
         "",
         "",
         "1.50km / 10:51 / 116"
+      ],
+      "dayTypes": [
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -441,6 +738,15 @@
         "",
         "",
         ""
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -454,6 +760,15 @@
         "10.02km / 10:25 / 136",
         "6.03km / 09:51 / 142",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "easy",
+        "easy",
+        "rest"
       ]
     },
     {
@@ -467,6 +782,15 @@
         "2.87km / 13:16 / 127",
         "9.01km / 10:42 / 138",
         "5.00km / 11:30 / 123"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "easy",
+        "easy",
+        "easy"
       ]
     },
     {
@@ -480,6 +804,15 @@
         "",
         "",
         "10.05km / 11:22 / 126"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -493,6 +826,15 @@
         "",
         "7.01km / 10:37 / 139",
         ""
+      ],
+      "dayTypes": [
+        "interval",
+        "easy",
+        "rest",
+        "easy",
+        "rest",
+        "easy",
+        "rest"
       ]
     },
     {
@@ -506,6 +848,15 @@
         "6.53km / 10:36 / 135",
         "",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "easy",
+        "group",
+        "rest",
+        "interval",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -519,6 +870,15 @@
         "",
         "",
         "3.30km / 10:43 / 138"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -532,6 +892,15 @@
         "",
         "9.52km / 11:23 / 131",
         "3.05km / 10:10 / 134"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "easy",
+        "easy"
       ]
     },
     {
@@ -545,6 +914,15 @@
         "",
         "",
         "8.01km / 11:10 / 129"
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -558,6 +936,15 @@
         "",
         "",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "group",
+        "rest",
+        "rest",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -571,6 +958,15 @@
         "5.61km / 10:46 / 134",
         "",
         "10.46km / 09:25 / 158"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -584,6 +980,15 @@
         "",
         "",
         "5.04km / 11:24 / 128"
+      ],
+      "dayTypes": [
+        "rest",
+        "group",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -597,6 +1002,15 @@
         "",
         "",
         "12.27km / 10:07 / 162"
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -610,6 +1024,15 @@
         "",
         "5.29km / 11:09 / 122",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "race",
+        "rest"
       ]
     },
     {
@@ -623,6 +1046,15 @@
         "",
         "",
         "5.10km / 10:42 / 124"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "group",
+        "rest",
+        "rest",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -636,6 +1068,15 @@
         "",
         "7.10km / 10:53 / 125",
         "5.02km / 11:46 / 130"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "easy",
+        "easy"
       ]
     },
     {
@@ -649,6 +1090,15 @@
         "",
         "1.00km / 08:19 / 146",
         "5.10km / 11:20 / 134"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "easy"
       ]
     },
     {
@@ -662,6 +1112,15 @@
         "",
         "5.05km / 12:37 / 111",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "easy",
+        "easy",
+        "rest",
+        "rest",
+        "easy",
+        "rest"
       ]
     },
     {
@@ -675,6 +1134,15 @@
         "",
         "",
         "3.03km / 13:20 / 106"
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -688,6 +1156,15 @@
         "",
         "",
         "5.09km / 12:23 / 112"
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -701,6 +1178,15 @@
         "",
         "10.01km / 10:51 / 134",
         "7.09km / 09:32 / 151"
+      ],
+      "dayTypes": [
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "easy"
       ]
     },
     {
@@ -714,6 +1200,15 @@
         "",
         "8.01km / 10:47 / 135",
         "6.05km / 10:48 / 130"
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "easy",
+        "easy",
+        "rest",
+        "easy",
+        "easy"
       ]
     },
     {
@@ -727,6 +1222,15 @@
         "",
         "3.21km / 11:35 / 125",
         "5.00km / 10:33 / 139"
+      ],
+      "dayTypes": [
+        "rest",
+        "easy",
+        "easy",
+        "rest",
+        "rest",
+        "easy",
+        "easy"
       ]
     },
     {
@@ -740,6 +1244,15 @@
         "6.00km / 11:21 / 132",
         "",
         "7.01km / 11:10 / 139"
+      ],
+      "dayTypes": [
+        "easy",
+        "easy",
+        "rest",
+        "easy",
+        "easy",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -753,6 +1266,15 @@
         "",
         "4.54km / 09:56 / 154",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "easy",
+        "rest",
+        "easy",
+        "rest",
+        "easy",
+        "rest"
       ]
     },
     {
@@ -766,6 +1288,15 @@
         "1.09km / 12:33 / 131",
         "",
         "3.17km / 13:37 / 119"
+      ],
+      "dayTypes": [
+        "rest",
+        "easy",
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -779,6 +1310,15 @@
         "2.37km / 12:42 / 134",
         "",
         "3.26km / 12:17 / 133"
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "rest",
+        "easy"
       ]
     },
     {
@@ -792,6 +1332,15 @@
         "",
         "",
         ""
+      ],
+      "dayTypes": [
+        "easy",
+        "rest",
+        "easy",
+        "easy",
+        "rest",
+        "rest",
+        "rest"
       ]
     },
     {
@@ -805,6 +1354,15 @@
         "2.85km / 10:51 / 145",
         "0.91km / 11:25 / 144",
         ""
+      ],
+      "dayTypes": [
+        "rest",
+        "rest",
+        "rest",
+        "rest",
+        "easy",
+        "easy",
+        "rest"
       ]
     }
   ]
