@@ -2,3 +2,5 @@
 
 /* Match the existing homepage alignment and content width. */
 .ir-section{text-align:left;margin-top:24px}.ir-toolbar{margin-top:16px}.ir-session summary{grid-template-columns:1.3fr repeat(4,1fr) auto;gap:14px;padding:22px 20px}.ir-detail-heading h3{line-height:1.5}@media(max-width:900px){.ir-session summary{grid-template-columns:repeat(4,1fr)}}@media(max-width:520px){.ir-session summary{grid-template-columns:repeat(2,1fr)}}
+
+.ir-toolbar{justify-content:flex-end}
