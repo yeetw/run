@@ -36,3 +36,5 @@
 }
 
 .ir-session + .ir-session{margin-top:16px}
+
+.ir-pace-value{display:inline-block;padding:2px 4px;border-radius:4px}.ir-pace-best{background:#f6e8d5}.ir-pace-slowest{background:#e0e6ed}
