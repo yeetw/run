@@ -34,3 +34,5 @@
  .ir-pace-track>span{display:block;height:100%;background:#9fa2ad;border-radius:inherit}
  .ir-pace-track.ir-fastest>span{background:#464953}
 }
+
+.ir-session + .ir-session{margin-top:16px}
