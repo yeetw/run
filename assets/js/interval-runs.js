@@ -9,7 +9,7 @@ const novemberReps = [
 ];
 const seconds = value => value.split(':').reduce((sum, n) => sum * 60 + Number(n), 0);
 const clock = value => `${Math.floor(value / 60)}:${String(Math.round(value % 60)).padStart(2,'0')}`;
-// October screenshots: work laps 3,5,...,21. Pace is estimated from rounded GPS distance.
+// October screenshots: work laps 3,5,...,21; original pace from IMG_1398.
 const octoberLaps = [
  ['2:44',.31,136,162,'1:13'], ['2:42',.31,143,161,'1:31'],
  ['2:45',.31,146,161,'1:47'], ['2:52',.32,147,161,'1:15'],
@@ -17,9 +17,10 @@ const octoberLaps = [
  ['2:41',.31,149,161,'1:18'], ['2:49',.30,149,157,'1:07'],
  ['2:38',.30,158,159,'1:09'], ['2:32',.31,159,159,null]
 ];
+const octoberPaces = ['8:51','8:45','8:59','9:05','9:12','8:56','8:43','9:15','8:43','8:16'];
 const sessions = [
  {date:'2026-11-03', reps:novemberReps, estimated:false, rest:'1', restUnit:'min'},
- {date:'2026-10-31', reps:octoberLaps.map(([time,km,hr,cadence,rest]) => [clock(Math.round(seconds(time)/km)),time,hr,cadence,rest]), distance:octoberLaps.reduce((sum,r)=>sum+r[1],0), estimated:true, rest:clock(Math.round(octoberLaps.filter(r=>r[4]).reduce((sum,r)=>sum+seconds(r[4]),0)/9)), restUnit:'平均'}
+ {date:'2026-10-31', reps:octoberLaps.map(([time,km,hr,cadence,rest], i) => [octoberPaces[i],time,hr,cadence,rest]), estimated:false, rest:clock(Math.round(octoberLaps.filter(r=>r[4]).reduce((sum,r)=>sum+seconds(r[4]),0)/9)), restUnit:'平均'}
 ];
 function sessionCard(session) {
  const {reps} = session;
