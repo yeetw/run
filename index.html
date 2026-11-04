@@ -13,6 +13,7 @@
     <link rel="icon" type="image/png" sizes="64x64" href="/assets/images/favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/interval-runs.css">
     <title>Life is a Marathon</title>
 </head>
 <body>
@@ -104,6 +105,24 @@
             </div>
         </div>
 
+        <!-- Interval Run Section -->
+        <h2 class="section-title" id="interval-run">Interval Run</h2>
+        <section class="ir-section" aria-labelledby="interval-run">
+            <div class="ir-toolbar">
+                <p class="ir-intro">每一組，都是累積。<br>摘要僅計算快跑段，點開查看逐組表現。</p>
+                <label class="ir-filter" for="interval-distance">間歇距離
+                    <select id="interval-distance">
+                        <option value="all">所有距離</option>
+                        <option value="300" selected>300m</option>
+                        <option value="600">600m</option>
+                        <option value="650">650m</option>
+                        <option value="1000">1K</option>
+                    </select>
+                </label>
+            </div>
+            <div id="interval-run-content" aria-live="polite"></div>
+        </section>
+
         <!-- Running Achievements Section -->
         <h2 class="section-title" id="running-achievements">Running Achievements</h2>
         <div class="section">
@@ -170,6 +189,7 @@
         </div>
     </div>
 
+    <script type="module" src="/assets/js/interval-runs.js"></script>
     <script type="module" src="/assets/js/app.js"></script>
 </body>
 </html>
