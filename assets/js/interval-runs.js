@@ -33,6 +33,10 @@ const sessions = [
 ];
 function sessionCard(session) {
  const {reps} = session;
+ const metricHighlight = (value, column) => {
+   const values = reps.map(r => r[column]);
+   return value === Math.max(...values) ? 'ir-pace-best' : value === Math.min(...values) ? 'ir-pace-slowest' : '';
+ };
 const fastestPace = Math.min(...reps.map(r => seconds(r[0])));
 const slowestPace = Math.max(...reps.map(r => seconds(r[0])));
 // Relative comparison: faster repetitions have longer bars, from 35% to 100%.
@@ -55,7 +59,7 @@ return `
       <div class="ir-detail">
         <div class="ir-detail-heading"><h3>300m × ${reps.length} 組</h3><span>快跑合計 ${clock(totalTime)} · 不含暖身與休息</span></div>
         <div class="ir-table-scroll"><table class="ir-table"><caption class="ir-sr-only">${session.date}，${reps.length}組300公尺間歇逐組數據</caption><thead><tr><th scope="col">組數</th><th scope="col"><span class="ir-desktop-label">配速 /km</span><span class="ir-mobile-label">配速</span></th><th scope="col"><span class="ir-desktop-label">完成時間</span><span class="ir-mobile-label">時間</span></th><th scope="col"><span class="ir-desktop-label">平均心率 <small>bpm</small></span><span class="ir-mobile-label">心率</span></th><th scope="col"><span class="ir-desktop-label">步頻 <small>spm</small></span><span class="ir-mobile-label">步頻</span></th><th scope="col"><span class="ir-desktop-label">組後休息</span><span class="ir-mobile-label">休息</span></th><th scope="col" class="ir-comparison">配速比較</th></tr></thead><tbody>
-        ${reps.map((r,i) => `<tr><th scope="row">${String(i+1).padStart(2,'0')}<span class="ir-rep-distance">300m</span></th><td class="ir-pace" title="${session.estimated ? '依截圖距離與時間估算' : '原始配速'}"><span class="ir-pace-value${seconds(r[0]) === fastestPace ? ' ir-pace-best' : seconds(r[0]) === slowestPace ? ' ir-pace-slowest' : ''}">${session.estimated ? '約 ' : ''}${r[0]}</span></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td class="ir-rest">${r[4] || '—'}</td><td class="ir-comparison"><span class="ir-pace-track${seconds(r[0]) === fastestPace ? ' ir-fastest' : ''}" role="img" aria-label="第 ${i+1} 組配速 ${r[0]} 每公里${seconds(r[0]) === fastestPace ? '，最快' : ''}"><span style="width:${paceWidth(r[0]).toFixed(2)}%"></span></span></td></tr>`).join('')}
+        ${reps.map((r,i) => `<tr><th scope="row">${String(i+1).padStart(2,'0')}<span class="ir-rep-distance">300m</span></th><td class="ir-pace" title="${session.estimated ? '依截圖距離與時間估算' : '原始配速'}"><span class="ir-pace-value${seconds(r[0]) === fastestPace ? ' ir-pace-best' : seconds(r[0]) === slowestPace ? ' ir-pace-slowest' : ''}">${session.estimated ? '約 ' : ''}${r[0]}</span></td><td>${r[1]}</td><td><span class="ir-pace-value ${metricHighlight(r[2],2)}">${r[2]}</span></td><td><span class="ir-pace-value ${metricHighlight(r[3],3)}">${r[3]}</span></td><td class="ir-rest">${r[4] || '—'}</td><td class="ir-comparison"><span class="ir-pace-track${seconds(r[0]) === fastestPace ? ' ir-fastest' : ''}" role="img" aria-label="第 ${i+1} 組配速 ${r[0]} 每公里${seconds(r[0]) === fastestPace ? '，最快' : ''}"><span style="width:${paceWidth(r[0]).toFixed(2)}%"></span></span></td></tr>`).join('')}
         </tbody></table></div>
       </div>
     </details>`;
