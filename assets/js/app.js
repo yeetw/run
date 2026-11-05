@@ -547,7 +547,7 @@ async function initializePage() {
         updateStatsFromData(recentRunsData, weeklyData, monthlyData);
         updateRecentRuns(recentRunsData.runs);
         updateWeeklyOverview(weeklyData.weeks);
-        updateMonthlySummary(monthlyData.months, 5, recentRunsData.runs);
+        updateMonthlySummary(monthlyData.months, 3, recentRunsData.runs);
         updateAchievements(achievementsData.achievements, 5);
     } catch (error) {
         console.error('Error loading data:', error);
