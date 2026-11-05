@@ -263,14 +263,14 @@ function updateRecentRuns(runs = [], limit = 5) {
 }
 
 // Function to update weekly overview table (limit parameter for controlling display count)
-function updateWeeklyOverview(weeks, limit = 5) {
+function updateWeeklyOverview(weeks, limit = 5, mobileLimit = limit) {
     const tbody = document.getElementById('weekly-overview-tbody');
     tbody.innerHTML = '';
 
     // Show entries based on limit (0 means show all)
     const displayWeeks = limit > 0 ? weeks.slice(0, limit) : weeks;
 
-    weeklyCards(displayWeeks);
+    weeklyCards(mobileLimit > 0 ? weeks.slice(0, mobileLimit) : weeks);
     displayWeeks.forEach(week => {
         const row = document.createElement('tr');
 
@@ -546,7 +546,7 @@ async function initializePage() {
         // Update all sections with the loaded data
         updateStatsFromData(recentRunsData, weeklyData, monthlyData);
         updateRecentRuns(recentRunsData.runs);
-        updateWeeklyOverview(weeklyData.weeks);
+        updateWeeklyOverview(weeklyData.weeks, 5, 3);
         updateMonthlySummary(monthlyData.months, 5, recentRunsData.runs, 3);
         updateAchievements(achievementsData.achievements, 5);
     } catch (error) {
