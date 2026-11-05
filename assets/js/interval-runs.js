@@ -92,7 +92,7 @@ const filter = document.querySelector('#interval-distance');
 function renderIntervals() {
   const selected = sessions.filter(session => filter.value === 'all' || String(session.interval ?? 300) === filter.value);
   if (!selected.length) {
-    section.innerHTML = '<div class="ir-empty" role="status">目前還沒有這個距離的間歇紀錄。</div>';
+    section.innerHTML = '<div class="ir-empty" role="status">目前還沒有這個類型的間歇紀錄。</div>';
     return;
   }
   section.innerHTML = selected.map(sessionCard).join('');
