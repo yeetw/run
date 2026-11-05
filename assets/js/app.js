@@ -310,14 +310,14 @@ function updateWeeklyOverview(weeks, limit = 5) {
 }
 
 // Function to update monthly summary table (limit parameter for controlling display count)
-function updateMonthlySummary(months, limit = 5, runs = []) {
+function updateMonthlySummary(months, limit = 5, runs = [], mobileLimit = limit) {
     const tbody = document.getElementById('monthly-summary-tbody');
     tbody.innerHTML = '';
 
     // Show entries based on limit (0 means show all)
     const displayMonths = limit > 0 ? months.slice(0, limit) : months;
 
-    monthlyCards(displayMonths);
+    monthlyCards(mobileLimit > 0 ? months.slice(0, mobileLimit) : months);
     const monthlyGoal = 80;
     displayMonths.forEach(month => {
         const row = document.createElement('tr');
@@ -547,7 +547,7 @@ async function initializePage() {
         updateStatsFromData(recentRunsData, weeklyData, monthlyData);
         updateRecentRuns(recentRunsData.runs);
         updateWeeklyOverview(weeklyData.weeks);
-        updateMonthlySummary(monthlyData.months, 3, recentRunsData.runs);
+        updateMonthlySummary(monthlyData.months, 5, recentRunsData.runs, 3);
         updateAchievements(achievementsData.achievements, 5);
     } catch (error) {
         console.error('Error loading data:', error);
