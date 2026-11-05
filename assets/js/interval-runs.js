@@ -45,12 +45,14 @@ const sessions = [
  {date:'2026-10-31', reps:octoberLaps.map(([time,km,hr,cadence,rest], i) => [octoberPaces[i],time,hr,cadence,rest]), estimated:false, rest:clock(Math.round(octoberLaps.filter(r=>r[4]).reduce((sum,r)=>sum+seconds(r[4]),0)/9)), restUnit:'平均'},
  {date:'2026-10-29', interval:600, reps:october29Reps, estimated:false, rest:'2:08', restUnit:'平均'},
  {date:'2026-10-15', reps:october15Reps, estimated:false, rest:clock(Math.round(october15Reps.filter(r=>r[4]).reduce((sum,r)=>sum+seconds(r[4]),0)/8)), restUnit:'平均'},
- {date:'2026-10-01', interval:'7min', label:'7 分鐘', reps:october1Reps, estimated:false, rest:'2:00', restUnit:'課表'}
+ {date:'2026-10-01', interval:'7min', label:'7 分鐘', repDistances:[0.81,0.77,0.76,0.81], reps:october1Reps, estimated:false, rest:'2:00', restUnit:'課表'}
 ];
 function sessionCard(session) {
  const {reps} = session;
  const interval = session.interval ?? 300;
  const label = session.label ?? `${interval}m`;
+ const showDistance = Array.isArray(session.repDistances);
+ const distanceTotal = showDistance ? session.repDistances.reduce((sum, km) => sum + km, 0) : null;
  const metricHighlight = (value, column) => {
    if (value == null) return '';
    const values = reps.map(r => r[column]).filter(v => v != null);
@@ -79,9 +81,9 @@ return `
         <span class="ir-expand"><span class="ir-open-text" aria-hidden="true">＋</span><span class="ir-close-text" aria-hidden="true">－</span><span class="ir-sr-only">逐組數據</span></span>
       </summary>
       <div class="ir-detail">
-        <div class="ir-detail-heading"><h3>${label} × ${reps.length} 組</h3><span>快跑合計 ${clock(totalTime)} · 不含暖身與休息</span></div>
-        <div class="ir-table-scroll"><table class="ir-table"><caption class="ir-sr-only">${session.date}，${reps.length}組${label}間歇逐組數據</caption><thead><tr><th scope="col">組數</th><th scope="col"><span class="ir-desktop-label">配速 /km</span><span class="ir-mobile-label">配速</span></th><th scope="col"><span class="ir-desktop-label">完成時間</span><span class="ir-mobile-label">時間</span></th><th scope="col"><span class="ir-desktop-label">平均心率 <small>bpm</small></span><span class="ir-mobile-label">心率</span></th><th scope="col"><span class="ir-desktop-label">步頻 <small>spm</small></span><span class="ir-mobile-label">步頻</span></th><th scope="col"><span class="ir-desktop-label">組後休息</span><span class="ir-mobile-label">休息</span></th><th scope="col" class="ir-comparison">配速比較</th></tr></thead><tbody>
-        ${reps.map((r,i) => `<tr><th scope="row">${String(i+1).padStart(2,'0')}<span class="ir-rep-distance">${label}</span></th><td class="ir-pace" title="${session.estimated ? '依截圖距離與時間估算' : '原始配速'}"><span class="ir-pace-value${seconds(r[0]) === fastestPace ? ' ir-pace-best' : seconds(r[0]) === slowestPace ? ' ir-pace-slowest' : ''}">${session.estimated ? '約 ' : ''}${r[0]}</span></td><td>${r[1]}</td><td><span class="ir-pace-value ${metricHighlight(r[2],2)}">${r[2] ?? '—'}</span></td><td><span class="ir-pace-value ${metricHighlight(r[3],3)}">${r[3]}</span></td><td class="ir-rest">${r[4] || '—'}</td><td class="ir-comparison"><span class="ir-pace-track${seconds(r[0]) === fastestPace ? ' ir-fastest' : ''}" role="img" aria-label="第 ${i+1} 組配速 ${r[0]} 每公里${seconds(r[0]) === fastestPace ? '，最快' : ''}"><span style="width:${paceWidth(r[0]).toFixed(2)}%"></span></span></td></tr>`).join('')}
+        <div class="ir-detail-heading"><h3>${label} × ${reps.length} 組</h3><span>快跑合計 ${clock(totalTime)}${showDistance ? ` · ${distanceTotal.toFixed(2)} km` : ''} · 不含暖身與休息</span></div>
+        <div class="ir-table-scroll"><table class="ir-table"><caption class="ir-sr-only">${session.date}，${reps.length}組${label}間歇逐組數據</caption><thead><tr><th scope="col">組數</th>${showDistance ? '<th scope="col">距離 <small>km</small></th>' : ''}<th scope="col"><span class="ir-desktop-label">配速 /km</span><span class="ir-mobile-label">配速</span></th><th scope="col"><span class="ir-desktop-label">完成時間</span><span class="ir-mobile-label">時間</span></th><th scope="col"><span class="ir-desktop-label">平均心率 <small>bpm</small></span><span class="ir-mobile-label">心率</span></th><th scope="col"><span class="ir-desktop-label">步頻 <small>spm</small></span><span class="ir-mobile-label">步頻</span></th><th scope="col"><span class="ir-desktop-label">組後休息</span><span class="ir-mobile-label">休息</span></th><th scope="col" class="ir-comparison">配速比較</th></tr></thead><tbody>
+        ${reps.map((r,i) => `<tr><th scope="row">${String(i+1).padStart(2,'0')}<span class="ir-rep-distance">${label}</span></th>${showDistance ? `<td>${session.repDistances[i].toFixed(2)}</td>` : ''}<td class="ir-pace" title="${session.estimated ? '依截圖距離與時間估算' : '原始配速'}"><span class="ir-pace-value${seconds(r[0]) === fastestPace ? ' ir-pace-best' : seconds(r[0]) === slowestPace ? ' ir-pace-slowest' : ''}">${session.estimated ? '約 ' : ''}${r[0]}</span></td><td>${r[1]}</td><td><span class="ir-pace-value ${metricHighlight(r[2],2)}">${r[2] ?? '—'}</span></td><td><span class="ir-pace-value ${metricHighlight(r[3],3)}">${r[3]}</span></td><td class="ir-rest">${r[4] || '—'}</td><td class="ir-comparison"><span class="ir-pace-track${seconds(r[0]) === fastestPace ? ' ir-fastest' : ''}" role="img" aria-label="第 ${i+1} 組配速 ${r[0]} 每公里${seconds(r[0]) === fastestPace ? '，最快' : ''}"><span style="width:${paceWidth(r[0]).toFixed(2)}%"></span></span></td></tr>`).join('')}
         </tbody></table></div>
         ${session.interval === '7min' ? '<p class="ir-note">課表：跑 7 分鐘、休 2 分鐘。採用原紀錄第 9、11、13、15 圈；完成時間與組後休息保留實際紀錄。</p>' : ''}
       </div>
