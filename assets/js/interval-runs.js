@@ -47,12 +47,12 @@ const november5Reps = [
  ['8:47','8:51',158,162,'3:43']
 ];
 const sessions = [
- {date:'2026-11-05', interval:1000, reps:november5Reps, estimated:false, rest:'2:00', restUnit:'課表', note:'課表：跑 1 公里、休 2 分鐘。採用原紀錄第 3、5、7 圈（實測 1.01、1.00、1.01 km）。最後一組後休息 3:43，之後收操；不計入組間休息。'},
+ {date:'2026-11-05', interval:1000, reps:november5Reps, estimated:false, rest:'2', restUnit:'min', note:'課表：跑 1 公里、休 2 分鐘。採用原紀錄第 3、5、7 圈（實測 1.01、1.00、1.01 km）。最後一組後休息 3:43，之後收操；不計入組間休息。'},
  {date:'2026-11-03', reps:novemberReps, estimated:false, rest:'1', restUnit:'min'},
  {date:'2026-10-31', reps:octoberLaps.map(([time,km,hr,cadence,rest], i) => [octoberPaces[i],time,hr,cadence,rest]), estimated:false, rest:clock(Math.round(octoberLaps.filter(r=>r[4]).reduce((sum,r)=>sum+seconds(r[4]),0)/9)), restUnit:'平均'},
  {date:'2026-10-29', interval:600, reps:october29Reps, estimated:false, rest:'2:08', restUnit:'平均'},
  {date:'2026-10-15', reps:october15Reps, estimated:false, rest:clock(Math.round(october15Reps.filter(r=>r[4]).reduce((sum,r)=>sum+seconds(r[4]),0)/8)), restUnit:'平均'},
- {date:'2026-10-01', interval:'7min', label:'7 分鐘', repDistances:[0.81,0.77,0.76,0.81], reps:october1Reps, estimated:false, rest:'2:00', restUnit:'課表'}
+ {date:'2026-10-01', interval:'7min', label:'7 分鐘', repDistances:[0.81,0.77,0.76,0.81], reps:october1Reps, estimated:false, rest:'2', restUnit:'min'}
 ];
 function sessionCard(session) {
  const {reps} = session;
