@@ -33,12 +33,12 @@ const october29Reps = [
  ['11:09','6:45',139,154,'1:50']
 ];
 // October 1 screenshots: work laps 9, 11, 13, 15; warm-up and cooldown excluded.
-// Per-lap heart rates were not supplied. Prescribed workout: 7 min run / 2 min rest.
+// Prescribed workout: 7 min run / 2 min rest. Heart rates from the BPM screenshot.
 const october1Reps = [
- ['8:54','7:13',null,163,'2:06'],
- ['8:58','6:57',null,161,'2:02'],
- ['8:46','6:41',null,163,'2:21'],
- ['8:42','7:02',null,164,'1:46']
+ ['8:54','7:13',155,163,'2:06'],
+ ['8:58','6:57',156,161,'2:02'],
+ ['8:46','6:41',161,163,'2:21'],
+ ['8:42','7:02',162,164,'1:46']
 ];
 const sessions = [
  {date:'2026-11-03', reps:novemberReps, estimated:false, rest:'1', restUnit:'min'},
@@ -83,7 +83,7 @@ return `
         <div class="ir-table-scroll"><table class="ir-table"><caption class="ir-sr-only">${session.date}，${reps.length}組${label}間歇逐組數據</caption><thead><tr><th scope="col">組數</th><th scope="col"><span class="ir-desktop-label">配速 /km</span><span class="ir-mobile-label">配速</span></th><th scope="col"><span class="ir-desktop-label">完成時間</span><span class="ir-mobile-label">時間</span></th><th scope="col"><span class="ir-desktop-label">平均心率 <small>bpm</small></span><span class="ir-mobile-label">心率</span></th><th scope="col"><span class="ir-desktop-label">步頻 <small>spm</small></span><span class="ir-mobile-label">步頻</span></th><th scope="col"><span class="ir-desktop-label">組後休息</span><span class="ir-mobile-label">休息</span></th><th scope="col" class="ir-comparison">配速比較</th></tr></thead><tbody>
         ${reps.map((r,i) => `<tr><th scope="row">${String(i+1).padStart(2,'0')}<span class="ir-rep-distance">${label}</span></th><td class="ir-pace" title="${session.estimated ? '依截圖距離與時間估算' : '原始配速'}"><span class="ir-pace-value${seconds(r[0]) === fastestPace ? ' ir-pace-best' : seconds(r[0]) === slowestPace ? ' ir-pace-slowest' : ''}">${session.estimated ? '約 ' : ''}${r[0]}</span></td><td>${r[1]}</td><td><span class="ir-pace-value ${metricHighlight(r[2],2)}">${r[2] ?? '—'}</span></td><td><span class="ir-pace-value ${metricHighlight(r[3],3)}">${r[3]}</span></td><td class="ir-rest">${r[4] || '—'}</td><td class="ir-comparison"><span class="ir-pace-track${seconds(r[0]) === fastestPace ? ' ir-fastest' : ''}" role="img" aria-label="第 ${i+1} 組配速 ${r[0]} 每公里${seconds(r[0]) === fastestPace ? '，最快' : ''}"><span style="width:${paceWidth(r[0]).toFixed(2)}%"></span></span></td></tr>`).join('')}
         </tbody></table></div>
-        ${session.interval === '7min' ? '<p class="ir-note">課表：跑 7 分鐘、休 2 分鐘。採用原紀錄第 9、11、13、15 圈；完成時間與組後休息保留實際紀錄。截圖未提供逐組心率，以 — 表示。</p>' : ''}
+        ${session.interval === '7min' ? '<p class="ir-note">課表：跑 7 分鐘、休 2 分鐘。採用原紀錄第 9、11、13、15 圈；完成時間與組後休息保留實際紀錄。</p>' : ''}
       </div>
     </details>`;
 }
