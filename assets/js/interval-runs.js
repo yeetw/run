@@ -91,13 +91,24 @@ return `
 }
 const section = document.querySelector('#interval-run-content');
 const filter = document.querySelector('#interval-distance');
+const showAllButton = document.querySelector('#interval-show-all');
+let showAll = false;
 function renderIntervals() {
-  const selected = sessions.filter(session => filter.value === 'all' || String(session.interval ?? 300) === filter.value);
+  const selected = sessions.filter(session => filter.value === 'all' || String(session.interval ?? 300) === filter.value).sort((a, b) => b.date.localeCompare(a.date));
+  showAllButton.style.display = !showAll && selected.length >= 5 ? 'flex' : 'none';
+  showAllButton.setAttribute('aria-expanded', String(showAll));
   if (!selected.length) {
     section.innerHTML = '<div class="ir-empty" role="status">目前還沒有這個類型的間歇紀錄。</div>';
     return;
   }
-  section.innerHTML = selected.map(sessionCard).join('');
+  section.innerHTML = (showAll ? selected : selected.slice(0, 5)).map(sessionCard).join('');
 }
-filter.addEventListener('change', renderIntervals);
+filter.addEventListener('change', () => {
+  showAll = false;
+  renderIntervals();
+});
+showAllButton.addEventListener('click', () => {
+  showAll = true;
+  renderIntervals();
+});
 renderIntervals();

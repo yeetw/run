@@ -111,8 +111,8 @@
             <div class="ir-toolbar">
                 <label class="ir-filter" for="interval-distance">間歇類型
                     <select id="interval-distance">
-                        <option value="all">所有類型</option>
-                        <option value="300" selected>300m</option>
+                        <option value="all" selected>所有類型</option>
+                        <option value="300">300m</option>
                         <option value="600">600m</option>
                         <option value="1000">1K</option>
                         <option value="7min">7 分鐘</option>
@@ -120,6 +120,11 @@
                 </label>
             </div>
             <div id="interval-run-content" aria-live="polite"></div>
+            <button type="button" id="interval-show-all" class="dots-separator" aria-label="展開全部間歇紀錄" aria-controls="interval-run-content" aria-expanded="false" style="width:100%;padding:0;border:0;background:transparent;display:none">
+                <span class="dot" aria-hidden="true"></span>
+                <span class="dot" aria-hidden="true"></span>
+                <span class="dot" aria-hidden="true"></span>
+            </button>
         </section>
 
         <!-- Running Achievements Section -->
@@ -188,7 +193,7 @@
         </div>
     </div>
 
-    <script type="module" src="/assets/js/interval-runs.js?v=dccf13724771"></script>
+    <script type="module" src="/assets/js/interval-runs.js?v=5dcc2205c86f"></script>
     <script type="module" src="/assets/js/app.js"></script>
 </body>
 </html>
