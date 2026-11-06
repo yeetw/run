@@ -648,6 +648,9 @@ body {
 }
 
 .week-desktop-summary { display: none; }
+@media (max-width: 768px) {
+    .week-card.desktop-only-week { display: none; }
+}
 @media (min-width: 769px) {
     .container:has(#weekly-overview-table) { max-width: 1200px; }
     .table-wrapper:has(#weekly-overview-table).desktop-records { display: none; }

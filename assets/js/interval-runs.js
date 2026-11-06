@@ -57,7 +57,7 @@ const sessions = [
 function sessionCard(session) {
  const {reps} = session;
  const interval = session.interval ?? 300;
- const label = session.label ?? `${interval}m`;
+ const label = session.label ?? (interval === 1000 ? '1 公里' : `${interval} 公尺`);
  const showDistance = Array.isArray(session.repDistances);
  const distanceTotal = showDistance ? session.repDistances.reduce((sum, km) => sum + km, 0) : null;
  const metricHighlight = (value, column) => {
@@ -102,7 +102,11 @@ const filter = document.querySelector('#interval-distance');
 const showAllButton = document.querySelector('#interval-show-all');
 let showAll = false;
 function renderIntervals() {
-  const selected = sessions.filter(session => filter.value === 'all' || String(session.interval ?? 300) === filter.value).sort((a, b) => b.date.localeCompare(a.date));
+  const selected = sessions.filter(session => {
+    const interval = session.interval ?? 300;
+    const type = typeof interval === 'string' && interval.endsWith('min') ? 'timed' : String(interval);
+    return filter.value === 'all' || type === filter.value;
+  }).sort((a, b) => b.date.localeCompare(a.date));
   showAllButton.style.display = !showAll && selected.length >= 5 ? 'flex' : 'none';
   showAllButton.setAttribute('aria-expanded', String(showAll));
   if (!selected.length) {

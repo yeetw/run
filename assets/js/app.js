@@ -270,7 +270,7 @@ function updateWeeklyOverview(weeks, limit = 5, mobileLimit = limit) {
     // Show entries based on limit (0 means show all)
     const displayWeeks = limit > 0 ? weeks.slice(0, limit) : weeks;
 
-    weeklyCards(mobileLimit > 0 ? weeks.slice(0, mobileLimit) : weeks);
+    weeklyCards(displayWeeks, mobileLimit > 0 ? mobileLimit : displayWeeks.length);
     displayWeeks.forEach(week => {
         const row = document.createElement('tr');
 
