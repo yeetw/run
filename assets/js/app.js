@@ -263,14 +263,14 @@ function updateRecentRuns(runs = [], limit = 5) {
 }
 
 // Function to update weekly overview table (limit parameter for controlling display count)
-function updateWeeklyOverview(weeks, limit = 5, mobileLimit = limit) {
+function updateWeeklyOverview(weeks, limit = 5, mobileLimit = limit, referenceDate) {
     const tbody = document.getElementById('weekly-overview-tbody');
     tbody.innerHTML = '';
 
     // Show entries based on limit (0 means show all)
     const displayWeeks = limit > 0 ? weeks.slice(0, limit) : weeks;
 
-    weeklyCards(displayWeeks, mobileLimit > 0 ? mobileLimit : displayWeeks.length);
+    weeklyCards(displayWeeks, mobileLimit > 0 ? mobileLimit : displayWeeks.length, referenceDate);
     displayWeeks.forEach(week => {
         const row = document.createElement('tr');
 
@@ -546,7 +546,7 @@ async function initializePage() {
         // Update all sections with the loaded data
         updateStatsFromData(recentRunsData, weeklyData, monthlyData);
         updateRecentRuns(recentRunsData.runs);
-        updateWeeklyOverview(weeklyData.weeks, 5, 3);
+        updateWeeklyOverview(weeklyData.weeks, 5, 3, weeklyData.lastUpdated);
         updateMonthlySummary(monthlyData.months, 5, recentRunsData.runs, 3);
         updateAchievements(achievementsData.achievements, 5);
     } catch (error) {
@@ -573,7 +573,7 @@ async function initializeDetailPage(pageType) {
                 break;
             case 'weekly-overview':
                 data = await fetch('/assets/data/weekly-overview.json').then(res => res.json());
-                updateWeeklyOverview(data.weeks, limit);
+                updateWeeklyOverview(data.weeks, limit, limit, data.lastUpdated);
                 break;
             case 'monthly-summary':
                 const [monthlyData, runsData] = await Promise.all([
