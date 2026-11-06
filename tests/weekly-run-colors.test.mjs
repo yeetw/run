@@ -16,6 +16,6 @@ test('weekly cards identify interval dates without dayTypes on mobile and deskto
     assert.deepEqual([...weeks[1].matchAll(/data-run-type="([^"]+)"/g)].map(m => m[1]), ['easy', 'interval', 'interval']);
     assert.match(weeks[2], /data-run-type="interval"/);
     const css = fs.readFileSync(new URL('../assets/css/styles.css', import.meta.url), 'utf8');
-    assert.match(css, /data-run-type="interval"\]\{--run-color:#c67c79\}/);
+    assert.match(css, /data-run-type="interval"\]\{--run-color:#E1B7A0\}/);
     delete globalThis.document;
 });

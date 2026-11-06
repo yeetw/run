@@ -855,5 +855,5 @@ body {
 /* Run categories supersede weekday accents on every screen size. */
 .week-card .active-day[data-run-type] .day-marker{background:var(--run-color);outline-color:var(--run-color)}
 .week-card .active-day[data-run-type]{--run-color:#F4E8D5}
-.week-card .active-day[data-run-type="interval"]{--run-color:#c67c79}
+.week-card .active-day[data-run-type="interval"]{--run-color:#E1B7A0}
 .week-card .active-day[data-run-type][open] .day-marker{outline-color:#52616b}
