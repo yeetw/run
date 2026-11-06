@@ -57,7 +57,7 @@ const sessions = [
 function sessionCard(session) {
  const {reps} = session;
  const interval = session.interval ?? 300;
- const label = session.label ?? (interval === 1000 ? '1 公里' : `${interval} 公尺`);
+ const label = session.label ?? (interval === 1000 ? '1km' : `${interval}m`);
  const showDistance = Array.isArray(session.repDistances);
  const distanceTotal = showDistance ? session.repDistances.reduce((sum, km) => sum + km, 0) : null;
  const metricHighlight = (value, column) => {
