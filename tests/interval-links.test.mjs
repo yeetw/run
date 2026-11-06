@@ -1,0 +1,26 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const moduleUrl = source => `data:text/javascript;base64,${Buffer.from(source).toString('base64')}`;
+test('deep links reveal older intervals, reset filters, and open the matching record', async () => {
+  const listeners = {};
+  const section = { innerHTML: '' };
+  const filter = { value: '300', addEventListener() {} };
+  const button = { style: {}, setAttribute() {}, addEventListener() {} };
+  let scrolled = false, focused = false;
+  const target = { open: false, scrollIntoView() { scrolled = true; }, querySelector: () => ({ focus() { focused = true; } }) };
+  globalThis.window = { location: { hash: '#interval-2026-10-01' }, matchMedia: () => ({ matches: true, addEventListener() {} }), addEventListener: (event, fn) => { listeners[event] = fn; } };
+  globalThis.document = { querySelector: selector => ({ '#interval-run-content': section, '#interval-distance': filter, '#interval-show-all': button })[selector], getElementById: id => { assert.equal(id, 'interval-2026-10-01'); return target; }, addEventListener: (event, fn) => { listeners[event] = fn; } };
+  const data = moduleUrl(fs.readFileSync(new URL('../assets/js/interval-sessions.js', import.meta.url), 'utf8'));
+  const source = fs.readFileSync(new URL('../assets/js/interval-runs.js', import.meta.url), 'utf8').replace('./interval-sessions.js', data);
+  await import(moduleUrl(source));
+  assert.equal(filter.value, 'all');
+  assert.match(section.innerHTML, /id="interval-2026-10-01"/);
+  assert.equal(target.open, true);
+  assert.ok(scrolled && focused);
+  target.open = false;
+  listeners.click({ target: { closest: () => ({ getAttribute: () => '#interval-2026-10-01' }) }, preventDefault() {} });
+  assert.equal(target.open, true);
+  delete globalThis.window;
+  delete globalThis.document;
+});

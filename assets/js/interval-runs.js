@@ -25,7 +25,7 @@ const weighted = column => {
  return available.length ? Math.round(available.reduce((sum, r) => sum + r[column] * seconds(r[1]), 0) / available.reduce((sum, r) => sum + seconds(r[1]), 0)) : '—';
 };
 return `
-    <details class="ir-session">
+    <details class="ir-session" id="interval-${session.date}">
       <summary>
         <div class="ir-date"><span class="ir-label">日期</span><time datetime="${session.date}">${session.date.replaceAll('-', '/')}</time><span class="ir-session-tag">${label} × ${reps.length} 組</span></div>
         <div><span class="ir-label">平均配速</span><strong>${session.estimated ? '約 ' : ''}${clock(Math.round(totalTime / totalDistance))}</strong><span class="ir-unit"> /km</span></div>
@@ -74,3 +74,24 @@ showAllButton.addEventListener('click', () => {
   renderIntervals();
 });
 renderIntervals();
+
+function openLinkedInterval() {
+  const date = window.location.hash.match(/^#interval-(\d{4}-\d{2}-\d{2})$/)?.[1];
+  if (!date || !sessions.some(session => session.date === date)) return;
+  filter.value = 'all';
+  showAll = true;
+  renderIntervals();
+  const target = document.getElementById(`interval-${date}`);
+  target.open = true;
+  target.scrollIntoView({ block: 'start' });
+  target.querySelector('summary').focus({ preventScroll: true });
+}
+window.addEventListener('hashchange', openLinkedInterval);
+document.addEventListener('click', event => {
+  const link = event.target.closest('a.week-session-tag');
+  if (link?.getAttribute('href') === window.location.hash) {
+    event.preventDefault();
+    openLinkedInterval();
+  }
+});
+openLinkedInterval();

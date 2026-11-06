@@ -860,6 +860,8 @@ body {
 
 .week-card .day-details { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .week-session-tag { display: block; width: fit-content; margin-top: 6px; padding: 4px 7px; border-radius: 4px; background: #e9eaec; color: #464953; font-size: 11px; line-height: 1.5; }
+.week-session-tag:hover { background: #dedfe3; text-decoration: underline; }
+.week-session-tag:focus-visible { outline: 2px solid #52616b; outline-offset: 3px; }
 @media (min-width: 769px) {
     .week-card:has(.active-day[data-run-type="interval"][open]) { padding-bottom: 150px; }
 }
