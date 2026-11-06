@@ -857,3 +857,10 @@ body {
 .week-card .active-day[data-run-type]{--run-color:#F4E8D5}
 .week-card .active-day[data-run-type="interval"]{--run-color:#E1B7A0}
 .week-card .active-day[data-run-type][open] .day-marker{outline-color:#52616b}
+
+.week-card .day-details { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 768px) {
+    .week-card .day-details { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .week-card .day-details > div:first-child { grid-column: 1 / -1; }
+    .week-card .week-days:has(.active-day[open]) { padding-bottom: 145px; }
+}
