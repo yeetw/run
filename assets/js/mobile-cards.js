@@ -1,5 +1,5 @@
 import { sessions } from './interval-sessions.js';
-const intervalDates = new Set(sessions.map(session => session.date));
+const intervalSessions = new Map(sessions.map(session => [session.date, session]));
 const escape = value => String(value ?? '—').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const metric = (label, value) => `<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>`;
 const distance = value => `${String(value ?? '—').replace(/\s*km$/i, '')} km`;
@@ -39,9 +39,13 @@ export function weeklyCards(weeks, mobileLimit = weeks.length, referenceDate = n
             const [dist,p,h] = value.split('/').map(s=>s.trim());
             const runDate = new Date(weekStart);
             runDate.setUTCDate(runDate.getUTCDate() + i);
-            const type = intervalDates.has(runDate.toISOString().slice(0, 10)) ? 'interval' : ['race','interval','group','easy'].includes(w.dayTypes?.[i]) ? w.dayTypes[i] : 'easy';
+            const session = intervalSessions.get(runDate.toISOString().slice(0, 10));
+            const interval = session?.interval ?? 300;
+            const sessionLabel = session ? `${session.label ?? (interval === 1000 ? '1km' : `${interval}m`)} × ${session.reps.length} 組` : '';
+            const dateDetails = `<div><dt>日期</dt><dd>${escape(runDate.toISOString().slice(0, 10).replaceAll('-', '/'))}${session ? `<span class="week-session-tag">${escape(sessionLabel)}</span>` : ''}</dd></div>`;
+            const type = session ? 'interval' : ['race','interval','group','easy'].includes(w.dayTypes?.[i]) ? w.dayTypes[i] : 'easy';
             const typeName = {race:'比賽',interval:'間歇跑',group:'團練／教練課',easy:'一般跑'}[type];
-            return `<details class="active-day" data-run-type="${type}"><summary aria-label="${day} ${escape(value)}，${typeName}"><span>${day}</span><span class="day-marker"></span><span class="day-distance">${escape(dist.replace(/km/i,''))}</span></summary><dl class="day-details">${metric('日期',runDate.toISOString().slice(0, 10).replaceAll('-', '/'))}${metric('距離',distance(dist))}${metric('配速',p+' /km')}${metric('心率',h+' bpm')}</dl></details>`;
+            return `<details class="active-day" data-run-type="${type}"><summary aria-label="${day} ${escape(value)}，${typeName}"><span>${day}</span><span class="day-marker"></span><span class="day-distance">${escape(dist.replace(/km/i,''))}</span></summary><dl class="day-details">${dateDetails}${metric('距離',distance(dist))}${metric('配速',p+' /km')}${metric('心率',h+' bpm')}</dl></details>`;
         }).join('')}</div></article>`;
     }).join(''));
 }
