@@ -101,20 +101,23 @@ const section = document.querySelector('#interval-run-content');
 const filter = document.querySelector('#interval-distance');
 const showAllButton = document.querySelector('#interval-show-all');
 let showAll = false;
+const mobileLayout = window.matchMedia('(max-width: 768px)');
 function renderIntervals() {
+  const limit = mobileLayout.matches ? 3 : 5;
   const selected = sessions.filter(session => {
     const interval = session.interval ?? 300;
     const type = typeof interval === 'string' && interval.endsWith('min') ? 'timed' : String(interval);
     return filter.value === 'all' || type === filter.value;
   }).sort((a, b) => b.date.localeCompare(a.date));
-  showAllButton.style.display = !showAll && selected.length >= 5 ? 'flex' : 'none';
+  showAllButton.style.display = !showAll && selected.length > limit ? 'flex' : 'none';
   showAllButton.setAttribute('aria-expanded', String(showAll));
   if (!selected.length) {
     section.innerHTML = '<div class="ir-empty" role="status">目前還沒有這個類型的間歇紀錄。</div>';
     return;
   }
-  section.innerHTML = (showAll ? selected : selected.slice(0, 5)).map(sessionCard).join('');
+  section.innerHTML = (showAll ? selected : selected.slice(0, limit)).map(sessionCard).join('');
 }
+mobileLayout.addEventListener('change', renderIntervals);
 filter.addEventListener('change', () => {
   showAll = false;
   renderIntervals();
