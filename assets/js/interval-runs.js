@@ -1,4 +1,4 @@
-import { sessions } from './interval-sessions.js';
+import { sessions } from './interval-sessions.js?v=20261112';
 const seconds = value => value.split(':').reduce((sum, n) => sum * 60 + Number(n), 0);
 const clock = value => `${Math.floor(value / 60)}:${String(Math.round(value % 60)).padStart(2,'0')}`;
 function sessionCard(session) {
