@@ -46,7 +46,15 @@ const november5Reps = [
  ['8:53','8:53',157,162,'2:02'],
  ['8:47','8:51',158,162,'3:43']
 ];
+// November 12 screenshots: work laps 3, 5, 7, 9; warm-up and its recovery excluded.
+const november12Reps = [
+ ['9:50','9:55',139,155,'2:02'],
+ ['9:51','9:53',143,159,'2:03'],
+ ['9:43','9:43',147,158,'2:02'],
+ ['9:46','9:54',150,160,null]
+];
 export const sessions = [
+ {date:'2026-11-12', interval:1000, repDistances:[1.01,1.00,1.00,1.01], reps:november12Reps, estimated:false, rest:'2', restUnit:'min'},
  {date:'2026-11-05', interval:1000, reps:november5Reps, estimated:false, rest:'2', restUnit:'min', note:'課表：跑 1 公里、休 2 分鐘。採用原紀錄第 3、5、7 圈（實測 1.01、1.00、1.01 km）。最後一組後休息 3:43，之後收操；不計入組間休息。'},
  {date:'2026-11-03', reps:novemberReps, estimated:false, rest:'1', restUnit:'min'},
  {date:'2026-10-31', reps:octoberLaps.map(([time,km,hr,cadence,rest], i) => [octoberPaces[i],time,hr,cadence,rest]), estimated:false, rest:clock(Math.round(octoberLaps.filter(r=>r[4]).reduce((sum,r)=>sum+seconds(r[4]),0)/9)), restUnit:'平均'},
