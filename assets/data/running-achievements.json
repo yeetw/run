@@ -1,6 +1,88 @@
 {
-  "lastUpdated": "2026-09-20",
+  "lastUpdated": "2026-11-22",
   "achievements": [
+    {
+      "no": "12",
+      "race": "2026 NS RUN 南山人壽半程馬拉松",
+      "date": "2026/11/22",
+      "distance": "10.18",
+      "duration": "01:34:28",
+      "avgPace": "09:17",
+      "avgHeartRate": "159",
+      "avgCadence": "161",
+      "splits": [
+        {
+          "km": "1",
+          "pace": "09:27",
+          "time": "00:09:27",
+          "heartRate": "147",
+          "cadence": "166"
+        },
+        {
+          "km": "2",
+          "pace": "09:10",
+          "time": "00:18:37",
+          "heartRate": "153",
+          "cadence": "162"
+        },
+        {
+          "km": "3",
+          "pace": "09:12",
+          "time": "00:27:49",
+          "heartRate": "157",
+          "cadence": "164"
+        },
+        {
+          "km": "4",
+          "pace": "09:46",
+          "time": "00:37:35",
+          "heartRate": "159",
+          "cadence": "158"
+        },
+        {
+          "km": "5",
+          "pace": "09:17",
+          "time": "00:46:52",
+          "heartRate": "160",
+          "cadence": "158"
+        },
+        {
+          "km": "6",
+          "pace": "09:08",
+          "time": "00:56:00",
+          "heartRate": "161",
+          "cadence": "164"
+        },
+        {
+          "km": "7",
+          "pace": "09:15",
+          "time": "01:05:15",
+          "heartRate": "161",
+          "cadence": "163"
+        },
+        {
+          "km": "8",
+          "pace": "09:32",
+          "time": "01:14:47",
+          "heartRate": "160",
+          "cadence": "161"
+        },
+        {
+          "km": "9",
+          "pace": "09:33",
+          "time": "01:24:20",
+          "heartRate": "160",
+          "cadence": "147"
+        },
+        {
+          "km": "10",
+          "pace": "08:42",
+          "time": "01:33:02",
+          "heartRate": "167",
+          "cadence": "165"
+        }
+      ]
+    },
                       {
       "no": "11",
       "race": "2026 長庚紀念醫院 永慶盃路跑 10.5K",
