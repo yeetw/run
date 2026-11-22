@@ -1,6 +1,7 @@
-import { matchingMonthlyRuns, monthlyRunDescription } from '/assets/js/monthly-records.js';
-import { monthlyCards, weeklyCards, runCards, raceCards } from '/assets/js/mobile-cards.js';
-import { prepareAchievementsForDisplay } from '/assets/js/achievements.js';
+import { matchingMonthlyRuns, monthlyRunDescription } from './monthly-records.js';
+import { monthlyCards, weeklyCards, runCards, raceCards } from './mobile-cards.js';
+import { prepareAchievementsForDisplay } from './achievements.js';
+import { parseDuration, summarizeRuns } from './run-summaries.js';
 
 const SORT_ICONS = { none: '↕', asc: '↑', desc: '↓' };
 
@@ -33,22 +34,6 @@ function parseTime(value) {
     const [hours, minutes] = parts;
     if (Number.isNaN(hours) || Number.isNaN(minutes)) return NaN;
     return (hours * 60 + minutes) * 60;
-}
-
-function parseDuration(value) {
-    if (!value) return NaN;
-    const parts = value.split(':').map(part => parseInt(part, 10));
-    if (parts.length === 3) {
-        const [hours, minutes, seconds] = parts;
-        if ([hours, minutes, seconds].some(Number.isNaN)) return NaN;
-        return hours * 3600 + minutes * 60 + seconds;
-    }
-    if (parts.length === 2) {
-        const [minutes, seconds] = parts;
-        if (Number.isNaN(minutes) || Number.isNaN(seconds)) return NaN;
-        return minutes * 60 + seconds;
-    }
-    return NaN;
 }
 
 function parsePaceToSeconds(value) {
@@ -86,7 +71,6 @@ const TABLE_COLUMN_PARSERS = {
         parseDuration,
         parseNumber,
         parsePaceToSeconds,
-        parseNumber,
         parseNumber,
         parseNumber
     ],
@@ -191,16 +175,11 @@ function reapplyTableSort(tableId) {
 }
 
 // Function to update stats from loaded data
-function updateStatsFromData(recentRunsData, weeklyData, monthlyData) {
-    const latestDistance = parseFloat(recentRunsData.runs[0]?.distance || '0').toFixed(1);
-    const weekSummary = weeklyData.weeks[0]?.summary || '';
-    const weekDistance = parseFloat(weekSummary.split('/')[0]?.trim().replace('km', '') || '0').toFixed(1);
-    const monthDistance = parseFloat(monthlyData.months[0]?.totalDistance || '0').toFixed(1);
-
+function updateStatsFromData({ runs, weeks, months }) {
     updateStats({
-        latest: latestDistance,
-        week: weekDistance,
-        month: monthDistance
+        latest: Number(runs[0]?.distance ?? 0).toFixed(1),
+        week: Number(weeks[0]?.totalDistance ?? 0).toFixed(1),
+        month: Number(months[0]?.totalDistance ?? 0).toFixed(1)
     });
 }
 
@@ -209,53 +188,12 @@ function updateRecentRuns(runs = [], limit = 5) {
     const tbody = document.getElementById('recent-runs-tbody');
     tbody.innerHTML = '';
 
-    const runsArray = Array.isArray(runs) ? runs : [];
-    const sortedRuns = [...runsArray].sort((runA = {}, runB = {}) => {
-        const aValue = parseDate(runA.date || '');
-        const bValue = parseDate(runB.date || '');
-
-        const aInvalid = Number.isNaN(aValue);
-        const bInvalid = Number.isNaN(bValue);
-
-        if (aInvalid && bInvalid) return 0;
-        if (aInvalid) return 1;
-        if (bInvalid) return -1;
-
-        return bValue - aValue;
-    });
-
-    // Show entries based on limit (0 means show all)
-    const displayRuns = limit > 0 ? sortedRuns.slice(0, limit) : sortedRuns;
-
-    // Find the maximum Vdot among the displayed runs
-    const maxVdot = displayRuns.reduce((maxValue, run) => {
-        const vdotValue = parseFloat(run.vdot);
-        if (Number.isNaN(vdotValue)) {
-            return maxValue;
-        }
-        return vdotValue > maxValue ? vdotValue : maxValue;
-    }, Number.NEGATIVE_INFINITY);
-
+    const displayRuns = limit > 0 ? runs.slice(0, limit) : runs;
     displayRuns.forEach(run => {
-        const row = document.createElement('tr');
-        const vdotValue = parseFloat(run.vdot);
-
-        if (maxVdot !== Number.NEGATIVE_INFINITY && !Number.isNaN(vdotValue)) {
-            if (Math.abs(vdotValue - maxVdot) < 0.0001) {
-                row.classList.add('highlight-max-vdot');
-            }
+        const row = tbody.insertRow();
+        for (const value of [run.date, run.duration, run.distance, run.pace, run.heartRate, run.cadence]) {
+            row.insertCell().textContent = value ?? '-';
         }
-
-        row.innerHTML = `
-            <td>${run.date}</td>
-            <td>${run.duration}</td>
-            <td>${run.distance}</td>
-            <td>${run.pace}</td>
-            <td>${run.heartRate}</td>
-            <td>${run.cadence}</td>
-            <td>${run.vdot}</td>
-        `;
-        tbody.appendChild(row);
     });
 
     runCards(displayRuns);
@@ -263,22 +201,21 @@ function updateRecentRuns(runs = [], limit = 5) {
 }
 
 // Function to update weekly overview table (limit parameter for controlling display count)
-function updateWeeklyOverview(weeks, limit = 5, mobileLimit = limit, referenceDate) {
+function updateWeeklyOverview(weeks, limit = 5, mobileLimit = limit) {
     const tbody = document.getElementById('weekly-overview-tbody');
     tbody.innerHTML = '';
 
     // Show entries based on limit (0 means show all)
     const displayWeeks = limit > 0 ? weeks.slice(0, limit) : weeks;
 
-    weeklyCards(displayWeeks, mobileLimit > 0 ? mobileLimit : displayWeeks.length, referenceDate);
+    weeklyCards(displayWeeks, mobileLimit > 0 ? mobileLimit : displayWeeks.length);
     displayWeeks.forEach(week => {
         const row = document.createElement('tr');
 
         // Format date range: "mm/dd–mm/dd" to "mm/dd<br>~<br>mm/dd"
         const dateRangeFormatted = week.dateRange.replace(/–/, '<br>~<br>');
 
-        // Parse summary data: "distance / duration / pace"
-        const summaryParts = week.summary.split('/').map(p => p.trim());
+        const summaryParts = [`${week.totalDistance}km`, week.totalDuration, week.averagePace];
         const summaryHTML = `
             <div class="weekly-data">
                 ${summaryParts.map(part => `<span class="data-badge">${part}</span>`).join('')}
@@ -290,8 +227,8 @@ function updateWeeklyOverview(weeks, limit = 5, mobileLimit = limit, referenceDa
                 return '<td></td>';
             }
 
-            // Parse the day data: "distance / pace / heartRate"
-            const parts = day.split('/').map(p => p.trim());
+            const parts = [`${day.distance}km`, day.pace];
+            if (day.heartRate !== null) parts.push(day.heartRate);
 
             return `<td class="weekly-cell">
                 <div class="weekly-data">
@@ -532,61 +469,44 @@ function initializeSortableTable(tableSelector, options = {}) {
     }
 }
 
-// Main initialization function - load all data once
-async function initializePage() {
+async function loadRunLog() {
+    const response = await fetch('/assets/data/recent-runs.json');
+    if (!response.ok) throw new Error(`Could not load recent-runs.json (HTTP ${response.status})`);
+    const { runs } = await response.json();
+    const log = summarizeRuns(runs);
+    for (const error of log.errors) console.warn('Invalid run:', error);
+    return log;
+}
+
+async function initializeIndexPage() {
     try {
-        // Fetch all JSON files once in parallel
-        const [recentRunsData, weeklyData, monthlyData, achievementsData] = await Promise.all([
-            fetch('/assets/data/recent-runs.json').then(res => res.json()),
-            fetch('/assets/data/weekly-overview.json').then(res => res.json()),
-            fetch('/assets/data/monthly-summary.json').then(res => res.json()),
+        const [log, achievementsData] = await Promise.all([
+            loadRunLog(),
             fetch('/assets/data/running-achievements.json').then(res => res.json())
         ]);
 
-        // Update all sections with the loaded data
-        updateStatsFromData(recentRunsData, weeklyData, monthlyData);
-        updateRecentRuns(recentRunsData.runs);
-        updateWeeklyOverview(weeklyData.weeks, 5, 3, weeklyData.lastUpdated);
-        updateMonthlySummary(monthlyData.months, 5, recentRunsData.runs, 3);
+        updateStatsFromData(log);
+        updateRecentRuns(log.runs);
+        updateWeeklyOverview(log.weeks, 5, 3);
+        updateMonthlySummary(log.months, 5, log.runs, 3);
         updateAchievements(achievementsData.achievements, 5);
     } catch (error) {
         console.error('Error loading data:', error);
     }
 }
 
-// Initialize page for index (with stats)
-async function initializeIndexPage() {
-    await initializePage();
-}
-
 // Initialize page for detail pages (without stats, with custom limit)
 async function initializeDetailPage(pageType) {
     try {
-        let data;
-        let updateFunction;
-        let limit = 0; // 0 means show all
-
-        switch(pageType) {
-            case 'recent-runs':
-                data = await fetch('/assets/data/recent-runs.json').then(res => res.json());
-                updateRecentRuns(data.runs, limit);
-                break;
-            case 'weekly-overview':
-                data = await fetch('/assets/data/weekly-overview.json').then(res => res.json());
-                updateWeeklyOverview(data.weeks, limit, limit, data.lastUpdated);
-                break;
-            case 'monthly-summary':
-                const [monthlyData, runsData] = await Promise.all([
-                    fetch('/assets/data/monthly-summary.json').then(res => res.json()),
-                    fetch('/assets/data/recent-runs.json').then(res => res.json())
-                ]);
-                updateMonthlySummary(monthlyData.months, limit, runsData.runs);
-                break;
-            case 'achievements':
-                data = await fetch('/assets/data/running-achievements.json').then(res => res.json());
-                updateAchievements(data.achievements);
-                break;
+        if (pageType === 'achievements') {
+            const data = await fetch('/assets/data/running-achievements.json').then(res => res.json());
+            updateAchievements(data.achievements);
+            return;
         }
+        const { runs, weeks, months } = await loadRunLog();
+        if (pageType === 'recent-runs') updateRecentRuns(runs, 0);
+        if (pageType === 'weekly-overview') updateWeeklyOverview(weeks, 0);
+        if (pageType === 'monthly-summary') updateMonthlySummary(months, 0, runs);
     } catch (error) {
         console.error('Error loading data:', error);
     }

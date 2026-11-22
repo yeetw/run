@@ -26,31 +26,35 @@ export function monthlyCards(months) {
     const current = new Date().toLocaleDateString('sv-SE', {timeZone:'Asia/Taipei'}).slice(0,7);
     mount('monthly-summary-table', months.map(m => `<details class="record-card month-card"><summary><div class="record-heading"><span>${escape(m.month.replace('-', ' / '))}${m.month === current ? '<small class="period-note">截至今日</small>' : ''}</span><strong>${escape(distance(m.totalDistance))}</strong></div><div class="record-meta">${escape(m.totalRuns)} 次跑步 <span>·</span> ${escape(m.totalDuration)}</div><div class="goal-caption"><span>月目標 ${goal} km</span><strong>${Math.round((parseFloat(m.totalDistance)||0)/goal*1000)/10}%</strong></div><div class="distance-track" role="progressbar" aria-label="月跑量目標 ${goal} km" aria-valuemin="0" aria-valuemax="${goal}" aria-valuenow="${Math.min(goal,Math.max(0,parseFloat(m.totalDistance)||0))}" aria-valuetext="${escape(distance(m.totalDistance))}，目標 ${goal} km"><div style="width:${Math.min(100,Math.max(0,(parseFloat(m.totalDistance)||0)/goal*100))}%"></div></div><div class="goal-remaining">${(parseFloat(m.totalDistance)||0) >= goal ? '目標達成'+((parseFloat(m.totalDistance)||0)>goal ? ' · 超過 '+Number(((parseFloat(m.totalDistance)||0)-goal).toFixed(1))+' km' : '') : (m.month === current ? '還差 ' : '距目標差 ')+Number((goal-(parseFloat(m.totalDistance)||0)).toFixed(1))+' km'}</div><span class="expand-hint">詳細數據</span></summary><dl class="record-metrics">${metric('最快配速',m.fastestPace)}${metric('最長距離',distance(m.longestDistance))}${metric('最高平均心率',m.maxAvgHR)}${metric('最高步頻',m.maxCadence)}</dl></details>`).join(''));
 }
-export function weeklyCards(weeks, mobileLimit = weeks.length, referenceDate = new Date().toISOString().slice(0, 10)) {
+export function weeklyCards(weeks, mobileLimit = weeks.length) {
     const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-    mount('weekly-overview-table', weeks.map((w, index) => {
-        const [month, day] = w.dateRange.split('–')[0].split('/').map(Number);
-        const weekStart = new Date(Date.UTC(Number(referenceDate.slice(0, 4)), month - 1, day));
-        if (weekStart.toISOString().slice(0, 10) > referenceDate) weekStart.setUTCFullYear(weekStart.getUTCFullYear() - 1);
-        const [total,time,pace] = w.summary.split('/').map(s=>s.trim());
-        return `<article class="record-card week-card${index >= mobileLimit ? ' desktop-only-week' : ''}"><div class="record-heading"><span>${escape(w.dateRange)}</span><strong>${escape(distance(total))}</strong></div><div class="record-meta">${escape(time)} <span>·</span> ${escape(pace)} /km</div><div class="week-desktop-summary"><div><span>週跑量</span><strong>${escape(total.replace(/km/i,''))}<small> km</small></strong></div><div><span>跑步次數</span><strong>${w.days.filter(Boolean).length}<small> 次</small></strong></div><div><span>總時長</span><strong>${Number(time.split(':')[0])}<small> 小時 </small>${Number(time.split(':')[1])}<small> 分</small></strong></div></div><div class="week-days">${days.map((day,i) => {
-            const value = w.days[i];
-            if (!value) return `<div class="rest-day"><span>${day}</span><span class="day-marker" aria-label="休息日"></span></div>`;
-            const [dist,p,h] = value.split('/').map(s=>s.trim());
-            const runDate = new Date(weekStart);
-            runDate.setUTCDate(runDate.getUTCDate() + i);
-            const session = intervalSessions.get(runDate.toISOString().slice(0, 10));
+    mount('weekly-overview-table', weeks.map((week, index) => {
+        const [hours, minutes] = week.totalDuration.split(':').map(Number);
+        const dayCards = days.map((day, i) => {
+            const entry = week.days[i];
+            if (!entry) return `<div class="rest-day"><span>${day}</span><span class="day-marker" aria-label="休息日"></span></div>`;
+            const session = intervalSessions.get(entry.date);
             const interval = session?.interval ?? 300;
             const sessionLabel = session ? `${session.label ?? (interval === 1000 ? '1km' : `${interval}m`)} × ${session.reps.length} 組` : '';
-            const dateDetails = `<div><dt>日期</dt><dd>${escape(runDate.toISOString().slice(0, 10).replaceAll('-', '/'))}${session ? `<a class="week-session-tag" href="${document.querySelector('#interval-run-content') ? '' : '/'}#interval-${session.date}">${escape(sessionLabel)}</a>` : ''}</dd></div>`;
-            const type = session ? 'interval' : ['race','interval','group','easy'].includes(w.dayTypes?.[i]) ? w.dayTypes[i] : 'easy';
+            const dateDetails = `<div><dt>日期</dt><dd>${escape(entry.date.replaceAll('-', '/'))}${session ? `<a class="week-session-tag" href="${document.querySelector('#interval-run-content') ? '' : '/'}#interval-${session.date}">${escape(sessionLabel)}</a>` : ''}</dd></div>`;
+            const type = session ? 'interval' : ['race','interval','group','easy'].includes(week.dayTypes?.[i]) ? week.dayTypes[i] : 'easy';
             const typeName = {race:'比賽',interval:'間歇跑',group:'團練／教練課',easy:'一般跑'}[type];
-            return `<details class="active-day" data-run-type="${type}"><summary aria-label="${day} ${escape(value)}，${typeName}"><span>${day}</span><span class="day-marker"></span><span class="day-distance">${escape(dist.replace(/km/i,''))}</span></summary><dl class="day-details">${dateDetails}${metric('距離',distance(dist))}${metric('配速',p+' /km')}${metric('心率',h+' bpm')}</dl></details>`;
-        }).join('')}</div></article>`;
+            const description = [distance(entry.distance), entry.pace, entry.heartRate].filter(value => value !== null).join(' / ');
+            const heartRate = entry.heartRate === null ? '—' : `${entry.heartRate} bpm`;
+            return `<details class="active-day" data-run-type="${type}"><summary aria-label="${day} ${escape(description)}，${typeName}"><span>${day}</span><span class="day-marker"></span><span class="day-distance">${escape(entry.distance)}</span></summary><dl class="day-details">${dateDetails}${metric('距離',distance(entry.distance))}${metric('配速',entry.pace+' /km')}${metric('心率',heartRate)}</dl></details>`;
+        }).join('');
+        return `<article class="record-card week-card${index >= mobileLimit ? ' desktop-only-week' : ''}">
+            <div class="record-heading"><span>${escape(week.dateRange)}</span><strong>${escape(distance(week.totalDistance))}</strong></div>
+            <div class="record-meta">${escape(week.totalDuration)} <span>·</span> ${escape(week.averagePace)} /km</div>
+            <div class="week-desktop-summary">
+                <div><span>週跑量</span><strong>${escape(week.totalDistance)}<small> km</small></strong></div>
+                <div><span>跑步次數</span><strong>${week.totalRuns}<small> 次</small></strong></div>
+                <div><span>總時長</span><strong>${hours}<small> 小時 </small>${minutes}<small> 分</small></strong></div>
+            </div><div class="week-days">${dayCards}</div></article>`;
     }).join(''));
 }
 export function runCards(runs) {
-    mount('recent-runs-table',runs.map(r=>`<details class="record-card"><summary><div class="record-heading"><span>${escape(r.date)}</span><strong>${escape(distance(r.distance))}</strong></div><div class="record-meta">${escape(r.pace)} /km <span>·</span> ${escape(r.duration)}</div><span class="expand-hint">詳細數據</span></summary><dl class="record-metrics">${metric('起跑時間',r.time)}${metric('平均心率',r.heartRate)}${metric('平均步頻',r.cadence)}${metric('VDOT',r.vdot)}</dl></details>`).join(''));
+    mount('recent-runs-table',runs.map(r=>`<details class="record-card"><summary><div class="record-heading"><span>${escape(r.date)}</span><strong>${escape(distance(r.distance))}</strong></div><div class="record-meta">${escape(r.pace)} /km <span>·</span> ${escape(r.duration)}</div><span class="expand-hint">詳細數據</span></summary><dl class="record-metrics">${metric('起跑時間',r.time)}${metric('平均心率',r.heartRate)}${metric('平均步頻',r.cadence)}</dl></details>`).join(''));
 }
 function splitList(splits = []) {
     if (!splits.length) return '<p class="record-meta">尚無分段資料</p>';

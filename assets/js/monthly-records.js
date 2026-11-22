@@ -1,9 +1,9 @@
 const recordFields = { fastestPace: 'pace', longestDistance: 'distance', maxAvgHR: 'heartRate', maxCadence: 'cadence' };
 
-function metricValue(value, field) {
+export function metricValue(value, field) {
     if (value == null || String(value).trim() === '' || value === '-') return NaN;
     if (field === 'pace') {
-        if (!/^\d+:\d{2}$/.test(value)) return NaN;
+        if (!/^\d+:[0-5]\d$/.test(value)) return NaN;
         const [minutes, seconds] = value.split(':').map(Number);
         return minutes * 60 + seconds;
     }
