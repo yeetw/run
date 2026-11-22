@@ -1,6 +1,16 @@
 {
-  "lastUpdated": "2026-11-18",
+  "lastUpdated": "2026-11-22",
   "runs": [
+    {
+      "date": "2026-11-22",
+      "time": "06:05",
+      "duration": "01:34:28",
+      "distance": "10.18",
+      "pace": "09:17",
+      "heartRate": "159",
+      "cadence": "161",
+      "vdot": "19.0"
+    },
     {
       "date": "2026-11-18",
       "time": "11:07",
