@@ -53,7 +53,15 @@ const november12Reps = [
  ['9:43','9:43',147,158,'2:02'],
  ['9:46','9:54',150,160,null]
 ];
+// November 26 screenshots: work laps 3, 5, 7, 9; warm-up laps 1–2 excluded.
+const november26Reps = [
+ ['9:45','9:48',143,160,'2:02'],
+ ['9:34','9:37',149,162,'2:33'],
+ ['9:32','9:35',148,162,'2:03'],
+ ['9:49','9:50',149,158,null]
+];
 export const sessions = [
+ {date:'2026-11-26', interval:1000, repDistances:[1.01,1.01,1.01,1.00], reps:november26Reps, estimated:false, rest:'2', restUnit:'min', note:'課表：跑 1 公里、休 2 分鐘。採用原紀錄第 3、5、7、9 圈；逐組配速、完成時間與組後休息保留實際紀錄，暖身與恢復不列入快跑合計。'},
  {date:'2026-11-12', interval:1000, repDistances:[1.01,1.00,1.00,1.01], reps:november12Reps, estimated:false, rest:'2', restUnit:'min'},
  {date:'2026-11-05', interval:1000, reps:november5Reps, estimated:false, rest:'2', restUnit:'min', note:'課表：跑 1 公里、休 2 分鐘。採用原紀錄第 3、5、7 圈（實測 1.01、1.00、1.01 km）。最後一組後休息 3:43，之後收操；不計入組間休息。'},
  {date:'2026-11-03', reps:novemberReps, estimated:false, rest:'1', restUnit:'min'},
